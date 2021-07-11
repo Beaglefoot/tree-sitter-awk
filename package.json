@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "author": "Beaglefoot <ch-e-st@yandex.ru>",
   "license": "MIT",
+  "scripts": {
+    "types-watch": "node generate-types.js"
+  },
   "dependencies": {
     "nan": "2.14.2"
   },
