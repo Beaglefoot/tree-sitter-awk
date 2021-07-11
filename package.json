@@ -1,0 +1,14 @@
+{
+  "name": "tree-sitter-awk",
+  "version": "0.0.1",
+  "author": "Beaglefoot <ch-e-st@yandex.ru>",
+  "license": "MIT",
+  "dependencies": {
+    "nan": "2.14.2"
+  },
+  "devDependencies": {
+    "prettier": "2.3.2",
+    "tree-sitter-cli": "0.20.0"
+  },
+  "main": "bindings/node"
+}
