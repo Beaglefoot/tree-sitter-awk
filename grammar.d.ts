@@ -3,8 +3,18 @@ declare interface IRules {
   rule: ($: IRules) => any;
   pattern: ($: IRules) => any;
   statement: ($: IRules) => any;
-  statement_block: ($: IRules) => any;
+  block: ($: IRules) => any;
+  exp: ($: IRules) => any;
+  binary_exp: ($: IRules) => any;
+  unary_exp: ($: IRules) => any;
+  regex: ($: IRules) => any;
+  identifier: ($: IRules) => any;
+  number: ($: IRules) => any;
+  string: ($: IRules) => any;
+  escape_sequence: ($: IRules) => any;
+  comment: ($: IRules) => any;
 }
+
 
 declare interface IGrammar {
   name: string;
@@ -32,5 +42,5 @@ prec.right = (num?: number, rule: TRule) => TRule;
 prec.dyanmic = (num: number, rule: TRule) => TRule;
 declare function token(rule: TRule): TRule;
 token.immediate = (rule: TRule) => TRule;
-declare function alias(rule: TRule, name: string): TRule;
+declare function alias(rule: TRule, name: TRule): TRule;
 declare function field(name: string, rule: TRule): TRule;
