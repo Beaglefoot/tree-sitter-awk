@@ -1,11 +1,21 @@
 {
   "name": "awk",
+  "word": "identifier",
   "rules": {
     "program": {
       "type": "REPEAT",
       "content": {
-        "type": "SYMBOL",
-        "name": "rule"
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "rule"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "func_def"
+          }
+        ]
       }
     },
     "rule": {
@@ -118,7 +128,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[a-z]+"
+      "value": "[a-zA-Z][a-zA-Z0-9_]+"
     },
     "number": {
       "type": "PATTERN",
@@ -181,6 +191,72 @@
           }
         ]
       }
+    },
+    "func_def": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "function"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "param_list"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block"
+        }
+      ]
+    },
+    "param_list": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              }
+            ]
+          }
+        }
+      ]
     },
     "comment": {
       "type": "SEQ",

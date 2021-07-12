@@ -59,6 +59,51 @@
     }
   },
   {
+    "type": "func_def",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "param_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "param_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "pattern",
     "named": true,
     "fields": {},
@@ -85,6 +130,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "func_def",
+          "named": true
+        },
         {
           "type": "rule",
           "named": true
@@ -135,12 +184,28 @@
     "named": false
   },
   {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
     "type": "binary_exp",
     "named": true
   },
   {
     "type": "escape_sequence",
     "named": true
+  },
+  {
+    "type": "function",
+    "named": false
   },
   {
     "type": "identifier",

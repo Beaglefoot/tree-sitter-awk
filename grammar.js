@@ -6,7 +6,7 @@ module.exports = grammar({
   word: $ => $.identifier,
 
   rules: {
-    program: $ => repeat($.rule),
+    program: $ => repeat(choice($.rule, $.func_def)),
 
     rule: $ => seq($.pattern, optional($.block)),
 
@@ -24,7 +24,7 @@ module.exports = grammar({
 
     regex: $ => 'todo_regex',
 
-    identifier: $ => /[a-z]+/,
+    identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
     number: $ => /\d+/,
 
@@ -40,6 +40,11 @@ module.exports = grammar({
           /[0-7]{1,3}/
         )
       )),
+
+    func_def: $ =>
+      seq('function', field('name', $.identifier), '(', optional($.param_list), ')', $.block),
+
+    param_list: $ => seq($.identifier, repeat(seq(',', $.identifier))),
 
     comment: $ => seq('#', /.*/),
   },

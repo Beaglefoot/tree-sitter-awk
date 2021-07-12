@@ -1,0 +1,59 @@
+====================================
+Definition with zero args
+====================================
+
+function greet() {}
+
+------------------------------------
+
+(program
+  (func_def
+     (identifier)
+    (block)))
+
+====================================
+Definition with single arg
+====================================
+
+function greet(who) {}
+
+------------------------------------
+
+(program
+  (func_def
+     (identifier)
+    (param_list
+      (identifier))
+    (block)))
+
+====================================
+Definition with multiple arg
+====================================
+
+function greet(who, and_who) {}
+
+------------------------------------
+
+(program
+  (func_def
+     (identifier)
+    (param_list
+      (identifier)
+      (identifier))
+    (block)))
+
+====================================
+Wrong definition with trailing comma
+====================================
+
+function greet(who,) {}
+
+------------------------------------
+
+(program
+  (func_def
+     (identifier)
+    (param_list
+      (identifier))
+    (ERROR)
+    (block)))

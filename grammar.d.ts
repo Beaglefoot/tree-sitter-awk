@@ -12,6 +12,8 @@ declare interface IRules {
   number: ($: IRules) => any;
   string: ($: IRules) => any;
   escape_sequence: ($: IRules) => any;
+  func_def: ($: IRules) => any;
+  param_list: ($: IRules) => any;
   comment: ($: IRules) => any;
 }
 
