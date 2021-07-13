@@ -1,5 +1,20 @@
 [
   {
+    "type": "args",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "exp",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "block",
     "named": true,
     "fields": {},
@@ -40,6 +55,10 @@
           "named": true
         },
         {
+          "type": "func_call",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -53,6 +72,32 @@
         },
         {
           "type": "unary_exp",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "func_call",
+    "named": true,
+    "fields": {
+      "func_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "args",
           "named": true
         }
       ]

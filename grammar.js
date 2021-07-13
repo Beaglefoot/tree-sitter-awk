@@ -16,7 +16,7 @@ module.exports = grammar({
 
     block: $ => seq('{', repeat(choice($.statement, $.exp, $.regex)), '}'),
 
-    exp: $ => choice($.identifier, $.number, $.string, $.binary_exp, $.unary_exp),
+    exp: $ => choice($.identifier, $.number, $.string, $.binary_exp, $.unary_exp, $.func_call),
 
     binary_exp: $ => 'todo_binary_exp',
 
@@ -45,6 +45,10 @@ module.exports = grammar({
       seq('function', field('name', $.identifier), '(', optional($.param_list), ')', $.block),
 
     param_list: $ => seq($.identifier, repeat(seq(',', $.identifier))),
+
+    func_call: $ => seq(field('func_name', $.identifier), '(', optional($.args), ')'),
+
+    args: $ => seq($.exp, repeat(seq(',', $.exp))),
 
     comment: $ => seq('#', /.*/),
   },
