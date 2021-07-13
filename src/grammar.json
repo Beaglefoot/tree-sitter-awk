@@ -49,6 +49,10 @@
         {
           "type": "SYMBOL",
           "name": "regex"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_primitive"
         }
       ]
     },
@@ -79,6 +83,10 @@
               {
                 "type": "SYMBOL",
                 "name": "regex"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_primitive"
               }
             ]
           }
@@ -95,14 +103,6 @@
         {
           "type": "SYMBOL",
           "name": "identifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "number"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "string"
         },
         {
           "type": "SYMBOL",
@@ -129,6 +129,19 @@
     "regex": {
       "type": "STRING",
       "value": "todo_regex"
+    },
+    "_primitive": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string"
+        }
+      ]
     },
     "identifier": {
       "type": "PATTERN",
@@ -299,8 +312,17 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "exp"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "exp"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_primitive"
+            }
+          ]
         },
         {
           "type": "REPEAT",
@@ -312,8 +334,17 @@
                 "value": ","
               },
               {
-                "type": "SYMBOL",
-                "name": "exp"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "exp"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "_primitive"
+                  }
+                ]
               }
             ]
           }

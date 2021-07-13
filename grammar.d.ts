@@ -8,6 +8,7 @@ declare interface IRules {
   binary_exp: ($: IRules) => any;
   unary_exp: ($: IRules) => any;
   regex: ($: IRules) => any;
+  _primitive: ($: IRules) => any;
   identifier: ($: IRules) => any;
   number: ($: IRules) => any;
   string: ($: IRules) => any;

@@ -10,19 +10,21 @@ module.exports = grammar({
 
     rule: $ => seq($.pattern, optional($.block)),
 
-    pattern: $ => choice($.exp, $.regex),
+    pattern: $ => choice($.exp, $.regex, $._primitive),
 
     statement: $ => 'todo_statement',
 
-    block: $ => seq('{', repeat(choice($.statement, $.exp, $.regex)), '}'),
+    block: $ => seq('{', repeat(choice($.statement, $.exp, $.regex, $._primitive)), '}'),
 
-    exp: $ => choice($.identifier, $.number, $.string, $.binary_exp, $.unary_exp, $.func_call),
+    exp: $ => choice($.identifier, $.binary_exp, $.unary_exp, $.func_call),
 
     binary_exp: $ => 'todo_binary_exp',
 
     unary_exp: $ => 'todo_unary_exp',
 
     regex: $ => 'todo_regex',
+
+    _primitive: $ => choice($.number, $.string),
 
     identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
@@ -48,7 +50,7 @@ module.exports = grammar({
 
     func_call: $ => seq(field('func_name', $.identifier), '(', optional($.args), ')'),
 
-    args: $ => seq($.exp, repeat(seq(',', $.exp))),
+    args: $ => seq(choice($.exp, $._primitive), repeat(seq(',', choice($.exp, $._primitive)))),
 
     comment: $ => seq('#', /.*/),
   },

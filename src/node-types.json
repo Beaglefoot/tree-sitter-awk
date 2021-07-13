@@ -10,6 +10,14 @@
         {
           "type": "exp",
           "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
         }
       ]
     }
@@ -27,11 +35,19 @@
           "named": true
         },
         {
+          "type": "number",
+          "named": true
+        },
+        {
           "type": "regex",
           "named": true
         },
         {
           "type": "statement",
+          "named": true
+        },
+        {
+          "type": "string",
           "named": true
         }
       ]
@@ -60,14 +76,6 @@
         },
         {
           "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "number",
-          "named": true
-        },
-        {
-          "type": "string",
           "named": true
         },
         {
@@ -161,7 +169,15 @@
           "named": true
         },
         {
+          "type": "number",
+          "named": true
+        },
+        {
           "type": "regex",
+          "named": true
+        },
+        {
+          "type": "string",
           "named": true
         }
       ]
