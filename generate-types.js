@@ -37,6 +37,7 @@ declare interface IGrammar {
   externals?: ($: IRules) => any;
   word?: ($: IRules) => any;
   supertypes?: ($: IRules) => any;
+  precedences?: ($: IRules) => any;
   rules: IRules;
 }
 
@@ -44,19 +45,28 @@ declare function grammar(g: IGrammar): any;
 
 declare type TRule = (($: IRules) => any) | string | RegExp;
 
+declare interface IPrecFunc {
+  (rule: TRule): TRule;
+  (val: number | string, rule: TRule): TRule;
+}
+
+declare interface ITokenFunc {
+  (rule: TRule): TRule;
+}
+
 declare function seq(...rules: TRule[]): TRule;
 declare function choice(...rules: TRule[]): TRule;
 declare function repeat(rule: TRule): TRule;
 declare function repeat1(rule: TRule): TRule;
 declare function optional(rule: TRule): TRule;
-declare function prec(num: number, rule: TRule): TRule;
-prec.left = (num?: number, rule: TRule) => TRule;
-prec.right = (num?: number, rule: TRule) => TRule;
-prec.dyanmic = (num: number, rule: TRule) => TRule;
-declare function token(rule: TRule): TRule;
-token.immediate = (rule: TRule) => TRule;
 declare function alias(rule: TRule, name: TRule): TRule;
 declare function field(name: string, rule: TRule): TRule;
+declare const prec: IPrecFunc & {
+  left: IPrecFunc;
+  right: IPrecFunc;
+  dynamic: (val: number, rule: TRule) => TRule;
+};
+declare const token: ITokenFunc & { immediate: ITokenFunc }
 `;
 
   writer.write(furtherDefinitions);
