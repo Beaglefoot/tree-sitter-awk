@@ -21,7 +21,12 @@ function writeTypes() {
     writer.write('}\n\n');
   }
 
-  eval(source);
+  try {
+    eval(source);
+  } catch (err) {
+    console.error(err);
+    return;
+  }
 
   const furtherDefinitions = `
 declare interface IGrammar {
