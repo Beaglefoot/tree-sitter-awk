@@ -3,6 +3,25 @@ module.exports = grammar({
 
   extras: $ => [$.comment, /[\s\t]/],
 
+  precedences: $ => [
+    [
+      'field_ref',
+      'call',
+      'increment',
+      'binary_exponent',
+      'unary_not',
+      'binary_times',
+      'binary_plus',
+      'binary_io',
+      'binary_relation',
+      'binary_match',
+      'binary_in',
+      'binary_and',
+      'binary_or',
+      'ternary',
+    ],
+  ],
+
   word: $ => $.identifier,
 
   rules: {
@@ -10,17 +29,99 @@ module.exports = grammar({
 
     rule: $ => seq($.pattern, optional($.block)),
 
-    pattern: $ => choice($.exp, $.regex, $._primitive),
+    // TODO: Need more thought
+    pattern: $ => prec.left(choice($._exp, seq($._exp, ',', $._exp), $.regex, $._special_pattern)),
+
+    _special_pattern: $ => choice('BEGIN', 'END', 'BEGINFILE', 'ENDFILE'),
 
     statement: $ => 'todo_statement',
 
-    block: $ => seq('{', repeat(choice($.statement, $.exp, $.regex, $._primitive)), '}'),
+    block: $ => seq('{', repeat(prec.left(choice($.statement, $._exp, $.regex))), '}'),
 
-    exp: $ => choice($.identifier, $.binary_exp, $.unary_exp, $.func_call),
+    _exp: $ =>
+      choice(
+        $.identifier,
+        $.ternary_exp,
+        $.binary_exp,
+        $.unary_exp,
+        $.update_exp,
+        $.assignment_exp,
+        $.func_call,
+        $._primitive
+      ),
 
-    binary_exp: $ => 'todo_binary_exp',
+    ternary_exp: $ =>
+      prec.right(
+        'ternary',
+        seq(
+          field('condition', $._exp),
+          '?',
+          field('consequence', $._exp),
+          ':',
+          field('alternative', $._exp)
+        )
+      ),
 
-    unary_exp: $ => 'todo_unary_exp',
+    binary_exp: $ =>
+      choice(
+        ...[
+          ['^', 'binary_exponent'],
+          ['**', 'binary_exponent'],
+          ['*', 'binary_times'],
+          ['/', 'binary_times'],
+          ['%', 'binary_times'],
+          ['+', 'binary_plus'],
+          ['-', 'binary_plus'],
+          ['|', 'binary_io'],
+          ['|&', 'binary_io'],
+          ['<', 'binary_relation'],
+          ['>', 'binary_relation'],
+          ['<=', 'binary_relation'],
+          ['>=', 'binary_relation'],
+          ['==', 'binary_relation'],
+          ['!=', 'binary_relation'],
+          ['~', 'binary_match'],
+          ['!~', 'binary_match'],
+          ['in', 'binary_in'],
+          ['&&', 'binary_and'],
+          ['||', 'binary_or'],
+        ].map(([op, precedence]) =>
+          prec.left(
+            precedence,
+            seq(field('left', $._exp), field('operator', op), field('right', $._exp))
+          )
+        )
+      ),
+
+    unary_exp: $ =>
+      choice(
+        ...[
+          ['$', 'field_ref'],
+          ['!', 'unary_not'],
+          ['+', 'unary_not'],
+          ['-', 'unary_not'],
+        ].map(([op, precedence]) =>
+          prec.left(precedence, seq(field('operator', op), field('argument', $._exp)))
+        )
+      ),
+
+    update_exp: $ =>
+      prec.left(
+        'increment',
+        choice(
+          seq(field('argument', $._exp), field('operator', choice('++', '--'))),
+          seq(field('operator', choice('++', '--')), field('argument', $._exp))
+        )
+      ),
+
+    assignment_exp: $ =>
+      prec.right(
+        seq(
+          field('left', $.identifier),
+          choice('=', '+=', '-=', '*=', '/=', '%=', '^='),
+          field('right', $._exp)
+        )
+      ),
 
     regex: $ => 'todo_regex',
 
@@ -48,9 +149,9 @@ module.exports = grammar({
 
     param_list: $ => seq($.identifier, repeat(seq(',', $.identifier))),
 
-    func_call: $ => seq(field('func_name', $.identifier), '(', optional($.args), ')'),
+    func_call: $ => prec('call', seq(field('func_name', $.identifier), '(', optional($.args), ')')),
 
-    args: $ => seq(choice($.exp, $._primitive), repeat(seq(',', choice($.exp, $._primitive)))),
+    args: $ => seq($._exp, repeat(seq(',', $._exp))),
 
     comment: $ => seq('#', /.*/),
   },
