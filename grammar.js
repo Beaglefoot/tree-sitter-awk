@@ -9,6 +9,7 @@ module.exports = grammar({
       'call',
       'increment',
       'binary_exponent',
+      // TODO: Handle 1 + 1 to be a binary exp
       'unary_not',
       'binary_times',
       'binary_plus',
@@ -27,16 +28,67 @@ module.exports = grammar({
   rules: {
     program: $ => repeat(choice($.rule, $.func_def)),
 
-    rule: $ => seq($.pattern, optional($.block)),
+    rule: $ =>
+      prec.left(choice(seq($.pattern, optional($.block)), seq(optional($.pattern), $.block))),
 
     // TODO: Need more thought
     pattern: $ => prec.left(choice($._exp, seq($._exp, ',', $._exp), $.regex, $._special_pattern)),
 
     _special_pattern: $ => choice('BEGIN', 'END', 'BEGINFILE', 'ENDFILE'),
 
-    statement: $ => 'todo_statement',
+    _statement: $ => choice($._control_statement, $._io_statement),
 
-    block: $ => seq('{', repeat(prec.left(choice($.statement, $._exp, $.regex))), '}'),
+    _statement_sep: $ => choice(';', '\n'),
+
+    _control_statement: $ =>
+      choice(
+        $.if_statement,
+        $.while_statement,
+        $.do_while_statement,
+        $.for_statement,
+        $.for_in_statement,
+        $.break_statement,
+        $.continue_statement,
+        $.delete_statement,
+        $.exit_statement,
+        $.switch_statement
+      ),
+
+    if_statement: $ =>
+      prec.right(
+        seq(
+          'if',
+          field('condition', seq('(', $._exp, ')')),
+          choice($.block, seq($._statement, $._statement_sep)),
+          optional($.else_clause)
+        )
+      ),
+
+    else_clause: $ => seq('else', choice($.block, $._statement)),
+
+    while_statement: $ => seq('while', field('condition', seq('(', $._exp, ')')), $.block),
+
+    do_while_statement: $ => seq('do', $.block, 'while', field('condition', seq('(', $._exp, ')'))),
+
+    for_statement: $ =>
+      seq('for', '(', /* TODO: initializer, condition, advancement */ ')', $.block),
+
+    for_in_statement: $ => 'todo_for_in_statement',
+
+    // TODO: Must be available in loops only
+    break_statement: $ => 'break',
+
+    continue_statement: $ => 'continue',
+
+    delete_statement: $ => 'todo_delete_statement',
+
+    exit_statement: $ => 'todo_exit_statement',
+
+    switch_statement: $ => 'todo_switch_statement',
+
+    _io_statement: $ => 'todo_io_statement',
+
+    block: $ => seq('{', repeat(prec.left(choice($.block, $._statement, $._exp, $.regex))), '}'),
 
     _exp: $ =>
       choice(
