@@ -46,6 +46,7 @@ module.exports = grammar({
         $.unary_exp,
         $.update_exp,
         $.assignment_exp,
+        $.field_ref,
         $.func_call,
         $._primitive
       ),
@@ -96,7 +97,6 @@ module.exports = grammar({
     unary_exp: $ =>
       choice(
         ...[
-          ['$', 'field_ref'],
           ['!', 'unary_not'],
           ['+', 'unary_not'],
           ['-', 'unary_not'],
@@ -122,6 +122,8 @@ module.exports = grammar({
           field('right', $._exp)
         )
       ),
+
+    field_ref: $ => prec('field_ref', seq('$', $._exp)),
 
     regex: $ => 'todo_regex',
 

@@ -168,6 +168,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "field_ref"
+        },
+        {
+          "type": "SYMBOL",
           "name": "func_call"
         },
         {
@@ -887,31 +891,6 @@
       "members": [
         {
           "type": "PREC_LEFT",
-          "value": "field_ref",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "FIELD",
-                "name": "operator",
-                "content": {
-                  "type": "STRING",
-                  "value": "$"
-                }
-              },
-              {
-                "type": "FIELD",
-                "name": "argument",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "_exp"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "PREC_LEFT",
           "value": "unary_not",
           "content": {
             "type": "SEQ",
@@ -1110,6 +1089,23 @@
               "type": "SYMBOL",
               "name": "_exp"
             }
+          }
+        ]
+      }
+    },
+    "field_ref": {
+      "type": "PREC",
+      "value": "field_ref",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "$"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_exp"
           }
         ]
       }
@@ -1379,10 +1375,6 @@
       {
         "type": "STRING",
         "value": "binary_plus"
-      },
-      {
-        "type": "STRING",
-        "value": "binary_concat"
       },
       {
         "type": "STRING",

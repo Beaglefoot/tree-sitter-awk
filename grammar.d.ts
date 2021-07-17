@@ -11,6 +11,7 @@ declare interface IRules {
   unary_exp: ($: IRules) => any;
   update_exp: ($: IRules) => any;
   assignment_exp: ($: IRules) => any;
+  field_ref: ($: IRules) => any;
   regex: ($: IRules) => any;
   _primitive: ($: IRules) => any;
   identifier: ($: IRules) => any;

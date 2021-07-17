@@ -16,6 +16,10 @@
           "named": true
         },
         {
+          "type": "field_ref",
+          "named": true
+        },
+        {
           "type": "func_call",
           "named": true
         },
@@ -73,6 +77,10 @@
             "named": true
           },
           {
+            "type": "field_ref",
+            "named": true
+          },
+          {
             "type": "func_call",
             "named": true
           },
@@ -118,6 +126,10 @@
           },
           {
             "type": "binary_exp",
+            "named": true
+          },
+          {
+            "type": "field_ref",
             "named": true
           },
           {
@@ -249,6 +261,10 @@
             "named": true
           },
           {
+            "type": "field_ref",
+            "named": true
+          },
+          {
             "type": "func_call",
             "named": true
           },
@@ -297,6 +313,10 @@
           "named": true
         },
         {
+          "type": "field_ref",
+          "named": true
+        },
+        {
           "type": "func_call",
           "named": true
         },
@@ -339,6 +359,57 @@
     "type": "comment",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "field_ref",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment_exp",
+          "named": true
+        },
+        {
+          "type": "binary_exp",
+          "named": true
+        },
+        {
+          "type": "field_ref",
+          "named": true
+        },
+        {
+          "type": "func_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "ternary_exp",
+          "named": true
+        },
+        {
+          "type": "unary_exp",
+          "named": true
+        },
+        {
+          "type": "update_exp",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "func_call",
@@ -425,6 +496,10 @@
         },
         {
           "type": "binary_exp",
+          "named": true
+        },
+        {
+          "type": "field_ref",
           "named": true
         },
         {
@@ -532,6 +607,10 @@
             "named": true
           },
           {
+            "type": "field_ref",
+            "named": true
+          },
+          {
             "type": "func_call",
             "named": true
           },
@@ -574,6 +653,10 @@
             "named": true
           },
           {
+            "type": "field_ref",
+            "named": true
+          },
+          {
             "type": "func_call",
             "named": true
           },
@@ -613,6 +696,10 @@
           },
           {
             "type": "binary_exp",
+            "named": true
+          },
+          {
+            "type": "field_ref",
             "named": true
           },
           {
@@ -664,6 +751,10 @@
             "named": true
           },
           {
+            "type": "field_ref",
+            "named": true
+          },
+          {
             "type": "func_call",
             "named": true
           },
@@ -702,10 +793,6 @@
             "named": false
           },
           {
-            "type": "$",
-            "named": false
-          },
-          {
             "type": "+",
             "named": false
           },
@@ -731,6 +818,10 @@
           },
           {
             "type": "binary_exp",
+            "named": true
+          },
+          {
+            "type": "field_ref",
             "named": true
           },
           {
