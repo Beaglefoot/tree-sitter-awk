@@ -17,6 +17,9 @@ declare interface IRules {
   delete_statement: ($: IRules) => any;
   exit_statement: ($: IRules) => any;
   switch_statement: ($: IRules) => any;
+  switch_body: ($: IRules) => any;
+  switch_case: ($: IRules) => any;
+  switch_default: ($: IRules) => any;
   _io_statement: ($: IRules) => any;
   block: ($: IRules) => any;
   _exp: ($: IRules) => any;

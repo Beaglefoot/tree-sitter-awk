@@ -44,6 +44,7 @@ module.exports = grammar({
         'statement',
         choice(
           seq($._statement_separated, $.statement),
+          $._statement_separated,
           $._control_statement,
           $._io_statement,
           $._exp
@@ -124,9 +125,15 @@ module.exports = grammar({
 
     delete_statement: $ => seq('delete', choice($.identifier, $.array_ref)),
 
-    exit_statement: $ => 'todo_exit_statement',
+    exit_statement: $ => seq('exit', $._exp),
 
-    switch_statement: $ => 'todo_switch_statement',
+    switch_statement: $ => seq('switch', '(', $._exp, ')', $.switch_body),
+
+    switch_body: $ => seq('{', repeat(choice($.switch_case, $.switch_default)), '}'),
+
+    switch_case: $ => seq('case', field('value', $._primitive), ':', $.statement),
+
+    switch_default: $ => seq('default', ':', $.statement),
 
     _io_statement: $ => 'todo_io_statement',
 
