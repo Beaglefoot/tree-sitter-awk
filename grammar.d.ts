@@ -3,8 +3,8 @@ declare interface IRules {
   rule: ($: IRules) => any;
   pattern: ($: IRules) => any;
   _special_pattern: ($: IRules) => any;
-  _statement: ($: IRules) => any;
-  _statement_sep: ($: IRules) => any;
+  statement: ($: IRules) => any;
+  _statement_separated: ($: IRules) => any;
   _control_statement: ($: IRules) => any;
   if_statement: ($: IRules) => any;
   else_clause: ($: IRules) => any;

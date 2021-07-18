@@ -20,6 +20,7 @@ module.exports = grammar({
       'binary_and',
       'binary_or',
       'ternary',
+      'statement',
     ],
   ],
 
@@ -36,9 +37,18 @@ module.exports = grammar({
 
     _special_pattern: $ => choice('BEGIN', 'END', 'BEGINFILE', 'ENDFILE'),
 
-    _statement: $ => choice($._control_statement, $._io_statement),
+    statement: $ =>
+      prec.left(
+        'statement',
+        choice(
+          seq($._statement_separated, $.statement),
+          $._control_statement,
+          $._io_statement,
+          $._exp
+        )
+      ),
 
-    _statement_sep: $ => choice(';', '\n'),
+    _statement_separated: $ => seq($.statement, choice(';', '\n')),
 
     _control_statement: $ =>
       choice(
@@ -59,19 +69,37 @@ module.exports = grammar({
         seq(
           'if',
           field('condition', seq('(', $._exp, ')')),
-          choice($.block, seq($._statement, $._statement_sep)),
+          choice($.block, $.statement),
           optional($.else_clause)
         )
       ),
 
-    else_clause: $ => seq('else', choice($.block, $._statement)),
+    else_clause: $ => prec.right(seq('else', choice($.block, $.statement))),
 
-    while_statement: $ => seq('while', field('condition', seq('(', $._exp, ')')), $.block),
+    while_statement: $ =>
+      prec.right(
+        seq('while', field('condition', seq('(', $._exp, ')')), choice($.block, $.statement))
+      ),
 
-    do_while_statement: $ => seq('do', $.block, 'while', field('condition', seq('(', $._exp, ')'))),
+    do_while_statement: $ =>
+      prec.right(
+        seq('do', choice($.block, $.statement), 'while', field('condition', seq('(', $._exp, ')')))
+      ),
 
     for_statement: $ =>
-      seq('for', '(', /* TODO: initializer, condition, advancement */ ')', $.block),
+      prec.right(
+        seq(
+          'for',
+          '(',
+          field('initializer', optional($._exp)),
+          ';',
+          field('condition', optional($._exp)),
+          ';',
+          field('advancement', optional($._exp)),
+          ')',
+          choice($.block, $.statement)
+        )
+      ),
 
     for_in_statement: $ => 'todo_for_in_statement',
 
@@ -88,7 +116,7 @@ module.exports = grammar({
 
     _io_statement: $ => 'todo_io_statement',
 
-    block: $ => seq('{', repeat(prec.left(choice($.block, $._statement, $._exp, $.regex))), '}'),
+    block: $ => seq('{', optional(prec.left(choice($.block, $.statement, $.regex))), '}'),
 
     _exp: $ =>
       choice(
