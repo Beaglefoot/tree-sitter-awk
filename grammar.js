@@ -119,9 +119,10 @@ module.exports = grammar({
     // TODO: Must be available in loops only
     break_statement: $ => 'break',
 
+    // TODO: Must be available in loops only
     continue_statement: $ => 'continue',
 
-    delete_statement: $ => 'todo_delete_statement',
+    delete_statement: $ => seq('delete', choice($.identifier, $.array_ref)),
 
     exit_statement: $ => 'todo_exit_statement',
 
@@ -141,7 +142,8 @@ module.exports = grammar({
         $.assignment_exp,
         $.field_ref,
         $.func_call,
-        $._primitive
+        $._primitive,
+        $.array_ref
       ),
 
     ternary_exp: $ =>
@@ -217,6 +219,8 @@ module.exports = grammar({
       ),
 
     field_ref: $ => prec('field_ref', seq('$', $._exp)),
+
+    array_ref: $ => seq($.identifier, '[', field('index', $._exp), ']'),
 
     regex: $ => 'todo_regex',
 

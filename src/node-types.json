@@ -8,6 +8,10 @@
       "required": true,
       "types": [
         {
+          "type": "array_ref",
+          "named": true
+        },
+        {
           "type": "assignment_exp",
           "named": true
         },
@@ -51,6 +55,72 @@
     }
   },
   {
+    "type": "array_ref",
+    "named": true,
+    "fields": {
+      "index": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_ref",
+            "named": true
+          },
+          {
+            "type": "assignment_exp",
+            "named": true
+          },
+          {
+            "type": "binary_exp",
+            "named": true
+          },
+          {
+            "type": "field_ref",
+            "named": true
+          },
+          {
+            "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "ternary_exp",
+            "named": true
+          },
+          {
+            "type": "unary_exp",
+            "named": true
+          },
+          {
+            "type": "update_exp",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "assignment_exp",
     "named": true,
     "fields": {
@@ -68,6 +138,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "array_ref",
+            "named": true
+          },
           {
             "type": "assignment_exp",
             "named": true
@@ -120,6 +194,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "array_ref",
+            "named": true
+          },
           {
             "type": "assignment_exp",
             "named": true
@@ -253,6 +331,10 @@
         "required": true,
         "types": [
           {
+            "type": "array_ref",
+            "named": true
+          },
+          {
             "type": "assignment_exp",
             "named": true
           },
@@ -325,6 +407,25 @@
     "fields": {}
   },
   {
+    "type": "delete_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "array_ref",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "do_while_statement",
     "named": true,
     "fields": {
@@ -339,6 +440,10 @@
           {
             "type": ")",
             "named": false
+          },
+          {
+            "type": "array_ref",
+            "named": true
           },
           {
             "type": "assignment_exp",
@@ -425,6 +530,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "array_ref",
+          "named": true
+        },
         {
           "type": "assignment_exp",
           "named": true
@@ -517,6 +626,10 @@
         "required": false,
         "types": [
           {
+            "type": "array_ref",
+            "named": true
+          },
+          {
             "type": "assignment_exp",
             "named": true
           },
@@ -563,6 +676,10 @@
         "required": false,
         "types": [
           {
+            "type": "array_ref",
+            "named": true
+          },
+          {
             "type": "assignment_exp",
             "named": true
           },
@@ -608,6 +725,10 @@
         "multiple": false,
         "required": false,
         "types": [
+          {
+            "type": "array_ref",
+            "named": true
+          },
           {
             "type": "assignment_exp",
             "named": true
@@ -739,6 +860,10 @@
             "named": false
           },
           {
+            "type": "array_ref",
+            "named": true
+          },
+          {
             "type": "assignment_exp",
             "named": true
           },
@@ -823,6 +948,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "array_ref",
+          "named": true
+        },
         {
           "type": "assignment_exp",
           "named": true
@@ -916,6 +1045,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "array_ref",
+          "named": true
+        },
         {
           "type": "assignment_exp",
           "named": true
@@ -1027,6 +1160,10 @@
         "required": true,
         "types": [
           {
+            "type": "array_ref",
+            "named": true
+          },
+          {
             "type": "assignment_exp",
             "named": true
           },
@@ -1073,6 +1210,10 @@
         "required": true,
         "types": [
           {
+            "type": "array_ref",
+            "named": true
+          },
+          {
             "type": "assignment_exp",
             "named": true
           },
@@ -1118,6 +1259,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "array_ref",
+            "named": true
+          },
           {
             "type": "assignment_exp",
             "named": true
@@ -1170,6 +1315,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "array_ref",
+            "named": true
+          },
           {
             "type": "assignment_exp",
             "named": true
@@ -1240,6 +1389,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "array_ref",
+            "named": true
+          },
           {
             "type": "assignment_exp",
             "named": true
@@ -1313,6 +1466,10 @@
           {
             "type": ")",
             "named": false
+          },
+          {
+            "type": "array_ref",
+            "named": true
           },
           {
             "type": "assignment_exp",
@@ -1521,6 +1678,14 @@
     "named": false
   },
   {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
     "type": "^",
     "named": false
   },
@@ -1537,8 +1702,8 @@
     "named": true
   },
   {
-    "type": "delete_statement",
-    "named": true
+    "type": "delete",
+    "named": false
   },
   {
     "type": "do",

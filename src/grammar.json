@@ -565,8 +565,26 @@
       "value": "continue"
     },
     "delete_statement": {
-      "type": "STRING",
-      "value": "todo_delete_statement"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "delete"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "array_ref"
+            }
+          ]
+        }
+      ]
     },
     "exit_statement": {
       "type": "STRING",
@@ -660,6 +678,10 @@
         {
           "type": "SYMBOL",
           "name": "_primitive"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "array_ref"
         }
       ]
     },
@@ -1592,6 +1614,31 @@
           }
         ]
       }
+    },
+    "array_ref": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "FIELD",
+          "name": "index",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_exp"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
     },
     "regex": {
       "type": "STRING",
