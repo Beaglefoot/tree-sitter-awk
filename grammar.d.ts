@@ -21,6 +21,10 @@ declare interface IRules {
   switch_case: ($: IRules) => any;
   switch_default: ($: IRules) => any;
   _io_statement: ($: IRules) => any;
+  getline_statement: ($: IRules) => any;
+  next_statement: ($: IRules) => any;
+  nextfile_statement: ($: IRules) => any;
+  print_statement: ($: IRules) => any;
   block: ($: IRules) => any;
   _exp: ($: IRules) => any;
   ternary_exp: ($: IRules) => any;

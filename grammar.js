@@ -135,7 +135,16 @@ module.exports = grammar({
 
     switch_default: $ => seq('default', ':', $.statement),
 
-    _io_statement: $ => 'todo_io_statement',
+    _io_statement: $ =>
+      choice($.getline_statement, $.next_statement, $.nextfile_statement, $.print_statement),
+
+    getline_statement: $ => 'todo_getline',
+
+    next_statement: $ => 'next',
+
+    nextfile_statement: $ => 'nextfile',
+
+    print_statement: $ => seq('print', seq(repeat(seq($._exp, ',')), $._exp)),
 
     block: $ => seq('{', optional(prec.left(choice($.block, $.statement, $.regex))), '}'),
 

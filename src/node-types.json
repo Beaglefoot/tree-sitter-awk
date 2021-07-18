@@ -1055,6 +1055,61 @@
     }
   },
   {
+    "type": "print_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array_ref",
+          "named": true
+        },
+        {
+          "type": "assignment_exp",
+          "named": true
+        },
+        {
+          "type": "binary_exp",
+          "named": true
+        },
+        {
+          "type": "field_ref",
+          "named": true
+        },
+        {
+          "type": "func_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "ternary_exp",
+          "named": true
+        },
+        {
+          "type": "unary_exp",
+          "named": true
+        },
+        {
+          "type": "update_exp",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "program",
     "named": true,
     "fields": {},
@@ -1098,7 +1153,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "array_ref",
@@ -1149,6 +1204,10 @@
           "named": true
         },
         {
+          "type": "getline_statement",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -1157,7 +1216,19 @@
           "named": true
         },
         {
+          "type": "next_statement",
+          "named": true
+        },
+        {
+          "type": "nextfile_statement",
+          "named": true
+        },
+        {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "print_statement",
           "named": true
         },
         {
@@ -1916,6 +1987,10 @@
     "named": false
   },
   {
+    "type": "getline_statement",
+    "named": true
+  },
+  {
     "type": "identifier",
     "named": true
   },
@@ -1928,8 +2003,20 @@
     "named": false
   },
   {
+    "type": "next_statement",
+    "named": true
+  },
+  {
+    "type": "nextfile_statement",
+    "named": true
+  },
+  {
     "type": "number",
     "named": true
+  },
+  {
+    "type": "print",
+    "named": false
   },
   {
     "type": "regex",
