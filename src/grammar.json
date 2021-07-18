@@ -495,7 +495,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "_statement_separated"
+                "name": "statement"
               }
             ]
           }
@@ -503,8 +503,58 @@
       }
     },
     "for_in_statement": {
-      "type": "STRING",
-      "value": "todo_for_in_statement"
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "for"
+          },
+          {
+            "type": "STRING",
+            "value": "("
+          },
+          {
+            "type": "FIELD",
+            "name": "left",
+            "content": {
+              "type": "SYMBOL",
+              "name": "identifier"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "in"
+          },
+          {
+            "type": "FIELD",
+            "name": "right",
+            "content": {
+              "type": "SYMBOL",
+              "name": "identifier"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": ")"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "block"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "statement"
+              }
+            ]
+          }
+        ]
+      }
     },
     "break_statement": {
       "type": "STRING",
@@ -1778,7 +1828,12 @@
       "value": "[\\s\\t]"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "for_in_statement",
+      "_exp"
+    ]
+  ],
   "precedences": [
     [
       {

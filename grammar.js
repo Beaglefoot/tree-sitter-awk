@@ -24,6 +24,8 @@ module.exports = grammar({
     ],
   ],
 
+  conflicts: $ => [[$.for_in_statement, $._exp]],
+
   word: $ => $.identifier,
 
   rules: {
@@ -101,7 +103,18 @@ module.exports = grammar({
         )
       ),
 
-    for_in_statement: $ => 'todo_for_in_statement',
+    for_in_statement: $ =>
+      prec.right(
+        seq(
+          'for',
+          '(',
+          field('left', $.identifier),
+          'in',
+          field('right', $.identifier),
+          ')',
+          choice($.block, $.statement)
+        )
+      ),
 
     // TODO: Must be available in loops only
     break_statement: $ => 'break',

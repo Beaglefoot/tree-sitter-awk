@@ -469,6 +469,46 @@
     }
   },
   {
+    "type": "for_in_statement",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "for_statement",
     "named": true,
     "fields": {
@@ -1519,10 +1559,6 @@
   {
     "type": "for",
     "named": false
-  },
-  {
-    "type": "for_in_statement",
-    "named": true
   },
   {
     "type": "function",
