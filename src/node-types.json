@@ -36,6 +36,10 @@
           "named": true
         },
         {
+          "type": "regex",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -88,6 +92,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "regex",
             "named": true
           },
           {
@@ -167,6 +175,10 @@
             "named": true
           },
           {
+            "type": "regex",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -220,6 +232,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "regex",
             "named": true
           },
           {
@@ -359,6 +375,10 @@
             "named": true
           },
           {
+            "type": "regex",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -388,10 +408,6 @@
       "types": [
         {
           "type": "block",
-          "named": true
-        },
-        {
-          "type": "regex",
           "named": true
         },
         {
@@ -467,6 +483,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "regex",
             "named": true
           },
           {
@@ -559,6 +579,10 @@
           "named": true
         },
         {
+          "type": "regex",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -611,6 +635,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "regex",
           "named": true
         },
         {
@@ -709,6 +737,10 @@
             "named": true
           },
           {
+            "type": "regex",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -759,6 +791,10 @@
             "named": true
           },
           {
+            "type": "regex",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -806,6 +842,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "regex",
             "named": true
           },
           {
@@ -943,6 +983,10 @@
             "named": true
           },
           {
+            "type": "regex",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -1000,7 +1044,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
@@ -1029,6 +1073,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "range_pattern",
           "named": true
         },
         {
@@ -1091,6 +1139,10 @@
           "named": true
         },
         {
+          "type": "regex",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -1126,6 +1178,120 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "range_pattern",
+    "named": true,
+    "fields": {
+      "start": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_ref",
+            "named": true
+          },
+          {
+            "type": "assignment_exp",
+            "named": true
+          },
+          {
+            "type": "binary_exp",
+            "named": true
+          },
+          {
+            "type": "field_ref",
+            "named": true
+          },
+          {
+            "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "regex",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "ternary_exp",
+            "named": true
+          },
+          {
+            "type": "unary_exp",
+            "named": true
+          },
+          {
+            "type": "update_exp",
+            "named": true
+          }
+        ]
+      },
+      "stop": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_ref",
+            "named": true
+          },
+          {
+            "type": "assignment_exp",
+            "named": true
+          },
+          {
+            "type": "binary_exp",
+            "named": true
+          },
+          {
+            "type": "field_ref",
+            "named": true
+          },
+          {
+            "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "regex",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "ternary_exp",
+            "named": true
+          },
+          {
+            "type": "unary_exp",
+            "named": true
+          },
+          {
+            "type": "update_exp",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1255,6 +1421,10 @@
         },
         {
           "type": "print_statement",
+          "named": true
+        },
+        {
+          "type": "regex",
           "named": true
         },
         {
@@ -1404,6 +1574,10 @@
           "named": true
         },
         {
+          "type": "regex",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
@@ -1463,6 +1637,10 @@
             "named": true
           },
           {
+            "type": "regex",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -1513,6 +1691,10 @@
             "named": true
           },
           {
+            "type": "regex",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           },
@@ -1560,6 +1742,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "regex",
             "named": true
           },
           {
@@ -1616,6 +1802,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "regex",
             "named": true
           },
           {
@@ -1690,6 +1880,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "regex",
             "named": true
           },
           {
@@ -1768,6 +1962,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "regex",
             "named": true
           },
           {

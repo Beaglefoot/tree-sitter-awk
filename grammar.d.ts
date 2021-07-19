@@ -2,6 +2,7 @@ declare interface IRules {
   program: ($: IRules) => any;
   rule: ($: IRules) => any;
   pattern: ($: IRules) => any;
+  range_pattern: ($: IRules) => any;
   _special_pattern: ($: IRules) => any;
   statement: ($: IRules) => any;
   _statement_separated: ($: IRules) => any;

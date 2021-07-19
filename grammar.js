@@ -20,6 +20,7 @@ module.exports = grammar({
       'binary_and',
       'binary_or',
       'ternary',
+      'range_pattern',
       'statement',
     ],
   ],
@@ -34,8 +35,10 @@ module.exports = grammar({
     rule: $ =>
       prec.right(choice(seq($.pattern, optional($.block)), seq(optional($.pattern), $.block))),
 
-    // TODO: Need more thought
-    pattern: $ => prec.left(choice($._exp, seq($._exp, ',', $._exp), $.regex, $._special_pattern)),
+    pattern: $ => prec.left(choice($._exp, $.range_pattern, $._special_pattern)),
+
+    range_pattern: $ =>
+      prec('range_pattern', seq(field('start', $._exp), ',', field('stop', $._exp))),
 
     _special_pattern: $ => choice('BEGIN', 'END', 'BEGINFILE', 'ENDFILE'),
 
@@ -146,7 +149,7 @@ module.exports = grammar({
 
     print_statement: $ => seq('print', seq(repeat(seq($._exp, ',')), $._exp)),
 
-    block: $ => seq('{', optional(prec.left(choice($.block, $.statement, $.regex))), '}'),
+    block: $ => seq('{', optional(prec.left(choice($.block, $.statement))), '}'),
 
     _exp: $ =>
       choice(
@@ -159,7 +162,8 @@ module.exports = grammar({
         $.field_ref,
         $.func_call,
         $._primitive,
-        $.array_ref
+        $.array_ref,
+        $.regex
       ),
 
     ternary_exp: $ =>
