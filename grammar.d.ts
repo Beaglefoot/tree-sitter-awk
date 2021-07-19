@@ -35,6 +35,8 @@ declare interface IRules {
   field_ref: ($: IRules) => any;
   array_ref: ($: IRules) => any;
   regex: ($: IRules) => any;
+  regex_pattern: ($: IRules) => any;
+  regex_flags: ($: IRules) => any;
   _primitive: ($: IRules) => any;
   identifier: ($: IRules) => any;
   number: ($: IRules) => any;

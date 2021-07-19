@@ -32,7 +32,7 @@ module.exports = grammar({
     program: $ => repeat(choice($.rule, $.func_def)),
 
     rule: $ =>
-      prec.left(choice(seq($.pattern, optional($.block)), seq(optional($.pattern), $.block))),
+      prec.right(choice(seq($.pattern, optional($.block)), seq(optional($.pattern), $.block))),
 
     // TODO: Need more thought
     pattern: $ => prec.left(choice($._exp, seq($._exp, ',', $._exp), $.regex, $._special_pattern)),
@@ -138,7 +138,7 @@ module.exports = grammar({
     _io_statement: $ =>
       choice($.getline_statement, $.next_statement, $.nextfile_statement, $.print_statement),
 
-    getline_statement: $ => 'todo_getline',
+    getline_statement: $ => 'getline',
 
     next_statement: $ => 'next',
 
@@ -238,7 +238,23 @@ module.exports = grammar({
 
     array_ref: $ => seq($.identifier, '[', field('index', $._exp), ']'),
 
-    regex: $ => 'todo_regex',
+    regex: $ =>
+      seq(
+        '/',
+        field('pattern', $.regex_pattern),
+        token.immediate('/'),
+        optional(field('flags', $.regex_flags))
+      ),
+
+    regex_pattern: $ => {
+      const char = /[^/\\\[\n]/;
+      const char_escaped = seq('\\', /./);
+      const char_list = seq('[', repeat1(choice(char_escaped, /[^\]]/)), ']');
+
+      return token.immediate(repeat(choice(char, char_escaped, char_list)));
+    },
+
+    regex_flags: $ => token.immediate(/[a-z]+/),
 
     _primitive: $ => choice($.number, $.string),
 

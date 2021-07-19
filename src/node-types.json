@@ -1129,6 +1129,32 @@
     }
   },
   {
+    "type": "regex",
+    "named": true,
+    "fields": {
+      "flags": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "regex_flags",
+            "named": true
+          }
+        ]
+      },
+      "pattern": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "regex_pattern",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "rule",
     "named": true,
     "fields": {},
@@ -2019,7 +2045,11 @@
     "named": false
   },
   {
-    "type": "regex",
+    "type": "regex_flags",
+    "named": true
+  },
+  {
+    "type": "regex_pattern",
     "named": true
   },
   {
