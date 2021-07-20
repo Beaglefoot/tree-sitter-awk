@@ -267,7 +267,7 @@ module.exports = grammar({
 
     identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
-    number: $ => /\d+/,
+    number: $ => /[\d.]+/,
 
     string: $ => seq('"', repeat(choice(/[^"\\]+/, $.escape_sequence)), '"'),
 
