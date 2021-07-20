@@ -39,6 +39,7 @@ declare interface IRules {
   regex: ($: IRules) => any;
   regex_pattern: ($: IRules) => any;
   regex_flags: ($: IRules) => any;
+  grouping: ($: IRules) => any;
   _primitive: ($: IRules) => any;
   identifier: ($: IRules) => any;
   number: ($: IRules) => any;

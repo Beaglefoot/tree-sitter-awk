@@ -892,6 +892,10 @@
         {
           "type": "SYMBOL",
           "name": "regex"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "grouping"
         }
       ]
     },
@@ -1963,6 +1967,27 @@
         "value": "[a-z]+"
       }
     },
+    "grouping": {
+      "type": "PREC",
+      "value": "grouping",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "("
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_exp"
+          },
+          {
+            "type": "STRING",
+            "value": ")"
+          }
+        ]
+      }
+    },
     "_primitive": {
       "type": "CHOICE",
       "members": [
@@ -2204,6 +2229,10 @@
     [
       {
         "type": "STRING",
+        "value": "grouping"
+      },
+      {
+        "type": "STRING",
         "value": "field_ref"
       },
       {
@@ -2265,6 +2294,16 @@
       {
         "type": "STRING",
         "value": "statement"
+      }
+    ],
+    [
+      {
+        "type": "STRING",
+        "value": "call"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "_exp"
       }
     ]
   ],

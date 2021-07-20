@@ -28,6 +28,10 @@
           "named": true
         },
         {
+          "type": "grouping",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -84,6 +88,10 @@
           },
           {
             "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "grouping",
             "named": true
           },
           {
@@ -167,6 +175,10 @@
             "named": true
           },
           {
+            "type": "grouping",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -224,6 +236,10 @@
           },
           {
             "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "grouping",
             "named": true
           },
           {
@@ -367,6 +383,10 @@
             "named": true
           },
           {
+            "type": "grouping",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -493,6 +513,10 @@
             "named": true
           },
           {
+            "type": "grouping",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -586,6 +610,10 @@
           "named": true
         },
         {
+          "type": "grouping",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -642,6 +670,10 @@
         },
         {
           "type": "func_call",
+          "named": true
+        },
+        {
+          "type": "grouping",
           "named": true
         },
         {
@@ -744,6 +776,10 @@
             "named": true
           },
           {
+            "type": "grouping",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -798,6 +834,10 @@
             "named": true
           },
           {
+            "type": "grouping",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -849,6 +889,10 @@
           },
           {
             "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "grouping",
             "named": true
           },
           {
@@ -954,6 +998,69 @@
     }
   },
   {
+    "type": "grouping",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "array_ref",
+          "named": true
+        },
+        {
+          "type": "assignment_exp",
+          "named": true
+        },
+        {
+          "type": "binary_exp",
+          "named": true
+        },
+        {
+          "type": "field_ref",
+          "named": true
+        },
+        {
+          "type": "func_call",
+          "named": true
+        },
+        {
+          "type": "grouping",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "ternary_exp",
+          "named": true
+        },
+        {
+          "type": "unary_exp",
+          "named": true
+        },
+        {
+          "type": "update_exp",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "if_statement",
     "named": true,
     "fields": {
@@ -987,6 +1094,10 @@
           },
           {
             "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "grouping",
             "named": true
           },
           {
@@ -1083,6 +1194,10 @@
           "named": true
         },
         {
+          "type": "grouping",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -1143,6 +1258,10 @@
         },
         {
           "type": "func_call",
+          "named": true
+        },
+        {
+          "type": "grouping",
           "named": true
         },
         {
@@ -1228,6 +1347,10 @@
             "named": true
           },
           {
+            "type": "grouping",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -1279,6 +1402,10 @@
           },
           {
             "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "grouping",
             "named": true
           },
           {
@@ -1416,6 +1543,10 @@
         },
         {
           "type": "getline_statement",
+          "named": true
+        },
+        {
+          "type": "grouping",
           "named": true
         },
         {
@@ -1585,6 +1716,10 @@
           "named": true
         },
         {
+          "type": "grouping",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -1648,6 +1783,10 @@
             "named": true
           },
           {
+            "type": "grouping",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -1702,6 +1841,10 @@
             "named": true
           },
           {
+            "type": "grouping",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -1753,6 +1896,10 @@
           },
           {
             "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "grouping",
             "named": true
           },
           {
@@ -1813,6 +1960,10 @@
           },
           {
             "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "grouping",
             "named": true
           },
           {
@@ -1891,6 +2042,10 @@
           },
           {
             "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "grouping",
             "named": true
           },
           {
@@ -1973,6 +2128,10 @@
           },
           {
             "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "grouping",
             "named": true
           },
           {

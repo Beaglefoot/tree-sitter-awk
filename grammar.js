@@ -5,6 +5,7 @@ module.exports = grammar({
 
   precedences: $ => [
     [
+      'grouping',
       'field_ref',
       'call',
       'increment',
@@ -22,6 +23,7 @@ module.exports = grammar({
       'range_pattern',
       'statement',
     ],
+    ['call', $._exp],
   ],
 
   conflicts: $ => [[$.for_in_statement, $._exp]],
@@ -164,10 +166,9 @@ module.exports = grammar({
         $.func_call,
         $._primitive,
         $.array_ref,
-        $.regex
+        $.regex,
+        $.grouping
       ),
-
-    // TODO: Grouping
 
     ternary_exp: $ =>
       prec.right(
@@ -262,6 +263,8 @@ module.exports = grammar({
     },
 
     regex_flags: $ => token.immediate(/[a-z]+/),
+
+    grouping: $ => prec('grouping', seq('(', $._exp, ')')),
 
     _primitive: $ => choice($.number, $.string),
 
