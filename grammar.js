@@ -5,12 +5,12 @@ module.exports = grammar({
 
   precedences: $ => [
     [
-      'grouping',
-      'field_ref',
-      'call',
-      'increment',
+      $.grouping,
+      $.field_ref,
+      $.func_call,
+      $.update_exp,
       'binary_exponent',
-      'unary_not',
+      $.unary_exp,
       'binary_times',
       'binary_plus',
       'binary_io',
@@ -19,11 +19,11 @@ module.exports = grammar({
       'binary_in',
       'binary_and',
       'binary_or',
-      'ternary',
-      'range_pattern',
-      'statement',
+      $.ternary_exp,
+      $.range_pattern,
+      $.statement,
     ],
-    ['call', $._exp],
+    [$.func_call, $._exp],
   ],
 
   conflicts: $ => [[$.for_in_statement, $._exp]],
@@ -38,8 +38,7 @@ module.exports = grammar({
 
     pattern: $ => prec.right(choice($._exp, $.range_pattern, $._special_pattern)),
 
-    range_pattern: $ =>
-      prec('range_pattern', seq(field('start', $._exp), ',', field('stop', $._exp))),
+    range_pattern: $ => seq(field('start', $._exp), ',', field('stop', $._exp)),
 
     _special_pattern: $ => choice('BEGIN', 'END', 'BEGINFILE', 'ENDFILE'),
 
@@ -47,7 +46,6 @@ module.exports = grammar({
 
     statement: $ =>
       prec.left(
-        'statement',
         choice(
           seq($._statement_separated, $.statement),
           $._statement_separated,
@@ -172,7 +170,6 @@ module.exports = grammar({
 
     ternary_exp: $ =>
       prec.right(
-        'ternary',
         seq(
           field('condition', $._exp),
           '?',
@@ -215,18 +212,13 @@ module.exports = grammar({
 
     unary_exp: $ =>
       choice(
-        ...[
-          ['!', 'unary_not'],
-          ['+', 'unary_not'],
-          ['-', 'unary_not'],
-        ].map(([op, precedence]) =>
-          prec.left(precedence, seq(field('operator', op), field('argument', $._exp)))
+        ...['!', '+', '-'].map(op =>
+          prec.left(seq(field('operator', op), field('argument', $._exp)))
         )
       ),
 
     update_exp: $ =>
       prec.left(
-        'increment',
         choice(
           seq(field('argument', $._exp), field('operator', choice('++', '--'))),
           seq(field('operator', choice('++', '--')), field('argument', $._exp))
@@ -242,7 +234,7 @@ module.exports = grammar({
         )
       ),
 
-    field_ref: $ => prec('field_ref', seq('$', $._exp)),
+    field_ref: $ => seq('$', $._exp),
 
     array_ref: $ => seq($.identifier, '[', field('index', $._exp), ']'),
 
@@ -264,7 +256,7 @@ module.exports = grammar({
 
     regex_flags: $ => token.immediate(/[a-z]+/),
 
-    grouping: $ => prec('grouping', seq('(', $._exp, ')')),
+    grouping: $ => seq('(', $._exp, ')'),
 
     _primitive: $ => choice($.number, $.string),
 
@@ -290,7 +282,7 @@ module.exports = grammar({
 
     param_list: $ => seq($.identifier, repeat(seq(',', $.identifier))),
 
-    func_call: $ => prec('call', seq(field('func_name', $.identifier), '(', optional($.args), ')')),
+    func_call: $ => seq(field('func_name', $.identifier), '(', optional($.args), ')'),
 
     args: $ => seq($._exp, repeat(seq(',', $._exp))),
 

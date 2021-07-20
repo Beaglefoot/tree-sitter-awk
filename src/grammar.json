@@ -95,33 +95,29 @@
       }
     },
     "range_pattern": {
-      "type": "PREC",
-      "value": "range_pattern",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "FIELD",
-            "name": "start",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_exp"
-            }
-          },
-          {
-            "type": "STRING",
-            "value": ","
-          },
-          {
-            "type": "FIELD",
-            "name": "stop",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_exp"
-            }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "start",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_exp"
           }
-        ]
-      }
+        },
+        {
+          "type": "STRING",
+          "value": ","
+        },
+        {
+          "type": "FIELD",
+          "name": "stop",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_exp"
+          }
+        }
+      ]
     },
     "_special_pattern": {
       "type": "CHOICE",
@@ -172,7 +168,7 @@
     },
     "statement": {
       "type": "PREC_LEFT",
-      "value": "statement",
+      "value": 0,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -901,7 +897,7 @@
     },
     "ternary_exp": {
       "type": "PREC_RIGHT",
-      "value": "ternary",
+      "value": 0,
       "content": {
         "type": "SEQ",
         "members": [
@@ -1610,7 +1606,7 @@
       "members": [
         {
           "type": "PREC_LEFT",
-          "value": "unary_not",
+          "value": 0,
           "content": {
             "type": "SEQ",
             "members": [
@@ -1635,7 +1631,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": "unary_not",
+          "value": 0,
           "content": {
             "type": "SEQ",
             "members": [
@@ -1660,7 +1656,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": "unary_not",
+          "value": 0,
           "content": {
             "type": "SEQ",
             "members": [
@@ -1687,7 +1683,7 @@
     },
     "update_exp": {
       "type": "PREC_LEFT",
-      "value": "increment",
+      "value": 0,
       "content": {
         "type": "CHOICE",
         "members": [
@@ -1813,21 +1809,17 @@
       }
     },
     "field_ref": {
-      "type": "PREC",
-      "value": "field_ref",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "$"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_exp"
-          }
-        ]
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "$"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_exp"
+        }
+      ]
     },
     "array_ref": {
       "type": "SEQ",
@@ -1968,25 +1960,21 @@
       }
     },
     "grouping": {
-      "type": "PREC",
-      "value": "grouping",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "("
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_exp"
-          },
-          {
-            "type": "STRING",
-            "value": ")"
-          }
-        ]
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_exp"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
     },
     "_primitive": {
       "type": "CHOICE",
@@ -2134,41 +2122,37 @@
       ]
     },
     "func_call": {
-      "type": "PREC",
-      "value": "call",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "FIELD",
-            "name": "func_name",
-            "content": {
-              "type": "SYMBOL",
-              "name": "identifier"
-            }
-          },
-          {
-            "type": "STRING",
-            "value": "("
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "args"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          },
-          {
-            "type": "STRING",
-            "value": ")"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "func_name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
           }
-        ]
-      }
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "args"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
     },
     "args": {
       "type": "SEQ",
@@ -2228,28 +2212,28 @@
   "precedences": [
     [
       {
-        "type": "STRING",
-        "value": "grouping"
+        "type": "SYMBOL",
+        "name": "grouping"
       },
       {
-        "type": "STRING",
-        "value": "field_ref"
+        "type": "SYMBOL",
+        "name": "field_ref"
       },
       {
-        "type": "STRING",
-        "value": "call"
+        "type": "SYMBOL",
+        "name": "func_call"
       },
       {
-        "type": "STRING",
-        "value": "increment"
+        "type": "SYMBOL",
+        "name": "update_exp"
       },
       {
         "type": "STRING",
         "value": "binary_exponent"
       },
       {
-        "type": "STRING",
-        "value": "unary_not"
+        "type": "SYMBOL",
+        "name": "unary_exp"
       },
       {
         "type": "STRING",
@@ -2284,22 +2268,22 @@
         "value": "binary_or"
       },
       {
-        "type": "STRING",
-        "value": "ternary"
+        "type": "SYMBOL",
+        "name": "ternary_exp"
       },
       {
-        "type": "STRING",
-        "value": "range_pattern"
+        "type": "SYMBOL",
+        "name": "range_pattern"
       },
       {
-        "type": "STRING",
-        "value": "statement"
+        "type": "SYMBOL",
+        "name": "statement"
       }
     ],
     [
       {
-        "type": "STRING",
-        "value": "call"
+        "type": "SYMBOL",
+        "name": "func_call"
       },
       {
         "type": "SYMBOL",
