@@ -4,6 +4,7 @@ declare interface IRules {
   pattern: ($: IRules) => any;
   range_pattern: ($: IRules) => any;
   _special_pattern: ($: IRules) => any;
+  directive: ($: IRules) => any;
   statement: ($: IRules) => any;
   _statement_separated: ($: IRules) => any;
   _control_statement: ($: IRules) => any;

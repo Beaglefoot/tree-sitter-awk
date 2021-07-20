@@ -442,6 +442,21 @@
     }
   },
   {
+    "type": "directive",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "do_while_statement",
     "named": true,
     "fields": {
@@ -1169,6 +1184,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "directive",
+          "named": true
+        },
         {
           "type": "func_def",
           "named": true
@@ -2132,6 +2151,18 @@
   },
   {
     "type": "?",
+    "named": false
+  },
+  {
+    "type": "@include",
+    "named": false
+  },
+  {
+    "type": "@load",
+    "named": false
+  },
+  {
+    "type": "@namespace",
     "named": false
   },
   {

@@ -29,8 +29,7 @@ module.exports = grammar({
   word: $ => $.identifier,
 
   rules: {
-    // TODO: Optional directives
-    program: $ => repeat(choice($.rule, $.func_def)),
+    program: $ => repeat(choice($.rule, $.func_def, $.directive)),
 
     rule: $ =>
       prec.right(choice(seq($.pattern, optional($.block)), seq(optional($.pattern), $.block))),
@@ -41,6 +40,8 @@ module.exports = grammar({
       prec('range_pattern', seq(field('start', $._exp), ',', field('stop', $._exp))),
 
     _special_pattern: $ => choice('BEGIN', 'END', 'BEGINFILE', 'ENDFILE'),
+
+    directive: $ => seq(choice('@include', '@load', '@namespace'), $.string),
 
     statement: $ =>
       prec.left(

@@ -14,6 +14,10 @@
           {
             "type": "SYMBOL",
             "name": "func_def"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "directive"
           }
         ]
       }
@@ -137,6 +141,32 @@
         {
           "type": "STRING",
           "value": "ENDFILE"
+        }
+      ]
+    },
+    "directive": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "@include"
+            },
+            {
+              "type": "STRING",
+              "value": "@load"
+            },
+            {
+              "type": "STRING",
+              "value": "@namespace"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string"
         }
       ]
     },
