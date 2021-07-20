@@ -9,7 +9,6 @@ module.exports = grammar({
       'call',
       'increment',
       'binary_exponent',
-      // TODO: Handle 1 + 1 to be a binary exp
       'unary_not',
       'binary_times',
       'binary_plus',
@@ -30,12 +29,13 @@ module.exports = grammar({
   word: $ => $.identifier,
 
   rules: {
+    // TODO: Optional directives
     program: $ => repeat(choice($.rule, $.func_def)),
 
     rule: $ =>
       prec.right(choice(seq($.pattern, optional($.block)), seq(optional($.pattern), $.block))),
 
-    pattern: $ => prec.left(choice($._exp, $.range_pattern, $._special_pattern)),
+    pattern: $ => prec.right(choice($._exp, $.range_pattern, $._special_pattern)),
 
     range_pattern: $ =>
       prec('range_pattern', seq(field('start', $._exp), ',', field('stop', $._exp))),
@@ -165,6 +165,8 @@ module.exports = grammar({
         $.array_ref,
         $.regex
       ),
+
+    // TODO: Grouping
 
     ternary_exp: $ =>
       prec.right(
