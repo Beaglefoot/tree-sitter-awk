@@ -236,7 +236,10 @@ module.exports = grammar({
 
     field_ref: $ => seq('$', $._exp),
 
-    array_ref: $ => seq($.identifier, '[', field('index', $._exp), ']'),
+    array_ref: $ =>
+      seq(choice($.identifier, $.array_ref), '[', field('index', choice($._exp, $.exp_list)), ']'),
+
+    exp_list: $ => seq(choice(seq($._exp, ','), $._exp), $._exp),
 
     regex: $ =>
       seq(

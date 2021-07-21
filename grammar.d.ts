@@ -36,6 +36,7 @@ declare interface IRules {
   assignment_exp: ($: IRules) => any;
   field_ref: ($: IRules) => any;
   array_ref: ($: IRules) => any;
+  exp_list: ($: IRules) => any;
   regex: ($: IRules) => any;
   regex_pattern: ($: IRules) => any;
   regex_flags: ($: IRules) => any;
