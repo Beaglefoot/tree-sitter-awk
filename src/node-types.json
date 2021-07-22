@@ -1016,7 +1016,7 @@
     "type": "func_call",
     "named": true,
     "fields": {
-      "func_name": {
+      "name": {
         "multiple": false,
         "required": true,
         "types": [

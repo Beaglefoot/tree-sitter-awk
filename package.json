@@ -12,7 +12,16 @@
   },
   "devDependencies": {
     "prettier": "2.3.2",
-    "tree-sitter-cli": "0.20.0"
+    "tree-sitter-cli": "0.19.2"
   },
-  "main": "bindings/node"
+  "main": "bindings/node",
+  "tree-sitter": [
+    {
+      "scope": "source.awk",
+      "file-types": [
+        "awk",
+        "gawk"
+      ]
+    }
+  ]
 }

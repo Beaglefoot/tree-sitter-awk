@@ -142,6 +142,7 @@ module.exports = grammar({
     _io_statement: $ =>
       choice($.getline_statement, $.next_statement, $.nextfile_statement, $.print_statement),
 
+    // TODO: handle special operators
     getline_statement: $ => 'getline',
 
     next_statement: $ => 'next',
@@ -285,7 +286,7 @@ module.exports = grammar({
 
     param_list: $ => seq($.identifier, repeat(seq(',', $.identifier))),
 
-    func_call: $ => seq(field('func_name', $.identifier), '(', optional($.args), ')'),
+    func_call: $ => seq(field('name', $.identifier), '(', optional($.args), ')'),
 
     args: $ => seq($._exp, repeat(seq(',', $._exp))),
 
