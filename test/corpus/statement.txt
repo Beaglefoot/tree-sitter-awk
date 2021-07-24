@@ -431,11 +431,13 @@ Print statement output redirection
 (program
   (rule
     (block
-      (print_statement
-        (string)
+      (redirected_io_statement
+        (print_statement
+          (string))
          (string))
-      (print_statement
-        (string)
+      (redirected_io_statement
+        (print_statement
+          (string))
          (string)))))
 
 ====================================
@@ -509,11 +511,13 @@ Printf statement output redirection
 (program
   (rule
     (block
-      (printf_statement
-        (string)
+      (redirected_io_statement
+        (printf_statement
+          (string))
          (string))
-      (printf_statement
-        (string)
+      (redirected_io_statement
+        (printf_statement
+          (string))
          (string)))))
 
 ====================================

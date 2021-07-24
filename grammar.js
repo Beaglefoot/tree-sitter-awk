@@ -20,6 +20,7 @@ module.exports = grammar({
       'binary_and',
       'binary_or',
       $.ternary_exp,
+      $._exp_list,
       $.range_pattern,
       $._statement,
     ],
@@ -150,6 +151,7 @@ module.exports = grammar({
         $.nextfile_statement,
         $.print_statement,
         $.printf_statement,
+        $.redirected_io_statement,
         $.piped_io_statement
       ),
 
@@ -164,26 +166,19 @@ module.exports = grammar({
     // TODO: Must not be available in BEGIN/END
     nextfile_statement: $ => 'nextfile',
 
-    print_statement: $ =>
-      prec.left(
-        seq(
-          'print',
-          // TODO: Use exp_list
-          optional(seq(repeat(seq($._exp, ',')), $._exp)),
-          optional(seq(choice('>', '>>'), field('filename', $._exp)))
-        )
-      ),
+    print_statement: $ => prec.left(seq('print', optional(choice($._exp, $._exp_list)))),
 
-    printf_statement: $ =>
-      prec.left(
-        seq(
-          'printf',
-          choice(
-            seq(repeat(seq($._exp, ',')), $._exp),
-            seq('(', seq(repeat(seq($._exp, ',')), $._exp), ')')
-          ),
-          optional(seq(choice('>', '>>'), field('filename', $._exp)))
-        )
+    printf_statement: $ => {
+      const args = choice($._exp, $._exp_list);
+
+      return prec.left(seq('printf', choice(args, seq('(', args, ')'))));
+    },
+
+    redirected_io_statement: $ =>
+      seq(
+        choice($.print_statement, $.printf_statement),
+        choice('>', '>>'),
+        field('filename', $._exp)
       ),
 
     piped_io_statement: $ =>
@@ -292,9 +287,9 @@ module.exports = grammar({
     field_ref: $ => seq('$', $._exp),
 
     array_ref: $ =>
-      seq(choice($.identifier, $.array_ref), '[', field('index', choice($._exp, $.exp_list)), ']'),
+      seq(choice($.identifier, $.array_ref), '[', field('index', choice($._exp, $._exp_list)), ']'),
 
-    exp_list: $ => seq(choice(seq($._exp, ','), $._exp), $._exp),
+    _exp_list: $ => seq(repeat1(seq($._exp, ',')), $._exp),
 
     regex: $ =>
       seq(

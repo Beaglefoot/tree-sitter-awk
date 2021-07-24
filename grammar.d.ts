@@ -28,6 +28,7 @@ declare interface IRules {
   nextfile_statement: ($: IRules) => any;
   print_statement: ($: IRules) => any;
   printf_statement: ($: IRules) => any;
+  redirected_io_statement: ($: IRules) => any;
   piped_io_statement: ($: IRules) => any;
   block: ($: IRules) => any;
   _block_separated: ($: IRules) => any;
@@ -40,7 +41,7 @@ declare interface IRules {
   piped_io_exp: ($: IRules) => any;
   field_ref: ($: IRules) => any;
   array_ref: ($: IRules) => any;
-  exp_list: ($: IRules) => any;
+  _exp_list: ($: IRules) => any;
   regex: ($: IRules) => any;
   regex_pattern: ($: IRules) => any;
   regex_flags: ($: IRules) => any;
