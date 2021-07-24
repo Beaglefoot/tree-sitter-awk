@@ -5,7 +5,7 @@ declare interface IRules {
   range_pattern: ($: IRules) => any;
   _special_pattern: ($: IRules) => any;
   directive: ($: IRules) => any;
-  statement: ($: IRules) => any;
+  _statement: ($: IRules) => any;
   _statement_separated: ($: IRules) => any;
   _control_statement: ($: IRules) => any;
   if_statement: ($: IRules) => any;
@@ -27,6 +27,8 @@ declare interface IRules {
   next_statement: ($: IRules) => any;
   nextfile_statement: ($: IRules) => any;
   print_statement: ($: IRules) => any;
+  printf_statement: ($: IRules) => any;
+  piped_io_statement: ($: IRules) => any;
   block: ($: IRules) => any;
   _exp: ($: IRules) => any;
   ternary_exp: ($: IRules) => any;
@@ -34,6 +36,7 @@ declare interface IRules {
   unary_exp: ($: IRules) => any;
   update_exp: ($: IRules) => any;
   assignment_exp: ($: IRules) => any;
+  piped_io_exp: ($: IRules) => any;
   field_ref: ($: IRules) => any;
   array_ref: ($: IRules) => any;
   exp_list: ($: IRules) => any;

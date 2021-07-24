@@ -21,7 +21,7 @@ module.exports = grammar({
       'binary_or',
       $.ternary_exp,
       $.range_pattern,
-      $.statement,
+      $._statement,
     ],
     [$.func_call, $._exp],
   ],
@@ -44,10 +44,10 @@ module.exports = grammar({
 
     directive: $ => seq(choice('@include', '@load', '@namespace'), $.string),
 
-    statement: $ =>
+    _statement: $ =>
       prec.left(
         choice(
-          seq($._statement_separated, $.statement),
+          seq($._statement_separated, $._statement),
           $._statement_separated,
           $._control_statement,
           $._io_statement,
@@ -55,7 +55,7 @@ module.exports = grammar({
         )
       ),
 
-    _statement_separated: $ => seq($.statement, choice(';', '\n')),
+    _statement_separated: $ => seq($._statement, choice(';', '\n')),
 
     _control_statement: $ =>
       choice(
@@ -76,21 +76,21 @@ module.exports = grammar({
         seq(
           'if',
           field('condition', seq('(', $._exp, ')')),
-          choice($.block, $.statement),
+          choice($.block, $._statement),
           optional($.else_clause)
         )
       ),
 
-    else_clause: $ => prec.right(seq('else', choice($.block, $.statement))),
+    else_clause: $ => prec.right(seq('else', choice($.block, $._statement))),
 
     while_statement: $ =>
       prec.right(
-        seq('while', field('condition', seq('(', $._exp, ')')), choice($.block, $.statement))
+        seq('while', field('condition', seq('(', $._exp, ')')), choice($.block, $._statement))
       ),
 
     do_while_statement: $ =>
       prec.right(
-        seq('do', choice($.block, $.statement), 'while', field('condition', seq('(', $._exp, ')')))
+        seq('do', choice($.block, $._statement), 'while', field('condition', seq('(', $._exp, ')')))
       ),
 
     for_statement: $ =>
@@ -104,7 +104,7 @@ module.exports = grammar({
           ';',
           field('advancement', optional($._exp)),
           ')',
-          choice($.block, $.statement)
+          choice($.block, $._statement)
         )
       ),
 
@@ -117,7 +117,7 @@ module.exports = grammar({
           'in',
           field('right', $.identifier),
           ')',
-          choice($.block, $.statement)
+          choice($.block, $._statement)
         )
       ),
 
@@ -135,23 +135,40 @@ module.exports = grammar({
 
     switch_body: $ => seq('{', repeat(choice($.switch_case, $.switch_default)), '}'),
 
-    switch_case: $ => seq('case', field('value', $._primitive), ':', $.statement),
+    switch_case: $ => seq('case', field('value', $._primitive), ':', $._statement),
 
-    switch_default: $ => seq('default', ':', $.statement),
+    switch_default: $ => seq('default', ':', $._statement),
 
     _io_statement: $ =>
-      choice($.getline_statement, $.next_statement, $.nextfile_statement, $.print_statement),
+      choice(
+        $.getline_statement,
+        $.next_statement,
+        $.nextfile_statement,
+        $.print_statement,
+        $.printf_statement,
+        $.piped_io_statement
+      ),
 
-    // TODO: handle special operators
     getline_statement: $ => 'getline',
 
+    // TODO: Must not be available in BEGIN/END
     next_statement: $ => 'next',
 
+    // TODO: Must not be available in BEGIN/END
     nextfile_statement: $ => 'nextfile',
 
-    print_statement: $ => seq('print', seq(repeat(seq($._exp, ',')), $._exp)),
+    print_statement: $ => prec.left(seq('print', optional(seq(repeat(seq($._exp, ',')), $._exp)))),
 
-    block: $ => seq('{', optional(prec.left(choice($.block, $.statement))), '}'),
+    printf_statement: $ => seq('printf', '(', seq(repeat(seq($._exp, ',')), $._exp), ')'),
+
+    piped_io_statement: $ =>
+      seq(
+        choice($.print_statement, $.printf_statement),
+        choice('|', '|&'),
+        field('command', $._exp)
+      ),
+
+    block: $ => seq('{', optional(prec.left(choice($.block, $._statement))), '}'),
 
     _exp: $ =>
       choice(
@@ -166,7 +183,8 @@ module.exports = grammar({
         $._primitive,
         $.array_ref,
         $.regex,
-        $.grouping
+        $.grouping,
+        $.piped_io_exp
       ),
 
     ternary_exp: $ =>
@@ -190,8 +208,6 @@ module.exports = grammar({
           ['%', 'binary_times'],
           ['+', 'binary_plus'],
           ['-', 'binary_plus'],
-          ['|', 'binary_io'],
-          ['|&', 'binary_io'],
           ['<', 'binary_relation'],
           ['>', 'binary_relation'],
           ['<=', 'binary_relation'],
@@ -235,6 +251,17 @@ module.exports = grammar({
         )
       ),
 
+    piped_io_exp: $ =>
+      prec.left(
+        'binary_io',
+        seq(
+          field('command', $._exp),
+          choice('|', '|&'),
+          $.getline_statement,
+          optional($.identifier)
+        )
+      ),
+
     field_ref: $ => seq('$', $._exp),
 
     array_ref: $ =>
@@ -270,16 +297,8 @@ module.exports = grammar({
 
     string: $ => seq('"', repeat(choice(/[^"\\]+/, $.escape_sequence)), '"'),
 
-    // prettier-ignore
     escape_sequence: $ =>
-      token.immediate(seq(
-        '\\',
-        choice(
-          /[\\abfnrtv]/,
-          /x[0-9a-fA-F]{1,2}/,
-          /[0-7]{1,3}/
-        )
-      )),
+      token.immediate(seq('\\', choice(/[\\abfnrtv]/, /x[0-9a-fA-F]{1,2}/, /[0-7]{1,3}/))),
 
     func_def: $ =>
       seq('function', field('name', $.identifier), '(', optional($.param_list), ')', $.block),

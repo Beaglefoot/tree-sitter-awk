@@ -15,6 +15,7 @@
 [
   "function"
   "print"
+  "printf"
   "if"
   "else"
   "do"
