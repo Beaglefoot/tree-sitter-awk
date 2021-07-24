@@ -396,3 +396,141 @@ Getline coprocess piped
              (string)
             (getline_statement
               (identifier))))))))
+
+====================================
+Print statement
+====================================
+
+{
+  print "abc";
+  print "abc", "a";
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (print_statement
+        (string))
+      (print_statement
+        (string)
+        (string)))))
+
+====================================
+Print statement output redirection
+====================================
+
+{
+  print "abc" > "file";
+  print "abc" >> "file";
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (print_statement
+        (string)
+         (string))
+      (print_statement
+        (string)
+         (string)))))
+
+====================================
+Print piped
+====================================
+
+{
+  print "abc" | "cat";
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (piped_io_statement
+        (print_statement
+          (string))
+         (string)))))
+
+====================================
+Printf statement
+====================================
+
+{
+  printf "%d", 42;
+  printf("%d", 42);
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (printf_statement
+        (string)
+        (number))
+      (printf_statement
+        (string)
+        (number)))))
+
+====================================
+Printf statement with getline
+====================================
+
+{
+  printf("cal" | getline);
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (printf_statement
+        (piped_io_exp
+           (string)
+          (getline_statement))))))
+
+====================================
+Printf statement output redirection
+====================================
+
+{
+  printf "abc" > "file";
+  printf("abc") >> "file";
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (printf_statement
+        (string)
+         (string))
+      (printf_statement
+        (string)
+         (string)))))
+
+====================================
+Printf piped
+====================================
+
+{
+  printf("%s", "abc") | "cat";
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (piped_io_statement
+        (printf_statement
+          (string)
+          (string))
+         (string)))))

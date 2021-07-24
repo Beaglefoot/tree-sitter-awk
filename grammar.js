@@ -25,6 +25,8 @@ module.exports = grammar({
     ],
     [$.func_call, $._exp],
     [$.else_clause, $._statement_separated],
+    [$.print_statement, $.printf_statement, $.binary_exp],
+    [$.printf_statement, $.grouping],
   ],
 
   conflicts: $ => [[$.for_in_statement, $._exp]],
@@ -162,9 +164,27 @@ module.exports = grammar({
     // TODO: Must not be available in BEGIN/END
     nextfile_statement: $ => 'nextfile',
 
-    print_statement: $ => prec.left(seq('print', optional(seq(repeat(seq($._exp, ',')), $._exp)))),
+    print_statement: $ =>
+      prec.left(
+        seq(
+          'print',
+          // TODO: Use exp_list
+          optional(seq(repeat(seq($._exp, ',')), $._exp)),
+          optional(seq(choice('>', '>>'), field('filename', $._exp)))
+        )
+      ),
 
-    printf_statement: $ => seq('printf', '(', seq(repeat(seq($._exp, ',')), $._exp), ')'),
+    printf_statement: $ =>
+      prec.left(
+        seq(
+          'printf',
+          choice(
+            seq(repeat(seq($._exp, ',')), $._exp),
+            seq('(', seq(repeat(seq($._exp, ',')), $._exp), ')')
+          ),
+          optional(seq(choice('>', '>>'), field('filename', $._exp)))
+        )
+      ),
 
     piped_io_statement: $ =>
       seq(
