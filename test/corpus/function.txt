@@ -69,9 +69,8 @@ greet()
 (program
   (rule
     (pattern
-      (exp
-        (func_call
-           (identifier))))))
+      (func_call
+         (identifier)))))
 
 ====================================
 Call with single argument
@@ -84,12 +83,10 @@ greet(a)
 (program
   (rule
     (pattern
-      (exp
-        (func_call
-           (identifier)
-          (args
-            (exp
-              (identifier))))))))
+      (func_call
+         (identifier)
+        (args
+          (identifier))))))
 
 ====================================
 Call with multiple arguments
@@ -102,12 +99,11 @@ greet("you", 42)
 (program
   (rule
     (pattern
-      (exp
-        (func_call
-           (identifier)
-          (args
-            (string)
-            (number)))))))
+      (func_call
+         (identifier)
+        (args
+          (string)
+          (number))))))
 
 ====================================
 Wrong call with trailing comma
@@ -120,9 +116,8 @@ greet(1,)
 (program
   (rule
     (pattern
-      (exp
-        (func_call
-           (identifier)
-          (args
-            (number))
-          (ERROR))))))
+      (func_call
+         (identifier)
+        (args
+          (number))
+        (ERROR)))))
