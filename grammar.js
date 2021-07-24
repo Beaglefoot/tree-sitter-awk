@@ -122,7 +122,7 @@ module.exports = grammar({
         )
       ),
 
-    // TODO: Must be available in loops only
+    // TODO: Must be available in loops and switch statement only
     break_statement: $ => 'break',
 
     // TODO: Must be available in loops only
@@ -136,7 +136,8 @@ module.exports = grammar({
 
     switch_body: $ => seq('{', repeat(choice($.switch_case, $.switch_default)), '}'),
 
-    switch_case: $ => seq('case', field('value', $._primitive), ':', $._statement),
+    switch_case: $ =>
+      seq('case', field('value', choice($._primitive, $.regex)), ':', optional($._statement)),
 
     switch_default: $ => seq('default', ':', $._statement),
 

@@ -48,3 +48,245 @@ If-else statement
         (block)
         (else_clause
           (block))))))
+
+====================================
+While statement statement body
+====================================
+
+{
+  while (1) print abc;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (while_statement
+         (number)
+        (print_statement
+          (identifier))))))
+
+====================================
+While statement block body
+====================================
+
+{
+  while (1) {}
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (while_statement
+         (number)
+        (block)))))
+
+====================================
+Do-while statement block body
+====================================
+
+{
+  do {}
+  while (1)
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (do_while_statement
+        (block)
+         (number)))))
+
+====================================
+Do-while statement statement body
+====================================
+
+{
+  do print
+  while (1)
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (do_while_statement
+        (print_statement)
+         (number)))))
+
+====================================
+For statement block body
+====================================
+
+{
+  for (x = 1; x <= 10; x++) {}
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (for_statement
+         (assignment_exp
+           (identifier)
+           (number))
+         (binary_exp
+           (identifier)
+           (number))
+         (update_exp
+           (identifier))
+        (block)))))
+
+====================================
+For statement statement body
+====================================
+
+{
+  for (x = 1; x <= 10; x++) print x;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (for_statement
+         (assignment_exp
+           (identifier)
+           (number))
+         (binary_exp
+           (identifier)
+           (number))
+         (update_exp
+           (identifier))
+        (print_statement
+          (identifier))))))
+
+====================================
+For-in statement statement body
+====================================
+
+{
+  for (x in arr) print x, arr[x];
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (for_in_statement
+         (identifier)
+         (identifier)
+        (print_statement
+          (identifier)
+          (array_ref
+            (identifier)
+             (identifier)))))))
+
+====================================
+For-in statement block body
+====================================
+
+{
+  for (x in arr) {}
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (for_in_statement
+         (identifier)
+         (identifier)
+        (block)))))
+
+====================================
+Delete statement
+====================================
+
+{
+  delete arr[i];
+  delete arr;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (delete_statement
+        (array_ref
+          (identifier)
+           (identifier)))
+      (delete_statement
+        (identifier)))))
+
+====================================
+Exit statement
+====================================
+
+{
+  exit 1;
+  exit 1 + 1;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (exit_statement
+        (number))
+      (exit_statement
+        (binary_exp
+           (number)
+           (number))))))
+
+====================================
+Switch statement
+====================================
+
+{
+  switch(x) {
+    case 1:
+    case 2:
+    case /[a-z]/:
+      print x;
+      break;
+    default:
+      usage();
+      break;
+  }
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (switch_statement
+        (identifier)
+        (switch_body
+          (switch_case
+             (number))
+          (switch_case
+             (number))
+          (switch_case
+             (regex
+               (regex_pattern))
+            (print_statement
+              (identifier))
+            (break_statement))
+          (switch_default
+            (func_call
+               (identifier))
+            (break_statement)))))))

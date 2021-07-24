@@ -2594,6 +2594,10 @@
             "named": true
           },
           {
+            "type": "regex",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           }
