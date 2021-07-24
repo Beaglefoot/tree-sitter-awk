@@ -151,7 +151,10 @@ module.exports = grammar({
         $.piped_io_statement
       ),
 
-    getline_statement: $ => 'getline',
+    getline_statement: $ =>
+      prec.right(
+        seq('getline', optional($.identifier), optional(seq('<', field('filename', $._exp))))
+      ),
 
     // TODO: Must not be available in BEGIN/END
     next_statement: $ => 'next',

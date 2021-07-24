@@ -290,3 +290,109 @@ Switch statement
             (func_call
                (identifier))
             (break_statement)))))))
+
+====================================
+Getline statement no var
+====================================
+
+{
+  getline
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (getline_statement))))
+
+====================================
+Getline statement with var
+====================================
+
+{
+  getline var;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (getline_statement
+        (identifier)))))
+
+====================================
+Getline statement from file
+====================================
+
+{
+  getline < "file.csv";
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (getline_statement
+         (string)))))
+
+====================================
+Getline statement from file into var
+====================================
+
+{
+  getline var < "file.csv";
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (getline_statement
+        (identifier)
+         (string)))))
+
+====================================
+Getline piped
+====================================
+
+{
+  line_was_read = ("cal" | getline var);
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (assignment_exp
+         (identifier)
+         (grouping
+          (piped_io_exp
+             (string)
+            (getline_statement
+              (identifier))))))))
+
+====================================
+Getline coprocess piped
+====================================
+
+{
+  line_was_read = ("cal" |& getline var);
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (assignment_exp
+         (identifier)
+         (grouping
+          (piped_io_exp
+             (string)
+            (getline_statement
+              (identifier))))))))
