@@ -4,8 +4,9 @@
   "author": "Beaglefoot <ch-e-st@yandex.ru>",
   "license": "MIT",
   "scripts": {
-    "types-watch": "node generate-types.js",
-    "trim": "sed ' s/ \\[.*\\]//; s/\\w\\+:// '"
+    "types:watch": "node generate-types.js",
+    "trim": "sed ' s/ \\[.*\\]//; s/\\w\\+:// '",
+    "test": "tree-sitter test"
   },
   "dependencies": {
     "nan": "2.14.2"
