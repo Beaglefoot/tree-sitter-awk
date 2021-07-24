@@ -30,6 +30,7 @@ declare interface IRules {
   printf_statement: ($: IRules) => any;
   piped_io_statement: ($: IRules) => any;
   block: ($: IRules) => any;
+  _block_separated: ($: IRules) => any;
   _exp: ($: IRules) => any;
   ternary_exp: ($: IRules) => any;
   binary_exp: ($: IRules) => any;

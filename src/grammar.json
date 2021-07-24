@@ -307,7 +307,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "block"
+                "name": "_block_separated"
               },
               {
                 "type": "SYMBOL",
@@ -331,30 +331,26 @@
       }
     },
     "else_clause": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "else"
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "block"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_statement"
-              }
-            ]
-          }
-        ]
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "else"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_statement"
+            }
+          ]
+        }
+      ]
     },
     "while_statement": {
       "type": "PREC_RIGHT",
@@ -916,21 +912,17 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "PREC_LEFT",
-              "value": 0,
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "block"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "_statement"
-                  }
-                ]
-              }
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "block"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_statement"
+                }
+              ]
             },
             {
               "type": "BLANK"
@@ -942,6 +934,26 @@
           "value": "}"
         }
       ]
+    },
+    "_block_separated": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "block"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "STRING",
+              "value": "\n"
+            }
+          }
+        ]
+      }
     },
     "_exp": {
       "type": "CHOICE",
@@ -2422,6 +2434,16 @@
       {
         "type": "SYMBOL",
         "name": "_exp"
+      }
+    ],
+    [
+      {
+        "type": "SYMBOL",
+        "name": "else_clause"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "_statement_separated"
       }
     ]
   ],

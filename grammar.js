@@ -24,6 +24,7 @@ module.exports = grammar({
       $._statement,
     ],
     [$.func_call, $._exp],
+    [$.else_clause, $._statement_separated],
   ],
 
   conflicts: $ => [[$.for_in_statement, $._exp]],
@@ -76,12 +77,12 @@ module.exports = grammar({
         seq(
           'if',
           field('condition', seq('(', $._exp, ')')),
-          choice($.block, $._statement),
+          choice($._block_separated, $._statement),
           optional($.else_clause)
         )
       ),
 
-    else_clause: $ => prec.right(seq('else', choice($.block, $._statement))),
+    else_clause: $ => seq('else', choice($.block, $._statement)),
 
     while_statement: $ =>
       prec.right(
@@ -168,7 +169,9 @@ module.exports = grammar({
         field('command', $._exp)
       ),
 
-    block: $ => seq('{', optional(prec.left(choice($.block, $._statement))), '}'),
+    block: $ => seq('{', optional(choice($.block, $._statement)), '}'),
+
+    _block_separated: $ => prec.right(seq($.block, repeat('\n'))),
 
     _exp: $ =>
       choice(

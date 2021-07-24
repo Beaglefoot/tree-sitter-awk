@@ -1,0 +1,50 @@
+====================================
+If statement block body
+====================================
+
+{ if (x) {} }
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (if_statement
+         (identifier)
+        (block)))))
+
+====================================
+If statement statement body
+====================================
+
+{ if (x) print x; }
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (if_statement
+         (identifier)
+        (print_statement
+          (identifier))))))
+
+====================================
+If-else statement
+====================================
+
+{
+  if (1) {}
+  else {}
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (if_statement
+         (number)
+        (block)
+        (else_clause
+          (block))))))
