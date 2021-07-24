@@ -1,0 +1,425 @@
+====================================
+Identifier valid chars
+====================================
+
+{
+  My_name_1
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (identifier))))
+
+====================================
+Identifier cannot start with num
+====================================
+
+{
+  1_my_name
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (ERROR
+        (number))
+      (identifier))))
+
+====================================
+Conditional expression
+====================================
+
+{
+  x ? 1 : "nope"
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (ternary_exp
+         (identifier)
+         (number)
+         (string)))))
+
+====================================
+Arithmetic operators
+====================================
+
+{
+  a ^ 2;
+  a ** 2;
+  2 * 2;
+  16 / 4;
+  20 % 3;
+  x + y;
+  x - y;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (binary_exp
+         (identifier)
+         (number))
+      (binary_exp
+         (identifier)
+         (number))
+      (binary_exp
+         (number)
+         (number))
+      (binary_exp
+         (number)
+         (number))
+      (binary_exp
+         (number)
+         (number))
+      (binary_exp
+         (identifier)
+         (identifier))
+      (binary_exp
+         (identifier)
+         (identifier)))))
+
+====================================
+Relational operators
+====================================
+
+{
+  "a" > "b";
+  x < y;
+  1 >= 2;
+  1.2 <= 2.2;
+  a == b;
+  a != "yes";
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (binary_exp
+         (string)
+         (string))
+      (binary_exp
+         (identifier)
+         (identifier))
+      (binary_exp
+         (number)
+         (number))
+      (binary_exp
+         (number)
+         (number))
+      (binary_exp
+         (identifier)
+         (identifier))
+      (binary_exp
+         (identifier)
+         (string)))))
+
+====================================
+Match operators
+====================================
+
+{
+  x ~ /[a-z]/;
+  x !~ /[a-z]/;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (binary_exp
+         (identifier)
+         (regex
+           (regex_pattern)))
+      (binary_exp
+         (identifier)
+         (regex
+           (regex_pattern))))))
+
+====================================
+Array membership
+====================================
+
+{
+  x in arr;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (binary_exp
+         (identifier)
+         (identifier)))))
+
+====================================
+Logical operators
+====================================
+
+{
+  x > 1 && x < 5;
+  x > 1 || x < -1;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (binary_exp
+         (binary_exp
+           (identifier)
+           (number))
+         (binary_exp
+           (identifier)
+           (number)))
+      (binary_exp
+         (binary_exp
+           (identifier)
+           (number))
+         (binary_exp
+           (identifier)
+           (unary_exp
+             (number)))))))
+
+====================================
+Unary and logical negation
+====================================
+
+{
+  +x;
+  -x;
+  !x;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (unary_exp
+         (identifier))
+      (unary_exp
+         (identifier))
+      (unary_exp
+         (identifier)))))
+
+====================================
+Increment/Decrement
+====================================
+
+{
+  x++;
+  ++x;
+  x--;
+  --x;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (update_exp
+         (identifier))
+      (update_exp
+         (identifier))
+      (update_exp
+         (identifier))
+      (update_exp
+         (identifier)))))
+
+====================================
+Assignment
+====================================
+
+{
+  x = 1;
+  x += 2
+  x -= 2;
+  x *= 2;
+  x /= 2;
+  x %= 2;
+  x ^= 2;
+  arr[i] = 1;
+  arr[1] = 1;
+  arr["a"] = 1;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (assignment_exp
+         (identifier)
+         (number))
+      (assignment_exp
+         (identifier)
+         (number))
+      (assignment_exp
+         (identifier)
+         (number))
+      (assignment_exp
+         (identifier)
+         (number))
+      (assignment_exp
+         (identifier)
+         (number))
+      (assignment_exp
+         (identifier)
+         (number))
+      (assignment_exp
+         (identifier)
+         (number))
+      (assignment_exp
+         (array_ref
+          (identifier)
+           (identifier))
+         (number))
+      (assignment_exp
+         (array_ref
+          (identifier)
+           (number))
+         (number))
+      (assignment_exp
+         (array_ref
+          (identifier)
+           (string))
+         (number)))))
+
+====================================
+Field reference
+====================================
+
+{
+  $0;
+  $i;
+  $(1 + 1);
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (field_ref
+        (number))
+      (field_ref
+        (identifier))
+      (field_ref
+        (grouping
+          (binary_exp
+             (number)
+             (number)))))))
+
+====================================
+Regex
+====================================
+
+{
+  /^abc$/;
+  /abc/g;
+  /abc/gi;
+  /[a-z]/;
+  /[^a-z]/;
+  /\/\[\]/;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (regex
+         (regex_pattern))
+      (regex
+         (regex_pattern)
+         (regex_flags))
+      (regex
+         (regex_pattern)
+         (regex_flags))
+      (regex
+         (regex_pattern))
+      (regex
+         (regex_pattern))
+      (regex
+         (regex_pattern)))))
+
+====================================
+Number
+====================================
+
+{
+  42;
+  4.2;
+  .2;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (number)
+      (number)
+      (number))))
+
+====================================
+String
+====================================
+
+{
+  "abc";
+  "\t\n";
+  "\x0a";
+  "\054";
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (string)
+      (string
+        (escape_sequence)
+        (escape_sequence))
+      (string
+        (escape_sequence))
+      (string
+        (escape_sequence)))))
+
+====================================
+Grouping expression
+====================================
+
+{
+  (1 + x) * 5;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (binary_exp
+         (grouping
+          (binary_exp
+             (number)
+             (identifier)))
+         (number)))))

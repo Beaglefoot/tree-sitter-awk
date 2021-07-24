@@ -267,7 +267,7 @@ module.exports = grammar({
     assignment_exp: $ =>
       prec.right(
         seq(
-          field('left', $.identifier),
+          field('left', choice($.identifier, $.array_ref)),
           choice('=', '+=', '-=', '*=', '/=', '%=', '^='),
           field('right', $._exp)
         )
