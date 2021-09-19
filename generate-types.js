@@ -12,10 +12,26 @@ function writeTypes() {
   const writer = fs.createWriteStream('grammar.d.ts', 'utf8');
 
   function grammar(g) {
+    // Externals
+    writer.write('declare interface IExternals {\n');
+
+    const m = g?.externals?.toString()?.match(/\(?\$\)? => \[(.*)\]/);
+
+    if (m?.[1]) {
+      const extRules = m[1].replace(/\s/g, '').replace(/\$\./g, '').split(',');
+
+      for (const r of extRules) {
+        writer.write(`  ${r}: ($: IExternals) => any;\n`);
+      }
+    }
+
+    writer.write('}\n\n');
+
+    // Rules
     writer.write('declare interface IRules {\n');
 
     for (const k in g.rules) {
-      writer.write(`  ${k}: ($: IRules) => any;\n`);
+      writer.write(`  ${k}: ($: IRules & IExternals) => any;\n`);
     }
 
     writer.write('}\n\n');
@@ -31,19 +47,19 @@ function writeTypes() {
   const furtherDefinitions = `
 declare interface IGrammar {
   name: string;
-  extras?: ($: IRules) => any;
-  inline?: ($: IRules) => any;
-  conflicts?: ($: IRules) => any;
-  externals?: ($: IRules) => any;
-  word?: ($: IRules) => any;
-  supertypes?: ($: IRules) => any;
-  precedences?: ($: IRules) => any;
+  extras?: ($: IRules & IExternals) => any;
+  inline?: ($: IRules & IExternals) => any;
+  conflicts?: ($: IRules & IExternals) => any;
+  externals?: ($: IExternals) => any;
+  word?: ($: IRules & IExternals) => any;
+  supertypes?: ($: IRules & IExternals) => any;
+  precedences?: ($: IRules & IExternals) => any;
   rules: IRules;
 }
 
 declare function grammar(g: IGrammar): any;
 
-declare type TRule = (($: IRules) => any) | string | RegExp;
+declare type TRule = (($: IRules & IExternals) => any) | string | RegExp;
 
 declare interface IPrecFunc {
   (rule: TRule): TRule;
