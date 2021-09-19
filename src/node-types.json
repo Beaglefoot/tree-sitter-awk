@@ -52,6 +52,10 @@
           "named": true
         },
         {
+          "type": "string_concat",
+          "named": true
+        },
+        {
           "type": "ternary_exp",
           "named": true
         },
@@ -120,6 +124,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "string_concat",
             "named": true
           },
           {
@@ -219,6 +227,10 @@
             "named": true
           },
           {
+            "type": "string_concat",
+            "named": true
+          },
+          {
             "type": "ternary_exp",
             "named": true
           },
@@ -284,6 +296,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "string_concat",
             "named": true
           },
           {
@@ -427,6 +443,10 @@
             "named": true
           },
           {
+            "type": "string_concat",
+            "named": true
+          },
+          {
             "type": "ternary_exp",
             "named": true
           },
@@ -559,6 +579,10 @@
           "named": true
         },
         {
+          "type": "string_concat",
+          "named": true
+        },
+        {
           "type": "switch_statement",
           "named": true
         },
@@ -678,6 +702,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "string_concat",
             "named": true
           },
           {
@@ -805,6 +833,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "string_concat",
           "named": true
         },
         {
@@ -947,6 +979,10 @@
           "named": true
         },
         {
+          "type": "string_concat",
+          "named": true
+        },
+        {
           "type": "switch_statement",
           "named": true
         },
@@ -1022,6 +1058,10 @@
           "named": true
         },
         {
+          "type": "string_concat",
+          "named": true
+        },
+        {
           "type": "ternary_exp",
           "named": true
         },
@@ -1086,6 +1126,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "string_concat",
           "named": true
         },
         {
@@ -1241,6 +1285,10 @@
           "named": true
         },
         {
+          "type": "string_concat",
+          "named": true
+        },
+        {
           "type": "switch_statement",
           "named": true
         },
@@ -1316,6 +1364,10 @@
             "named": true
           },
           {
+            "type": "string_concat",
+            "named": true
+          },
+          {
             "type": "ternary_exp",
             "named": true
           },
@@ -1378,6 +1430,10 @@
             "named": true
           },
           {
+            "type": "string_concat",
+            "named": true
+          },
+          {
             "type": "ternary_exp",
             "named": true
           },
@@ -1437,6 +1493,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "string_concat",
             "named": true
           },
           {
@@ -1564,6 +1624,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "string_concat",
           "named": true
         },
         {
@@ -1698,6 +1762,10 @@
             "named": true
           },
           {
+            "type": "string_concat",
+            "named": true
+          },
+          {
             "type": "ternary_exp",
             "named": true
           },
@@ -1776,6 +1844,10 @@
           "named": true
         },
         {
+          "type": "string_concat",
+          "named": true
+        },
+        {
           "type": "ternary_exp",
           "named": true
         },
@@ -1848,6 +1920,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "string_concat",
             "named": true
           },
           {
@@ -1982,6 +2058,10 @@
           "named": true
         },
         {
+          "type": "string_concat",
+          "named": true
+        },
+        {
           "type": "switch_statement",
           "named": true
         },
@@ -2076,6 +2156,10 @@
           "named": true
         },
         {
+          "type": "string_concat",
+          "named": true
+        },
+        {
           "type": "ternary_exp",
           "named": true
         },
@@ -2140,6 +2224,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "string_concat",
             "named": true
           },
           {
@@ -2225,6 +2313,10 @@
             "named": true
           },
           {
+            "type": "string_concat",
+            "named": true
+          },
+          {
             "type": "ternary_exp",
             "named": true
           },
@@ -2307,6 +2399,10 @@
           "named": true
         },
         {
+          "type": "string_concat",
+          "named": true
+        },
+        {
           "type": "ternary_exp",
           "named": true
         },
@@ -2371,6 +2467,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "string_concat",
           "named": true
         },
         {
@@ -2464,6 +2564,10 @@
             "named": true
           },
           {
+            "type": "string_concat",
+            "named": true
+          },
+          {
             "type": "ternary_exp",
             "named": true
           },
@@ -2523,6 +2627,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "string_concat",
             "named": true
           },
           {
@@ -2591,6 +2699,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "string_concat",
             "named": true
           },
           {
@@ -2678,6 +2790,114 @@
       "types": [
         {
           "type": "escape_sequence",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "string_concat",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_ref",
+            "named": true
+          },
+          {
+            "type": "binary_exp",
+            "named": true
+          },
+          {
+            "type": "field_ref",
+            "named": true
+          },
+          {
+            "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "grouping",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "ternary_exp",
+            "named": true
+          },
+          {
+            "type": "unary_exp",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_ref",
+            "named": true
+          },
+          {
+            "type": "binary_exp",
+            "named": true
+          },
+          {
+            "type": "field_ref",
+            "named": true
+          },
+          {
+            "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "grouping",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "ternary_exp",
+            "named": true
+          },
+          {
+            "type": "unary_exp",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "concatenating_space",
           "named": true
         }
       ]
@@ -2834,6 +3054,10 @@
           "named": true
         },
         {
+          "type": "string_concat",
+          "named": true
+        },
+        {
           "type": "switch_statement",
           "named": true
         },
@@ -2969,6 +3193,10 @@
           "named": true
         },
         {
+          "type": "string_concat",
+          "named": true
+        },
+        {
           "type": "switch_statement",
           "named": true
         },
@@ -3044,6 +3272,10 @@
           "named": true
         },
         {
+          "type": "string_concat",
+          "named": true
+        },
+        {
           "type": "switch_body",
           "named": true
         },
@@ -3115,6 +3347,10 @@
             "named": true
           },
           {
+            "type": "string_concat",
+            "named": true
+          },
+          {
             "type": "ternary_exp",
             "named": true
           },
@@ -3177,6 +3413,10 @@
             "named": true
           },
           {
+            "type": "string_concat",
+            "named": true
+          },
+          {
             "type": "ternary_exp",
             "named": true
           },
@@ -3236,6 +3476,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "string_concat",
             "named": true
           },
           {
@@ -3304,6 +3548,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "string_concat",
             "named": true
           },
           {
@@ -3439,6 +3687,10 @@
             "named": true
           },
           {
+            "type": "string_concat",
+            "named": true
+          },
+          {
             "type": "ternary_exp",
             "named": true
           },
@@ -3563,6 +3815,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "string_concat",
           "named": true
         },
         {
@@ -3775,6 +4031,10 @@
   {
     "type": "case",
     "named": false
+  },
+  {
+    "type": "concatenating_space",
+    "named": true
   },
   {
     "type": "continue_statement",

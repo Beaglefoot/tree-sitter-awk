@@ -26,11 +26,12 @@ Identifier cannot start with num
 (program
   (rule
     (block
+      (string_concat
+         (number)
+        (concatenating_space)
+         (identifier))
       (ERROR
-        (number))
-      (assignment_exp
-         (identifier)
-         (number)))))
+        (number)))))
 
 ====================================
 Conditional expression
@@ -425,3 +426,48 @@ Grouping expression
              (number)
              (identifier)))
          (number)))))
+
+====================================
+String concatenation
+====================================
+
+{
+  "abc" 12
+  a = 1 2
+  f() "hi"
+  42"num"
+  c = a + b 2
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (string_concat
+         (string)
+        (concatenating_space)
+         (number))
+      (assignment_exp
+         (identifier)
+         (string_concat
+           (number)
+          (concatenating_space)
+           (number)))
+      (string_concat
+         (func_call
+           (identifier))
+        (concatenating_space)
+         (string))
+      (string_concat
+         (number)
+        (concatenating_space)
+         (string))
+      (assignment_exp
+         (identifier)
+         (string_concat
+           (binary_exp
+             (identifier)
+             (identifier))
+          (concatenating_space)
+           (number))))))

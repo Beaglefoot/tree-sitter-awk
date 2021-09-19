@@ -3,6 +3,8 @@ module.exports = grammar({
 
   extras: $ => [$.comment, /[\s\t]/],
 
+  externals: $ => [$.concatenating_space],
+
   precedences: $ => [
     [
       $.grouping,
@@ -12,6 +14,7 @@ module.exports = grammar({
       'binary_exponent',
       'binary_times',
       'binary_plus',
+      $.string_concat,
       $.unary_exp,
       $.piped_io_exp,
       'binary_relation',
@@ -29,6 +32,7 @@ module.exports = grammar({
     [$.else_clause, $._statement_separated],
     [$.print_statement, $.printf_statement, $.grouping, $.binary_exp],
     [$.for_in_statement, $._exp],
+    [$._exp, $.string_concat],
   ],
 
   conflicts: $ => [],
@@ -211,7 +215,8 @@ module.exports = grammar({
         $.array_ref,
         $.regex,
         $.grouping,
-        $.piped_io_exp
+        $.piped_io_exp,
+        $.string_concat
       ),
 
     ternary_exp: $ =>
@@ -290,6 +295,24 @@ module.exports = grammar({
           optional($.identifier)
         )
       ),
+
+    string_concat: $ => {
+      const applicable_exp = choice(
+        $.identifier,
+        $.ternary_exp,
+        $.binary_exp,
+        $.unary_exp,
+        $.field_ref,
+        $.func_call,
+        $._primitive,
+        $.array_ref,
+        $.grouping
+      );
+
+      return prec.left(
+        seq(field('left', applicable_exp), $.concatenating_space, field('right', applicable_exp))
+      );
+    },
 
     field_ref: $ => seq('$', $._exp),
 

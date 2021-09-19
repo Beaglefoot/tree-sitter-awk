@@ -1,4 +1,5 @@
 declare interface IExternals {
+  concatenating_space: ($: IExternals) => any;
 }
 
 declare interface IRules {
@@ -42,6 +43,7 @@ declare interface IRules {
   update_exp: ($: IRules & IExternals) => any;
   assignment_exp: ($: IRules & IExternals) => any;
   piped_io_exp: ($: IRules & IExternals) => any;
+  string_concat: ($: IRules & IExternals) => any;
   field_ref: ($: IRules & IExternals) => any;
   array_ref: ($: IRules & IExternals) => any;
   _exp_list: ($: IRules & IExternals) => any;
