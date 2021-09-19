@@ -10,10 +10,10 @@ module.exports = grammar({
       $.func_call,
       $.update_exp,
       'binary_exponent',
-      $.unary_exp,
       'binary_times',
       'binary_plus',
-      'binary_io',
+      $.unary_exp,
+      $.piped_io_exp,
       'binary_relation',
       'binary_match',
       'binary_in',
@@ -25,12 +25,13 @@ module.exports = grammar({
       $._statement,
     ],
     [$.func_call, $._exp],
+    [$.update_exp, $._exp],
     [$.else_clause, $._statement_separated],
-    [$.print_statement, $.printf_statement, $.binary_exp],
-    [$.printf_statement, $.grouping],
+    [$.print_statement, $.printf_statement, $.grouping, $.binary_exp],
+    [$.for_in_statement, $._exp],
   ],
 
-  conflicts: $ => [[$.for_in_statement, $._exp]],
+  conflicts: $ => [],
 
   word: $ => $.identifier,
 
@@ -166,7 +167,11 @@ module.exports = grammar({
     // TODO: Must not be available in BEGIN/END
     nextfile_statement: $ => 'nextfile',
 
-    print_statement: $ => prec.left(seq('print', optional(choice($._exp, $._exp_list)))),
+    print_statement: $ => {
+      const args = choice($._exp, $._exp_list);
+
+      return prec.left(seq('print', optional(choice(args, seq('(', args, ')')))));
+    },
 
     printf_statement: $ => {
       const args = choice($._exp, $._exp_list);
@@ -256,13 +261,16 @@ module.exports = grammar({
         )
       ),
 
-    update_exp: $ =>
-      prec.left(
+    update_exp: $ => {
+      const refs = choice($.identifier, $.field_ref, $.array_ref);
+
+      return prec.left(
         choice(
-          seq(field('argument', $._exp), field('operator', choice('++', '--'))),
-          seq(field('operator', choice('++', '--')), field('argument', $._exp))
+          seq(field('argument', refs), field('operator', choice('++', '--'))),
+          seq(field('operator', choice('++', '--')), field('argument', refs))
         )
-      ),
+      );
+    },
 
     assignment_exp: $ =>
       prec.right(
@@ -275,7 +283,6 @@ module.exports = grammar({
 
     piped_io_exp: $ =>
       prec.left(
-        'binary_io',
         seq(
           field('command', $._exp),
           choice('|', '|&'),

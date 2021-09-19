@@ -1,79 +1,82 @@
+declare interface IExternals {
+}
+
 declare interface IRules {
-  program: ($: IRules) => any;
-  rule: ($: IRules) => any;
-  pattern: ($: IRules) => any;
-  range_pattern: ($: IRules) => any;
-  _special_pattern: ($: IRules) => any;
-  directive: ($: IRules) => any;
-  _statement: ($: IRules) => any;
-  _statement_separated: ($: IRules) => any;
-  _control_statement: ($: IRules) => any;
-  if_statement: ($: IRules) => any;
-  else_clause: ($: IRules) => any;
-  while_statement: ($: IRules) => any;
-  do_while_statement: ($: IRules) => any;
-  for_statement: ($: IRules) => any;
-  for_in_statement: ($: IRules) => any;
-  break_statement: ($: IRules) => any;
-  continue_statement: ($: IRules) => any;
-  delete_statement: ($: IRules) => any;
-  exit_statement: ($: IRules) => any;
-  switch_statement: ($: IRules) => any;
-  switch_body: ($: IRules) => any;
-  switch_case: ($: IRules) => any;
-  switch_default: ($: IRules) => any;
-  _io_statement: ($: IRules) => any;
-  getline_statement: ($: IRules) => any;
-  next_statement: ($: IRules) => any;
-  nextfile_statement: ($: IRules) => any;
-  print_statement: ($: IRules) => any;
-  printf_statement: ($: IRules) => any;
-  redirected_io_statement: ($: IRules) => any;
-  piped_io_statement: ($: IRules) => any;
-  block: ($: IRules) => any;
-  _block_separated: ($: IRules) => any;
-  _exp: ($: IRules) => any;
-  ternary_exp: ($: IRules) => any;
-  binary_exp: ($: IRules) => any;
-  unary_exp: ($: IRules) => any;
-  update_exp: ($: IRules) => any;
-  assignment_exp: ($: IRules) => any;
-  piped_io_exp: ($: IRules) => any;
-  field_ref: ($: IRules) => any;
-  array_ref: ($: IRules) => any;
-  _exp_list: ($: IRules) => any;
-  regex: ($: IRules) => any;
-  regex_pattern: ($: IRules) => any;
-  regex_flags: ($: IRules) => any;
-  grouping: ($: IRules) => any;
-  _primitive: ($: IRules) => any;
-  identifier: ($: IRules) => any;
-  number: ($: IRules) => any;
-  string: ($: IRules) => any;
-  escape_sequence: ($: IRules) => any;
-  func_def: ($: IRules) => any;
-  param_list: ($: IRules) => any;
-  func_call: ($: IRules) => any;
-  args: ($: IRules) => any;
-  comment: ($: IRules) => any;
+  program: ($: IRules & IExternals) => any;
+  rule: ($: IRules & IExternals) => any;
+  pattern: ($: IRules & IExternals) => any;
+  range_pattern: ($: IRules & IExternals) => any;
+  _special_pattern: ($: IRules & IExternals) => any;
+  directive: ($: IRules & IExternals) => any;
+  _statement: ($: IRules & IExternals) => any;
+  _statement_separated: ($: IRules & IExternals) => any;
+  _control_statement: ($: IRules & IExternals) => any;
+  if_statement: ($: IRules & IExternals) => any;
+  else_clause: ($: IRules & IExternals) => any;
+  while_statement: ($: IRules & IExternals) => any;
+  do_while_statement: ($: IRules & IExternals) => any;
+  for_statement: ($: IRules & IExternals) => any;
+  for_in_statement: ($: IRules & IExternals) => any;
+  break_statement: ($: IRules & IExternals) => any;
+  continue_statement: ($: IRules & IExternals) => any;
+  delete_statement: ($: IRules & IExternals) => any;
+  exit_statement: ($: IRules & IExternals) => any;
+  switch_statement: ($: IRules & IExternals) => any;
+  switch_body: ($: IRules & IExternals) => any;
+  switch_case: ($: IRules & IExternals) => any;
+  switch_default: ($: IRules & IExternals) => any;
+  _io_statement: ($: IRules & IExternals) => any;
+  getline_statement: ($: IRules & IExternals) => any;
+  next_statement: ($: IRules & IExternals) => any;
+  nextfile_statement: ($: IRules & IExternals) => any;
+  print_statement: ($: IRules & IExternals) => any;
+  printf_statement: ($: IRules & IExternals) => any;
+  redirected_io_statement: ($: IRules & IExternals) => any;
+  piped_io_statement: ($: IRules & IExternals) => any;
+  block: ($: IRules & IExternals) => any;
+  _block_separated: ($: IRules & IExternals) => any;
+  _exp: ($: IRules & IExternals) => any;
+  ternary_exp: ($: IRules & IExternals) => any;
+  binary_exp: ($: IRules & IExternals) => any;
+  unary_exp: ($: IRules & IExternals) => any;
+  update_exp: ($: IRules & IExternals) => any;
+  assignment_exp: ($: IRules & IExternals) => any;
+  piped_io_exp: ($: IRules & IExternals) => any;
+  field_ref: ($: IRules & IExternals) => any;
+  array_ref: ($: IRules & IExternals) => any;
+  _exp_list: ($: IRules & IExternals) => any;
+  regex: ($: IRules & IExternals) => any;
+  regex_pattern: ($: IRules & IExternals) => any;
+  regex_flags: ($: IRules & IExternals) => any;
+  grouping: ($: IRules & IExternals) => any;
+  _primitive: ($: IRules & IExternals) => any;
+  identifier: ($: IRules & IExternals) => any;
+  number: ($: IRules & IExternals) => any;
+  string: ($: IRules & IExternals) => any;
+  escape_sequence: ($: IRules & IExternals) => any;
+  func_def: ($: IRules & IExternals) => any;
+  param_list: ($: IRules & IExternals) => any;
+  func_call: ($: IRules & IExternals) => any;
+  args: ($: IRules & IExternals) => any;
+  comment: ($: IRules & IExternals) => any;
 }
 
 
 declare interface IGrammar {
   name: string;
-  extras?: ($: IRules) => any;
-  inline?: ($: IRules) => any;
-  conflicts?: ($: IRules) => any;
-  externals?: ($: IRules) => any;
-  word?: ($: IRules) => any;
-  supertypes?: ($: IRules) => any;
-  precedences?: ($: IRules) => any;
+  extras?: ($: IRules & IExternals) => any;
+  inline?: ($: IRules & IExternals) => any;
+  conflicts?: ($: IRules & IExternals) => any;
+  externals?: ($: IExternals) => any;
+  word?: ($: IRules & IExternals) => any;
+  supertypes?: ($: IRules & IExternals) => any;
+  precedences?: ($: IRules & IExternals) => any;
   rules: IRules;
 }
 
 declare function grammar(g: IGrammar): any;
 
-declare type TRule = (($: IRules) => any) | string | RegExp;
+declare type TRule = (($: IRules & IExternals) => any) | string | RegExp;
 
 declare interface IPrecFunc {
   (rule: TRule): TRule;

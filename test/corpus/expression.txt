@@ -18,7 +18,7 @@ Identifier cannot start with num
 ====================================
 
 {
-  1_my_name
+  1_my_name = 2
 }
 
 ------------------------------------
@@ -28,7 +28,9 @@ Identifier cannot start with num
     (block
       (ERROR
         (number))
-      (identifier))))
+      (assignment_exp
+         (identifier)
+         (number)))))
 
 ====================================
 Conditional expression

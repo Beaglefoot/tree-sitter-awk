@@ -858,12 +858,43 @@
                 "type": "CHOICE",
                 "members": [
                   {
-                    "type": "SYMBOL",
-                    "name": "_exp"
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "_exp"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "_exp_list"
+                      }
+                    ]
                   },
                   {
-                    "type": "SYMBOL",
-                    "name": "_exp_list"
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": "("
+                      },
+                      {
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "SYMBOL",
+                            "name": "_exp"
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "_exp_list"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "STRING",
+                        "value": ")"
+                      }
+                    ]
                   }
                 ]
               },
@@ -1854,8 +1885,21 @@
                 "type": "FIELD",
                 "name": "argument",
                 "content": {
-                  "type": "SYMBOL",
-                  "name": "_exp"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "identifier"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "field_ref"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "array_ref"
+                    }
+                  ]
                 }
               },
               {
@@ -1901,8 +1945,21 @@
                 "type": "FIELD",
                 "name": "argument",
                 "content": {
-                  "type": "SYMBOL",
-                  "name": "_exp"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "identifier"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "field_ref"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "array_ref"
+                    }
+                  ]
                 }
               }
             ]
@@ -1979,7 +2036,7 @@
     },
     "piped_io_exp": {
       "type": "PREC_LEFT",
-      "value": "binary_io",
+      "value": 0,
       "content": {
         "type": "SEQ",
         "members": [
@@ -2461,12 +2518,7 @@
       "value": "[\\s\\t]"
     }
   ],
-  "conflicts": [
-    [
-      "for_in_statement",
-      "_exp"
-    ]
-  ],
+  "conflicts": [],
   "precedences": [
     [
       {
@@ -2490,10 +2542,6 @@
         "value": "binary_exponent"
       },
       {
-        "type": "SYMBOL",
-        "name": "unary_exp"
-      },
-      {
         "type": "STRING",
         "value": "binary_times"
       },
@@ -2502,8 +2550,12 @@
         "value": "binary_plus"
       },
       {
-        "type": "STRING",
-        "value": "binary_io"
+        "type": "SYMBOL",
+        "name": "unary_exp"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "piped_io_exp"
       },
       {
         "type": "STRING",
@@ -2555,6 +2607,16 @@
     [
       {
         "type": "SYMBOL",
+        "name": "update_exp"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "_exp"
+      }
+    ],
+    [
+      {
+        "type": "SYMBOL",
         "name": "else_clause"
       },
       {
@@ -2573,17 +2635,21 @@
       },
       {
         "type": "SYMBOL",
+        "name": "grouping"
+      },
+      {
+        "type": "SYMBOL",
         "name": "binary_exp"
       }
     ],
     [
       {
         "type": "SYMBOL",
-        "name": "printf_statement"
+        "name": "for_in_statement"
       },
       {
         "type": "SYMBOL",
-        "name": "grouping"
+        "name": "_exp"
       }
     ]
   ],

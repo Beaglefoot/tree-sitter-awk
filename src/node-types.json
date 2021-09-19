@@ -3353,55 +3353,11 @@
             "named": true
           },
           {
-            "type": "assignment_exp",
-            "named": true
-          },
-          {
-            "type": "binary_exp",
-            "named": true
-          },
-          {
             "type": "field_ref",
             "named": true
           },
           {
-            "type": "func_call",
-            "named": true
-          },
-          {
-            "type": "grouping",
-            "named": true
-          },
-          {
             "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "number",
-            "named": true
-          },
-          {
-            "type": "piped_io_exp",
-            "named": true
-          },
-          {
-            "type": "regex",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "ternary_exp",
-            "named": true
-          },
-          {
-            "type": "unary_exp",
-            "named": true
-          },
-          {
-            "type": "update_exp",
             "named": true
           }
         ]
