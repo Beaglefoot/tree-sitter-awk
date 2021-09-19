@@ -64,7 +64,7 @@ module.exports = grammar({
         )
       ),
 
-    _statement_separated: $ => seq($._statement, choice(';', '\n')),
+    _statement_separated: $ => prec.right(seq($._statement, choice(';', '\n'))),
 
     _control_statement: $ =>
       choice(
@@ -85,8 +85,8 @@ module.exports = grammar({
         seq(
           'if',
           field('condition', seq('(', $._exp, ')')),
-          choice($._block_separated, $._statement),
-          optional($.else_clause)
+          choice($.block, $._statement),
+          optional(seq(optional('\n'), $.else_clause))
         )
       ),
 
@@ -198,8 +198,6 @@ module.exports = grammar({
       ),
 
     block: $ => seq('{', optional(choice($.block, $._statement)), '}'),
-
-    _block_separated: $ => prec.right(seq($.block, repeat('\n'))),
 
     _exp: $ =>
       choice(

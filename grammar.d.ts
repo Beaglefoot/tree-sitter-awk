@@ -35,7 +35,6 @@ declare interface IRules {
   redirected_io_statement: ($: IRules & IExternals) => any;
   piped_io_statement: ($: IRules & IExternals) => any;
   block: ($: IRules & IExternals) => any;
-  _block_separated: ($: IRules & IExternals) => any;
   _exp: ($: IRules & IExternals) => any;
   ternary_exp: ($: IRules & IExternals) => any;
   binary_exp: ($: IRules & IExternals) => any;
