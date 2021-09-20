@@ -661,8 +661,16 @@
           "value": "exit"
         },
         {
-          "type": "SYMBOL",
-          "name": "_exp"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_exp"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },

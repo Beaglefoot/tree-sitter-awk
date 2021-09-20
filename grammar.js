@@ -139,7 +139,7 @@ module.exports = grammar({
 
     delete_statement: $ => seq('delete', choice($.identifier, $.array_ref)),
 
-    exit_statement: $ => seq('exit', $._exp),
+    exit_statement: $ => seq('exit', optional($._exp)),
 
     switch_statement: $ => seq('switch', '(', $._exp, ')', $.switch_body),
 
