@@ -476,3 +476,26 @@ String concatenation
              (identifier))
           (concatenating_space)
            (number))))))
+
+====================================
+String concatenation multiple
+====================================
+
+{
+  sh = "a" var "b"; 
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (assignment_exp
+         (identifier)
+         (string_concat
+           (string_concat
+             (string)
+            (concatenating_space)
+             (identifier))
+          (concatenating_space)
+           (string))))))

@@ -2156,6 +2156,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "grouping"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "string_concat"
                 }
               ]
             }
@@ -2205,6 +2209,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "grouping"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "string_concat"
                 }
               ]
             }

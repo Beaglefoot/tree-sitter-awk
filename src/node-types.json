@@ -2840,6 +2840,10 @@
             "named": true
           },
           {
+            "type": "string_concat",
+            "named": true
+          },
+          {
             "type": "ternary_exp",
             "named": true
           },
@@ -2883,6 +2887,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "string_concat",
             "named": true
           },
           {

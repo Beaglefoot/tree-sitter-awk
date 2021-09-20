@@ -307,7 +307,8 @@ module.exports = grammar({
         $.func_call,
         $._primitive,
         $.array_ref,
-        $.grouping
+        $.grouping,
+        $.string_concat
       );
 
       return prec.left(
