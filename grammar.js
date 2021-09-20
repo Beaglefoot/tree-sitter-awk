@@ -201,21 +201,23 @@ module.exports = grammar({
     block: $ => seq('{', optional(choice($.block, $._statement)), '}'),
 
     _exp: $ =>
-      choice(
-        $.identifier,
-        $.ternary_exp,
-        $.binary_exp,
-        $.unary_exp,
-        $.update_exp,
-        $.assignment_exp,
-        $.field_ref,
-        $.func_call,
-        $._primitive,
-        $.array_ref,
-        $.regex,
-        $.grouping,
-        $.piped_io_exp,
-        $.string_concat
+      prec.left(
+        choice(
+          $.identifier,
+          $.ternary_exp,
+          $.binary_exp,
+          $.unary_exp,
+          $.update_exp,
+          $.assignment_exp,
+          $.field_ref,
+          $.func_call,
+          $._primitive,
+          $.array_ref,
+          $.regex,
+          $.grouping,
+          $.piped_io_exp,
+          $.string_concat
+        )
       ),
 
     ternary_exp: $ =>
@@ -279,7 +281,7 @@ module.exports = grammar({
     assignment_exp: $ =>
       prec.right(
         seq(
-          field('left', choice($.identifier, $.array_ref)),
+          field('left', choice($.identifier, $.array_ref, $.field_ref)),
           choice('=', '+=', '-=', '*=', '/=', '%=', '^='),
           field('right', $._exp)
         )

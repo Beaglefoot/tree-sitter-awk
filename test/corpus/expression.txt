@@ -261,6 +261,7 @@ Assignment
   arr[i] = 1;
   arr[1] = 1;
   arr["a"] = 1;
+  $9 = 1;
 }
 
 ------------------------------------
@@ -303,6 +304,10 @@ Assignment
          (array_ref
           (identifier)
            (string))
+         (number))
+      (assignment_exp
+         (field_ref
+          (number))
          (number)))))
 
 ====================================

@@ -173,6 +173,10 @@
             "named": true
           },
           {
+            "type": "field_ref",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           }

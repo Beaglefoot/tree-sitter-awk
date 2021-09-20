@@ -1105,65 +1105,69 @@
       ]
     },
     "_exp": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ternary_exp"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "binary_exp"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "unary_exp"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "update_exp"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "assignment_exp"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "field_ref"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "func_call"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_primitive"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "array_ref"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "regex"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "grouping"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "piped_io_exp"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "string_concat"
-        }
-      ]
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "identifier"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "ternary_exp"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "binary_exp"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "unary_exp"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "update_exp"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "assignment_exp"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "field_ref"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "func_call"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_primitive"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "array_ref"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "regex"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "grouping"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "piped_io_exp"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "string_concat"
+          }
+        ]
+      }
     },
     "ternary_exp": {
       "type": "PREC_RIGHT",
@@ -1999,6 +2003,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "array_ref"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "field_ref"
                 }
               ]
             }
