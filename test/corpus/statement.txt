@@ -14,6 +14,22 @@ If statement block body
         (block)))))
 
 ====================================
+If statement followed by newline
+====================================
+
+{ if (x) {}
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (if_statement
+         (identifier)
+        (block)))))
+
+====================================
 If statement statement body
 ====================================
 

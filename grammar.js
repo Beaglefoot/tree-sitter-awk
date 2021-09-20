@@ -29,6 +29,7 @@ module.exports = grammar({
     ],
     [$.func_call, $._exp],
     [$.update_exp, $._exp],
+    [$._statement_separated, $.if_statement],
     [$.else_clause, $._statement_separated],
     [$.print_statement, $.printf_statement, $.grouping, $.binary_exp],
     [$.for_in_statement, $._exp],
@@ -86,7 +87,7 @@ module.exports = grammar({
           'if',
           field('condition', seq('(', $._exp, ')')),
           choice($.block, $._statement),
-          optional(seq(optional('\n'), $.else_clause))
+          optional(seq(optional('\n'), optional($.else_clause)))
         )
       ),
 

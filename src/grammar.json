@@ -338,8 +338,16 @@
                     ]
                   },
                   {
-                    "type": "SYMBOL",
-                    "name": "else_clause"
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "else_clause"
+                      },
+                      {
+                        "type": "BLANK"
+                      }
+                    ]
                   }
                 ]
               },
@@ -2724,6 +2732,16 @@
       {
         "type": "SYMBOL",
         "name": "_exp"
+      }
+    ],
+    [
+      {
+        "type": "SYMBOL",
+        "name": "_statement_separated"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "if_statement"
       }
     ],
     [
