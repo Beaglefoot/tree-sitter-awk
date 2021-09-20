@@ -1548,8 +1548,8 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == 'u') ADVANCE(26);
       END_STATE();
     case 38:
-      if (lookahead == 'x') ADVANCE(39);
-      if (lookahead == '\\' ||
+      if (lookahead == '"' ||
+          lookahead == '\\' ||
           lookahead == 'a' ||
           lookahead == 'b' ||
           lookahead == 'f' ||
@@ -1557,6 +1557,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == 'r' ||
           lookahead == 't' ||
           lookahead == 'v') ADVANCE(119);
+      if (lookahead == 'x') ADVANCE(39);
       if (('0' <= lookahead && lookahead <= '7')) ADVANCE(121);
       END_STATE();
     case 39:

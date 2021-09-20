@@ -396,6 +396,7 @@ String
   "\t\n";
   "\x0a";
   "\054";
+  "\"";
 }
 
 ------------------------------------
@@ -406,6 +407,8 @@ String
       (string)
       (string
         (escape_sequence)
+        (escape_sequence))
+      (string
         (escape_sequence))
       (string
         (escape_sequence))

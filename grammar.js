@@ -352,7 +352,7 @@ module.exports = grammar({
     string: $ => seq('"', repeat(choice(/[^"\\]+/, $.escape_sequence)), '"'),
 
     escape_sequence: $ =>
-      token.immediate(seq('\\', choice(/[\\abfnrtv]/, /x[0-9a-fA-F]{1,2}/, /[0-7]{1,3}/))),
+      token.immediate(seq('\\', choice('"', /[\\abfnrtv]/, /x[0-9a-fA-F]{1,2}/, /[0-7]{1,3}/))),
 
     func_def: $ =>
       seq('function', field('name', $.identifier), '(', optional($.param_list), ')', $.block),
