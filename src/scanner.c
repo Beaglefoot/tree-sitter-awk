@@ -35,8 +35,6 @@ void tree_sitter_awk_external_scanner_deserialize(void *payload, const char *sta
 {
 }
 
-static int32_t previous = 0;
-
 bool tree_sitter_awk_external_scanner_scan(void *payload, TSLexer *lexer,
                                            const bool *valid_symbols)
 {
@@ -50,6 +48,12 @@ bool tree_sitter_awk_external_scanner_scan(void *payload, TSLexer *lexer,
     }
 
     lexer->mark_end(lexer);
+
+    if (lexer->lookahead == '#')
+    {
+      skip_comment(lexer);
+      skip_whitespace(lexer);
+    }
 
     for (int i = 0; i < 4; i++)
     {
@@ -114,4 +118,27 @@ bool tree_sitter_awk_external_scanner_scan(void *payload, TSLexer *lexer,
   }
 
   return false;
+}
+
+void skip_comment(TSLexer *lexer)
+{
+  if (lexer->lookahead != '#')
+  {
+    return;
+  }
+
+  while (lexer->lookahead != '\n')
+  {
+    lexer->advance(lexer, true);
+  }
+
+  lexer->advance(lexer, true);
+}
+
+void skip_whitespace(TSLexer *lexer)
+{
+  while (lexer->lookahead == ' ' || lexer->lookahead == '\t')
+  {
+    lexer->advance(lexer, true);
+  }
 }

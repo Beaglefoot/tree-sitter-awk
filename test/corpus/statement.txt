@@ -100,6 +100,32 @@ If-else statement with statements
           (number))))))
 
 ====================================
+If-else separated by comment
+====================================
+
+{
+    if (a) a = 2;
+    # Comment
+    else a = 3;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (if_statement
+         (identifier)
+        (assignment_exp
+           (identifier)
+           (number))
+        (comment)
+        (else_clause
+          (assignment_exp
+             (identifier)
+             (number)))))))
+
+====================================
 If-else-if statement
 ====================================
 
