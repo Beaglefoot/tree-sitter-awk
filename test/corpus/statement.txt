@@ -46,7 +46,7 @@ If statement statement body
           (identifier))))))
 
 ====================================
-If-else statement
+If-else statement with blocks
 ====================================
 
 {
@@ -54,8 +54,6 @@ If-else statement
   else {}
 
   if (1) {} else 2
-
-  if (1) 1; else 2
 }
 
 ------------------------------------
@@ -71,6 +69,28 @@ If-else statement
       (if_statement
          (number)
         (block)
+        (else_clause
+          (number))))))
+
+====================================
+If-else statement with statements
+====================================
+
+{
+  if (1) 1; else 2
+  
+  if (1) 1;
+  else 2
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (if_statement
+         (number)
+        (number)
         (else_clause
           (number)))
       (if_statement

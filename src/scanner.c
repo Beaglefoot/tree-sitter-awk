@@ -43,12 +43,13 @@ bool tree_sitter_awk_external_scanner_scan(void *payload, TSLexer *lexer,
   if (valid_symbols[_IF_ELSE_SEPARATOR])
   {
     lexer->result_symbol = _IF_ELSE_SEPARATOR;
-    lexer->mark_end(lexer);
 
-    while (lexer->lookahead == ' ' || lexer->lookahead == '\t' || lexer->lookahead == '\n')
+    while (lexer->lookahead == ' ' || lexer->lookahead == '\t' || lexer->lookahead == '\n' || lexer->lookahead == ';')
     {
       lexer->advance(lexer, true);
     }
+
+    lexer->mark_end(lexer);
 
     for (int i = 0; i < 4; i++)
     {

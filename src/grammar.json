@@ -2774,11 +2774,11 @@
     [
       {
         "type": "SYMBOL",
-        "name": "_statement_separated"
+        "name": "if_statement"
       },
       {
         "type": "SYMBOL",
-        "name": "if_statement"
+        "name": "_statement_separated"
       }
     ],
     [
