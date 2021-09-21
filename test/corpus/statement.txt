@@ -80,6 +80,31 @@ If-else statement
           (number))))))
 
 ====================================
+If-else-if statement
+====================================
+
+{
+  if (1) {}
+  else if (2) {}
+
+  print;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (if_statement
+         (number)
+        (block)
+        (else_clause
+          (if_statement
+             (number)
+            (block))))
+      (print_statement))))
+
+====================================
 While statement statement body
 ====================================
 

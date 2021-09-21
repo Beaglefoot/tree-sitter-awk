@@ -1,5 +1,6 @@
 declare interface IExternals {
   concatenating_space: ($: IExternals) => any;
+  _if_else_separator: ($: IExternals) => any;
 }
 
 declare interface IRules {

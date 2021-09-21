@@ -4,7 +4,8 @@
 
 enum TokenType
 {
-  CONCATENATING_SPACE
+  CONCATENATING_SPACE,
+  _IF_ELSE_SEPARATOR
 };
 
 void log(TSLexer *lexer)
@@ -39,13 +40,37 @@ static int32_t previous = 0;
 bool tree_sitter_awk_external_scanner_scan(void *payload, TSLexer *lexer,
                                            const bool *valid_symbols)
 {
+  if (valid_symbols[_IF_ELSE_SEPARATOR])
+  {
+    lexer->result_symbol = _IF_ELSE_SEPARATOR;
+    lexer->mark_end(lexer);
+
+    while (lexer->lookahead == ' ' || lexer->lookahead == '\t' || lexer->lookahead == '\n')
+    {
+      lexer->advance(lexer, true);
+    }
+
+    for (int i = 0; i < 4; i++)
+    {
+      if (lexer->lookahead != "else"[i])
+      {
+        return false;
+      }
+
+      lexer->advance(lexer, true);
+    }
+
+    return true;
+  }
+
   if (valid_symbols[CONCATENATING_SPACE])
   {
     while (lexer->lookahead == ' ' || lexer->lookahead == '\t')
     {
-      // log(lexer);
       lexer->advance(lexer, false);
     }
+
+    lexer->mark_end(lexer);
 
     switch (lexer->lookahead)
     {

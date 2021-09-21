@@ -3,7 +3,7 @@ module.exports = grammar({
 
   extras: $ => [$.comment, /[\s\t]/],
 
-  externals: $ => [$.concatenating_space],
+  externals: $ => [$.concatenating_space, $._if_else_separator],
 
   precedences: $ => [
     [
@@ -87,7 +87,7 @@ module.exports = grammar({
           'if',
           field('condition', seq('(', $._exp, ')')),
           choice($.block, $._statement),
-          optional(seq(optional('\n'), optional($.else_clause)))
+          optional(seq($._if_else_separator, $.else_clause))
         )
       ),
 

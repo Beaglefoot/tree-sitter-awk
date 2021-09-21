@@ -326,28 +326,12 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "STRING",
-                        "value": "\n"
-                      },
-                      {
-                        "type": "BLANK"
-                      }
-                    ]
+                    "type": "SYMBOL",
+                    "name": "_if_else_separator"
                   },
                   {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "else_clause"
-                      },
-                      {
-                        "type": "BLANK"
-                      }
-                    ]
+                    "type": "SYMBOL",
+                    "name": "else_clause"
                   }
                 ]
               },
@@ -2825,6 +2809,10 @@
     {
       "type": "SYMBOL",
       "name": "concatenating_space"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_if_else_separator"
     }
   ],
   "inline": [],
