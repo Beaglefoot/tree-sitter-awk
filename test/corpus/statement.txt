@@ -307,6 +307,33 @@ Exit statement
            (number))))))
 
 ====================================
+Return statement no value
+====================================
+
+{ return }
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (return_statement))))
+
+====================================
+Return statement with value
+====================================
+
+{ return 1; }
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (return_statement
+        (number)))))
+
+====================================
 Switch statement
 ====================================
 

@@ -78,6 +78,7 @@ module.exports = grammar({
         $.continue_statement,
         $.delete_statement,
         $.exit_statement,
+        $.return_statement,
         $.switch_statement
       ),
 
@@ -140,6 +141,8 @@ module.exports = grammar({
     delete_statement: $ => seq('delete', choice($.identifier, $.array_ref)),
 
     exit_statement: $ => seq('exit', optional($._exp)),
+
+    return_statement: $ => seq('return', optional($._exp)),
 
     switch_statement: $ => seq('switch', '(', $._exp, ')', $.switch_body),
 

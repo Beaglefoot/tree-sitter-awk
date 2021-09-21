@@ -23,6 +23,7 @@ declare interface IRules {
   continue_statement: ($: IRules & IExternals) => any;
   delete_statement: ($: IRules & IExternals) => any;
   exit_statement: ($: IRules & IExternals) => any;
+  return_statement: ($: IRules & IExternals) => any;
   switch_statement: ($: IRules & IExternals) => any;
   switch_body: ($: IRules & IExternals) => any;
   switch_case: ($: IRules & IExternals) => any;
