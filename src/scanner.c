@@ -53,7 +53,7 @@ void skip_comment(TSLexer *lexer)
     lexer->advance(lexer, true);
   }
 
-  lexer->advance(lexer, true);
+  lexer->advance(lexer, false);
 
   skip_whitespace(lexer, true, false);
 
@@ -163,7 +163,8 @@ bool tree_sitter_awk_external_scanner_scan(void *payload, TSLexer *lexer,
   {
     skip_whitespace(lexer, false, false);
 
-    if (is_statement_terminator(lexer->lookahead))
+    // Comment ends with '\n' which also terminates statement
+    if (is_statement_terminator(lexer->lookahead) || lexer->lookahead == '#')
     {
       statement_terminator_was_found = true;
     }
