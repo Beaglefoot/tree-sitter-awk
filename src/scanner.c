@@ -38,8 +38,17 @@ void tree_sitter_awk_external_scanner_deserialize(void *payload, const char *sta
 bool tree_sitter_awk_external_scanner_scan(void *payload, TSLexer *lexer,
                                            const bool *valid_symbols)
 {
+  bool statement_terminator_was_found = false;
+
   if (valid_symbols[_IF_ELSE_SEPARATOR])
   {
+    skip_whitespace(lexer, false);
+
+    if (is_statement_terminator(lexer->lookahead))
+    {
+      statement_terminator_was_found = true;
+    }
+
     if (is_if_else_separator(lexer))
     {
       lexer->result_symbol = _IF_ELSE_SEPARATOR;
@@ -47,56 +56,40 @@ bool tree_sitter_awk_external_scanner_scan(void *payload, TSLexer *lexer,
     }
   }
 
-  if (valid_symbols[CONCATENATING_SPACE])
+  if (valid_symbols[CONCATENATING_SPACE] && !statement_terminator_was_found)
   {
-    while (lexer->lookahead == ' ' || lexer->lookahead == '\t')
+    if (is_concatenating_space(lexer))
     {
-      lexer->advance(lexer, false);
-    }
-
-    lexer->mark_end(lexer);
-
-    switch (lexer->lookahead)
-    {
-    case '^':
-    case '*':
-    case '/':
-    case '%':
-    case '+':
-    case '-':
-    case '<':
-    case '>':
-    case '=':
-    case '!':
-    case '~':
-    case '&':
-    case '|':
-    case ',':
-    case '?':
-    case ':':
-    case '(':
-    case ')':
-    case '[':
-    case ']':
-    case '{':
-    case '}':
-    case ';':
-    case '\n':
-      return false;
-    case 'i':
-      lexer->advance(lexer, true);
-
-      if (lexer->lookahead == 'n' || lexer->lookahead == 'f')
-      {
-        lexer->advance(lexer, true);
-        return lexer->lookahead != ' ';
-      }
-    default:
+      lexer->result_symbol = CONCATENATING_SPACE;
       return true;
     }
   }
 
   return false;
+}
+
+int next_chars_eq(TSLexer *lexer, char *word)
+{
+  for (int i = 0; i < strlen(word); i++)
+  {
+    if (lexer->lookahead != word[i])
+    {
+      return false;
+    }
+
+    lexer->advance(lexer, true);
+  }
+  return true;
+}
+
+int is_whitespace(int32_t c)
+{
+  return c == ' ' || c == '\t';
+}
+
+int is_statement_terminator(int32_t c)
+{
+  return c == '\n' || c == ';';
 }
 
 void skip_comment(TSLexer *lexer)
@@ -114,17 +107,17 @@ void skip_comment(TSLexer *lexer)
   lexer->advance(lexer, true);
 }
 
-void skip_whitespace(TSLexer *lexer)
+void skip_whitespace(TSLexer *lexer, bool capture)
 {
-  while (lexer->lookahead == ' ' || lexer->lookahead == '\t')
+  while (is_whitespace(lexer->lookahead))
   {
-    lexer->advance(lexer, true);
+    lexer->advance(lexer, !capture);
   }
 }
 
 int is_if_else_separator(TSLexer *lexer)
 {
-  while (lexer->lookahead == ' ' || lexer->lookahead == '\t' || lexer->lookahead == '\n' || lexer->lookahead == ';')
+  while (is_whitespace(lexer->lookahead) || is_statement_terminator(lexer->lookahead))
   {
     lexer->advance(lexer, true);
   }
@@ -134,18 +127,54 @@ int is_if_else_separator(TSLexer *lexer)
   if (lexer->lookahead == '#')
   {
     skip_comment(lexer);
-    skip_whitespace(lexer);
+    skip_whitespace(lexer, false);
   }
 
-  for (int i = 0; i < 4; i++)
+  return next_chars_eq(lexer, "else");
+}
+
+int is_concatenating_space(TSLexer *lexer)
+{
+  skip_whitespace(lexer, true);
+
+  lexer->mark_end(lexer);
+
+  switch (lexer->lookahead)
   {
-    if (lexer->lookahead != "else"[i])
-    {
-      return false;
-    }
-
+  case '^':
+  case '*':
+  case '/':
+  case '%':
+  case '+':
+  case '-':
+  case '<':
+  case '>':
+  case '=':
+  case '!':
+  case '~':
+  case '&':
+  case '|':
+  case ',':
+  case '?':
+  case ':':
+  case '(':
+  case ')':
+  case '[':
+  case ']':
+  case '{':
+  case '}':
+  case ';':
+  case '\n':
+    return false;
+  case 'i':
     lexer->advance(lexer, true);
-  }
 
-  return true;
+    if (lexer->lookahead == 'n' || lexer->lookahead == 'f')
+    {
+      lexer->advance(lexer, true);
+      return lexer->lookahead != ' ';
+    }
+  default:
+    return true;
+  }
 }
