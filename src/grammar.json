@@ -2669,6 +2669,10 @@
     {
       "type": "PATTERN",
       "value": "[\\s\\t]"
+    },
+    {
+      "type": "PATTERN",
+      "value": "\\\\\\n"
     }
   ],
   "conflicts": [],

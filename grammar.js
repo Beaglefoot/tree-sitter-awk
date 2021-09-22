@@ -1,7 +1,7 @@
 module.exports = grammar({
   name: 'awk',
 
-  extras: $ => [$.comment, /[\s\t]/],
+  extras: $ => [$.comment, /[\s\t]/, /\\\n/],
 
   externals: $ => [$.concatenating_space, $._if_else_separator],
 
