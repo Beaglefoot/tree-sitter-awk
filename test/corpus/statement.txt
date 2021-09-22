@@ -149,6 +149,36 @@ If-else separated by comment
              (number)))))))
 
 ====================================
+If-else separated by multiline comment
+====================================
+
+{
+    if (a) a = 2;
+
+    # Comment
+
+    # Comment
+    else a = 3;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (if_statement
+         (identifier)
+        (assignment_exp
+           (identifier)
+           (number))
+        (comment)
+        (comment)
+        (else_clause
+          (assignment_exp
+             (identifier)
+             (number)))))))
+
+====================================
 If-else-if statement
 ====================================
 
