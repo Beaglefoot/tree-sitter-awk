@@ -524,3 +524,28 @@ String concatenation in if statement
              (string)
             (concatenating_space)
              (identifier)))))))
+
+====================================
+String concatenation inline comment
+====================================
+
+{
+  a = "a" 2 # Comment
+  b = 2
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (assignment_exp
+         (identifier)
+         (string_concat
+           (string)
+          (concatenating_space)
+           (number)))
+      (comment)
+      (assignment_exp
+         (identifier)
+         (number)))))

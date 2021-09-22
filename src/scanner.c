@@ -119,6 +119,7 @@ bool is_concatenating_space(TSLexer *lexer)
   case ']':
   case '{':
   case '}':
+  case '#':
   case ';':
   case '\n':
     return false;
