@@ -502,3 +502,25 @@ String concatenation multiple
              (identifier))
           (concatenating_space)
            (string))))))
+
+====================================
+String concatenation in if statement
+====================================
+
+{
+  if (1) a = "0" a;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (if_statement
+         (number)
+        (assignment_exp
+           (identifier)
+           (string_concat
+             (string)
+            (concatenating_space)
+             (identifier)))))))
