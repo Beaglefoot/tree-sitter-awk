@@ -1270,6 +1270,10 @@
         "required": true,
         "types": [
           {
+            "type": "array_ref",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           }

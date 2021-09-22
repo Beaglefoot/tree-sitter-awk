@@ -126,7 +126,7 @@ module.exports = grammar({
           '(',
           field('left', $.identifier),
           'in',
-          field('right', $.identifier),
+          field('right', choice($.identifier, $.array_ref)),
           ')',
           choice($.block, $._statement)
         )

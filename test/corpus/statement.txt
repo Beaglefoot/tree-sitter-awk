@@ -391,6 +391,27 @@ For-in statement block body
         (block)))))
 
 ====================================
+For-in statement array reference
+====================================
+
+{
+  for (i in arr[t]) print i
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (for_in_statement
+         (identifier)
+         (array_ref
+          (identifier)
+           (identifier))
+        (print_statement
+          (identifier))))))
+
+====================================
 Delete statement
 ====================================
 
