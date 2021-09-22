@@ -60,6 +60,7 @@ declare interface IRules {
   func_def: ($: IRules & IExternals) => any;
   param_list: ($: IRules & IExternals) => any;
   func_call: ($: IRules & IExternals) => any;
+  indirect_func_call: ($: IRules & IExternals) => any;
   args: ($: IRules & IExternals) => any;
   comment: ($: IRules & IExternals) => any;
 }

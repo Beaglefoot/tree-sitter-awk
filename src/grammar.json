@@ -1161,6 +1161,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "indirect_func_call"
+          },
+          {
+            "type": "SYMBOL",
             "name": "_primitive"
           },
           {
@@ -2619,6 +2623,19 @@
         {
           "type": "STRING",
           "value": ")"
+        }
+      ]
+    },
+    "indirect_func_call": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "@"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "func_call"
         }
       ]
     },

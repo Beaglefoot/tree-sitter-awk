@@ -214,6 +214,7 @@ module.exports = grammar({
           $.assignment_exp,
           $.field_ref,
           $.func_call,
+          $.indirect_func_call,
           $._primitive,
           $.array_ref,
           $.regex,
@@ -363,6 +364,8 @@ module.exports = grammar({
     param_list: $ => seq($.identifier, repeat(seq(',', $.identifier))),
 
     func_call: $ => seq(field('name', $.identifier), '(', optional($.args), ')'),
+
+    indirect_func_call: $ => seq('@', $.func_call),
 
     args: $ => seq($._exp, repeat(seq(',', $._exp))),
 

@@ -121,3 +121,18 @@ greet(1,)
         (args
           (number))
         (ERROR)))))
+
+====================================
+Indirect function call
+====================================
+
+@f()
+
+------------------------------------
+
+(program
+  (rule
+    (pattern
+      (indirect_func_call
+        (func_call
+           (identifier))))))

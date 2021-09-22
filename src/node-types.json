@@ -36,6 +36,10 @@
           "named": true
         },
         {
+          "type": "indirect_func_call",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -108,6 +112,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "indirect_func_call",
             "named": true
           },
           {
@@ -215,6 +223,10 @@
             "named": true
           },
           {
+            "type": "indirect_func_call",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -284,6 +296,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "indirect_func_call",
             "named": true
           },
           {
@@ -431,6 +447,10 @@
             "named": true
           },
           {
+            "type": "indirect_func_call",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -540,6 +560,10 @@
         },
         {
           "type": "if_statement",
+          "named": true
+        },
+        {
+          "type": "indirect_func_call",
           "named": true
         },
         {
@@ -697,6 +721,10 @@
             "named": true
           },
           {
+            "type": "indirect_func_call",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -801,6 +829,10 @@
         },
         {
           "type": "if_statement",
+          "named": true
+        },
+        {
+          "type": "indirect_func_call",
           "named": true
         },
         {
@@ -951,6 +983,10 @@
           "named": true
         },
         {
+          "type": "indirect_func_call",
+          "named": true
+        },
+        {
           "type": "next_statement",
           "named": true
         },
@@ -1058,6 +1094,10 @@
           "named": true
         },
         {
+          "type": "indirect_func_call",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -1126,6 +1166,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indirect_func_call",
           "named": true
         },
         {
@@ -1261,6 +1305,10 @@
           "named": true
         },
         {
+          "type": "indirect_func_call",
+          "named": true
+        },
+        {
           "type": "next_statement",
           "named": true
         },
@@ -1368,6 +1416,10 @@
             "named": true
           },
           {
+            "type": "indirect_func_call",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -1434,6 +1486,10 @@
             "named": true
           },
           {
+            "type": "indirect_func_call",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -1497,6 +1553,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "indirect_func_call",
             "named": true
           },
           {
@@ -1604,6 +1664,10 @@
         },
         {
           "type": "if_statement",
+          "named": true
+        },
+        {
+          "type": "indirect_func_call",
           "named": true
         },
         {
@@ -1770,6 +1834,10 @@
             "named": true
           },
           {
+            "type": "indirect_func_call",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -1852,6 +1920,10 @@
           "named": true
         },
         {
+          "type": "indirect_func_call",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -1928,6 +2000,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "indirect_func_call",
             "named": true
           },
           {
@@ -2042,6 +2118,10 @@
           "named": true
         },
         {
+          "type": "indirect_func_call",
+          "named": true
+        },
+        {
           "type": "next_statement",
           "named": true
         },
@@ -2113,6 +2193,21 @@
     }
   },
   {
+    "type": "indirect_func_call",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "func_call",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "param_list",
     "named": true,
     "fields": {},
@@ -2161,6 +2256,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indirect_func_call",
           "named": true
         },
         {
@@ -2236,6 +2335,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "indirect_func_call",
             "named": true
           },
           {
@@ -2325,6 +2428,10 @@
             "named": true
           },
           {
+            "type": "indirect_func_call",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -2411,6 +2518,10 @@
           "named": true
         },
         {
+          "type": "indirect_func_call",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -2479,6 +2590,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indirect_func_call",
           "named": true
         },
         {
@@ -2576,6 +2691,10 @@
             "named": true
           },
           {
+            "type": "indirect_func_call",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -2639,6 +2758,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "indirect_func_call",
             "named": true
           },
           {
@@ -2711,6 +2834,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "indirect_func_call",
             "named": true
           },
           {
@@ -2823,6 +2950,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indirect_func_call",
           "named": true
         },
         {
@@ -3121,6 +3252,10 @@
           "named": true
         },
         {
+          "type": "indirect_func_call",
+          "named": true
+        },
+        {
           "type": "next_statement",
           "named": true
         },
@@ -3264,6 +3399,10 @@
           "named": true
         },
         {
+          "type": "indirect_func_call",
+          "named": true
+        },
+        {
           "type": "next_statement",
           "named": true
         },
@@ -3371,6 +3510,10 @@
           "named": true
         },
         {
+          "type": "indirect_func_call",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -3446,6 +3589,10 @@
             "named": true
           },
           {
+            "type": "indirect_func_call",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -3512,6 +3659,10 @@
             "named": true
           },
           {
+            "type": "indirect_func_call",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -3575,6 +3726,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "indirect_func_call",
             "named": true
           },
           {
@@ -3647,6 +3802,10 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "indirect_func_call",
             "named": true
           },
           {
@@ -3786,6 +3945,10 @@
             "named": true
           },
           {
+            "type": "indirect_func_call",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -3890,6 +4053,10 @@
         },
         {
           "type": "if_statement",
+          "named": true
+        },
+        {
+          "type": "indirect_func_call",
           "named": true
         },
         {
@@ -4097,6 +4264,10 @@
   },
   {
     "type": "?",
+    "named": false
+  },
+  {
+    "type": "@",
     "named": false
   },
   {
