@@ -1177,6 +1177,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "regex_constant"
+          },
+          {
+            "type": "SYMBOL",
             "name": "grouping"
           },
           {
@@ -2426,6 +2430,19 @@
         "type": "PATTERN",
         "value": "[a-z]+"
       }
+    },
+    "regex_constant": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "@"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "regex"
+        }
+      ]
     },
     "grouping": {
       "type": "SEQ",

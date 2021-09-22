@@ -369,6 +369,25 @@ Regex
          (regex_pattern)))))
 
 ====================================
+Regex constant
+====================================
+
+{
+  regex = @/[a-z]/ 
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (assignment_exp
+         (identifier)
+         (regex_constant
+          (regex
+             (regex_pattern)))))))
+
+====================================
 Number
 ====================================
 

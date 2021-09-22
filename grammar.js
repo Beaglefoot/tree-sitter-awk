@@ -218,6 +218,7 @@ module.exports = grammar({
           $._primitive,
           $.array_ref,
           $.regex,
+          $.regex_constant,
           $.grouping,
           $.piped_io_exp,
           $.string_concat
@@ -344,6 +345,8 @@ module.exports = grammar({
     },
 
     regex_flags: $ => token.immediate(/[a-z]+/),
+
+    regex_constant: $ => seq('@', $.regex),
 
     grouping: $ => seq('(', $._exp, ')'),
 
