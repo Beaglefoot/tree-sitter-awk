@@ -42,6 +42,19 @@ bool is_statement_terminator(int32_t c)
   return c == '\n' || c == ';';
 }
 
+bool skip_whitespace(TSLexer *lexer, bool skip_newlines, bool capture)
+{
+  bool skipped = false;
+
+  while (is_whitespace(lexer->lookahead) || (skip_newlines && lexer->lookahead == '\n'))
+  {
+    lexer->advance(lexer, !capture);
+    skipped = true;
+  }
+
+  return skipped;
+}
+
 void skip_comment(TSLexer *lexer)
 {
   if (lexer->lookahead != '#')
@@ -61,14 +74,6 @@ void skip_comment(TSLexer *lexer)
   if (lexer->lookahead == '#')
   {
     skip_comment(lexer);
-  }
-}
-
-void skip_whitespace(TSLexer *lexer, bool skip_newlines, bool capture)
-{
-  while (is_whitespace(lexer->lookahead) || (skip_newlines && lexer->lookahead == '\n'))
-  {
-    lexer->advance(lexer, !capture);
   }
 }
 
@@ -92,7 +97,7 @@ bool is_if_else_separator(TSLexer *lexer)
 
 bool is_concatenating_space(TSLexer *lexer)
 {
-  skip_whitespace(lexer, false, true);
+  bool had_whitespace = skip_whitespace(lexer, false, true);
 
   lexer->mark_end(lexer);
 
@@ -114,7 +119,6 @@ bool is_concatenating_space(TSLexer *lexer)
   case ',':
   case '?':
   case ':':
-  case '(':
   case ')':
   case '[':
   case ']':
@@ -124,6 +128,8 @@ bool is_concatenating_space(TSLexer *lexer)
   case ';':
   case '\n':
     return false;
+  case '(':
+    return had_whitespace;
   case 'i':
     lexer->advance(lexer, true);
 

@@ -366,7 +366,7 @@ module.exports = grammar({
 
     param_list: $ => seq($.identifier, repeat(seq(',', $.identifier))),
 
-    func_call: $ => seq(field('name', $.identifier), '(', optional($.args), ')'),
+    func_call: $ => seq(field('name', $.identifier), token.immediate('('), optional($.args), ')'),
 
     indirect_func_call: $ => seq('@', $.func_call),
 

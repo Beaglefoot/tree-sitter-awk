@@ -585,3 +585,24 @@ String concatenation inline comment
       (assignment_exp
          (identifier)
          (number)))))
+
+====================================
+String concatenation with grouping
+====================================
+
+{
+  a = "a" ("b")
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (assignment_exp
+         (identifier)
+         (string_concat
+           (string)
+          (concatenating_space)
+           (grouping
+            (string)))))))
