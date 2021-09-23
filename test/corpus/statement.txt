@@ -46,6 +46,20 @@ If statement statement body
           (identifier))))))
 
 ====================================
+If statement no body
+====================================
+
+{ if (x) ; }
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (if_statement
+         (identifier)))))
+
+====================================
 If statement statement follow up
 ====================================
 
