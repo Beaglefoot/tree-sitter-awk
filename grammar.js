@@ -3,7 +3,7 @@ module.exports = grammar({
 
   extras: $ => [$.comment, /[\s\t]/, /\\\n/],
 
-  externals: $ => [$.concatenating_space, $._if_else_separator],
+  externals: $ => [$.concatenating_space, $._if_else_separator, $._ambiguous_comment],
 
   precedences: $ => [
     [
@@ -356,7 +356,7 @@ module.exports = grammar({
 
     number: $ => /[\d.]+/,
 
-    string: $ => seq('"', repeat(choice(/[^"\\]+/, $.escape_sequence)), '"'),
+    string: $ => seq('"', repeat(choice(/[^"\\]+/, $.escape_sequence, $._ambiguous_comment)), '"'),
 
     escape_sequence: $ =>
       token.immediate(seq('\\', choice('"', /[\\abfnrtv]/, /x[0-9a-fA-F]{1,2}/, /[0-7]{1,3}/))),

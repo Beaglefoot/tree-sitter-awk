@@ -435,6 +435,23 @@ String
         (escape_sequence)))))
 
 ====================================
+String with comment sign
+====================================
+
+{
+  a = "#"
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (assignment_exp
+         (identifier)
+         (string)))))
+
+====================================
 Grouping expression
 ====================================
 

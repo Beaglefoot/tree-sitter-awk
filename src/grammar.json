@@ -2510,6 +2510,10 @@
               {
                 "type": "SYMBOL",
                 "name": "escape_sequence"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_ambiguous_comment"
               }
             ]
           }
@@ -2885,6 +2889,10 @@
     {
       "type": "SYMBOL",
       "name": "_if_else_separator"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_ambiguous_comment"
     }
   ],
   "inline": [],
