@@ -37,6 +37,19 @@ bool is_whitespace(int32_t c)
   return c == ' ' || c == '\t';
 }
 
+bool is_line_continuation(TSLexer *lexer)
+{
+  if (lexer->lookahead == '\\')
+  {
+    lexer->advance(lexer, true);
+
+    if (lexer->lookahead == '\n')
+      return true;
+  }
+
+  return false;
+}
+
 bool is_statement_terminator(int32_t c)
 {
   return c == '\n' || c == ';';
@@ -46,7 +59,7 @@ bool skip_whitespace(TSLexer *lexer, bool skip_newlines, bool capture)
 {
   bool skipped = false;
 
-  while (is_whitespace(lexer->lookahead) || (skip_newlines && lexer->lookahead == '\n'))
+  while (is_whitespace(lexer->lookahead) || is_line_continuation(lexer) || (skip_newlines && lexer->lookahead == '\n'))
   {
     lexer->advance(lexer, !capture);
     skipped = true;

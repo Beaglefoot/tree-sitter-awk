@@ -608,6 +608,29 @@ String concatenation with grouping
             (string)))))))
 
 ====================================
+String concatenation line continuation
+====================================
+
+{
+  a \
+  b
+  a \
+  && b
+}
+------------------------------------
+
+(program
+  (rule
+    (block
+      (string_concat
+         (identifier)
+        (concatenating_space)
+         (identifier))
+      (binary_exp
+         (identifier)
+         (identifier)))))
+
+====================================
 Getline statement no var
 ====================================
 
