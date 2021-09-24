@@ -1,6 +1,7 @@
 #include <tree_sitter/parser.h>
 #include <stdio.h>
 #include <inttypes.h>
+#include <string.h>
 
 enum TokenType
 {
