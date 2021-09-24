@@ -7,6 +7,9 @@ module.exports = grammar({
 
   precedences: $ => [
     [
+      $._print_args,
+      $.getline_file,
+      $.getline_input,
       $.grouping,
       $.field_ref,
       $.func_call,
@@ -33,7 +36,7 @@ module.exports = grammar({
     [$.else_clause, $._statement_separated],
     [$.print_statement, $.printf_statement, $.grouping, $.binary_exp],
     [$.for_in_statement, $._exp],
-    [$._exp, $.string_concat],
+    [$._exp, $.string_concat, $.assignment_exp],
   ],
 
   conflicts: $ => [],
@@ -140,9 +143,9 @@ module.exports = grammar({
 
     delete_statement: $ => seq('delete', choice($.identifier, $.array_ref)),
 
-    exit_statement: $ => seq('exit', optional($._exp)),
+    exit_statement: $ => prec.right(seq('exit', optional($._exp))),
 
-    return_statement: $ => seq('return', optional($._exp)),
+    return_statement: $ => prec.right(seq('return', optional($._exp))),
 
     switch_statement: $ => seq('switch', '(', $._exp, ')', $.switch_body),
 
@@ -155,7 +158,6 @@ module.exports = grammar({
 
     _io_statement: $ =>
       choice(
-        $.getline_statement,
         $.next_statement,
         $.nextfile_statement,
         $.print_statement,
@@ -164,10 +166,12 @@ module.exports = grammar({
         $.piped_io_statement
       ),
 
-    getline_statement: $ =>
-      prec.right(
-        seq('getline', optional($.identifier), optional(seq('<', field('filename', $._exp))))
-      ),
+    // Although it's referenced as statement in manual it acts as an expression
+    _getline_exp: $ => choice($.getline_input, $.getline_file),
+
+    getline_input: $ => prec.right(seq('getline', optional($.identifier))),
+
+    getline_file: $ => seq('getline', optional($.identifier), '<', field('filename', $._exp)),
 
     // TODO: Must not be available in BEGIN/END
     next_statement: $ => 'next',
@@ -175,54 +179,54 @@ module.exports = grammar({
     // TODO: Must not be available in BEGIN/END
     nextfile_statement: $ => 'nextfile',
 
-    print_statement: $ => {
-      const args = choice($._exp, $._exp_list);
+    _print_args: $ => choice($._exp, $._exp_list),
 
-      return prec.left(seq('print', optional(choice(args, seq('(', args, ')')))));
-    },
+    print_statement: $ =>
+      prec.right(seq('print', optional(choice($._print_args, seq('(', $._print_args, ')'))))),
 
-    printf_statement: $ => {
-      const args = choice($._exp, $._exp_list);
-
-      return prec.left(seq('printf', choice(args, seq('(', args, ')'))));
-    },
+    printf_statement: $ => seq('printf', choice($._print_args, seq('(', $._print_args, ')'))),
 
     redirected_io_statement: $ =>
-      seq(
-        choice($.print_statement, $.printf_statement),
-        choice('>', '>>'),
-        field('filename', $._exp)
+      prec.right(
+        seq(
+          choice($.print_statement, $.printf_statement),
+          choice('>', '>>'),
+          field('filename', $._exp)
+        )
       ),
 
     piped_io_statement: $ =>
-      seq(
-        choice($.print_statement, $.printf_statement),
-        choice('|', '|&'),
-        field('command', $._exp)
+      prec.right(
+        seq(
+          choice($.print_statement, $.printf_statement),
+          choice('|', '|&'),
+          field('command', $._exp)
+        )
       ),
 
-    block: $ => seq('{', optional(choice($.block, $._statement)), '}'),
+    block: $ => seq('{', repeat($._block_content), '}'),
+
+    _block_content: $ => prec.left(choice($.block, $._statement)),
 
     _exp: $ =>
-      prec.left(
-        choice(
-          $.identifier,
-          $.ternary_exp,
-          $.binary_exp,
-          $.unary_exp,
-          $.update_exp,
-          $.assignment_exp,
-          $.field_ref,
-          $.func_call,
-          $.indirect_func_call,
-          $._primitive,
-          $.array_ref,
-          $.regex,
-          $.regex_constant,
-          $.grouping,
-          $.piped_io_exp,
-          $.string_concat
-        )
+      choice(
+        $.identifier,
+        $.ternary_exp,
+        $.binary_exp,
+        $.unary_exp,
+        $.update_exp,
+        $.assignment_exp,
+        $.field_ref,
+        $.func_call,
+        $.indirect_func_call,
+        $._primitive,
+        $.array_ref,
+        $.regex,
+        $.regex_constant,
+        $.grouping,
+        $.piped_io_exp,
+        $.string_concat,
+        $._getline_exp
       ),
 
     ternary_exp: $ =>
@@ -292,15 +296,7 @@ module.exports = grammar({
         )
       ),
 
-    piped_io_exp: $ =>
-      prec.left(
-        seq(
-          field('command', $._exp),
-          choice('|', '|&'),
-          $.getline_statement,
-          optional($.identifier)
-        )
-      ),
+    piped_io_exp: $ => seq(field('command', $._exp), choice('|', '|&'), $.getline_input),
 
     string_concat: $ => {
       const applicable_exp = choice(

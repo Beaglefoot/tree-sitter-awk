@@ -29,7 +29,8 @@
   (continue_statement)
   (next_statement)
   (nextfile_statement)
-  (getline_statement)
+  (getline_input)
+  (getline_file)
 ] @keyword
 
 [

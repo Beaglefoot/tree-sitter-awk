@@ -28,6 +28,14 @@
           "named": true
         },
         {
+          "type": "getline_file",
+          "named": true
+        },
+        {
+          "type": "getline_input",
+          "named": true
+        },
+        {
           "type": "grouping",
           "named": true
         },
@@ -108,6 +116,14 @@
           },
           {
             "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "getline_file",
+            "named": true
+          },
+          {
+            "type": "getline_input",
             "named": true
           },
           {
@@ -223,6 +239,14 @@
             "named": true
           },
           {
+            "type": "getline_file",
+            "named": true
+          },
+          {
+            "type": "getline_input",
+            "named": true
+          },
+          {
             "type": "grouping",
             "named": true
           },
@@ -300,6 +324,14 @@
           },
           {
             "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "getline_file",
+            "named": true
+          },
+          {
+            "type": "getline_input",
             "named": true
           },
           {
@@ -455,6 +487,14 @@
             "named": true
           },
           {
+            "type": "getline_file",
+            "named": true
+          },
+          {
+            "type": "getline_input",
+            "named": true
+          },
+          {
             "type": "grouping",
             "named": true
           },
@@ -567,7 +607,11 @@
           "named": true
         },
         {
-          "type": "getline_statement",
+          "type": "getline_file",
+          "named": true
+        },
+        {
+          "type": "getline_input",
           "named": true
         },
         {
@@ -737,6 +781,14 @@
             "named": true
           },
           {
+            "type": "getline_file",
+            "named": true
+          },
+          {
+            "type": "getline_input",
+            "named": true
+          },
+          {
             "type": "grouping",
             "named": true
           },
@@ -844,7 +896,11 @@
           "named": true
         },
         {
-          "type": "getline_statement",
+          "type": "getline_file",
+          "named": true
+        },
+        {
+          "type": "getline_input",
           "named": true
         },
         {
@@ -999,7 +1055,11 @@
           "named": true
         },
         {
-          "type": "getline_statement",
+          "type": "getline_file",
+          "named": true
+        },
+        {
+          "type": "getline_input",
           "named": true
         },
         {
@@ -1122,6 +1182,14 @@
           "named": true
         },
         {
+          "type": "getline_file",
+          "named": true
+        },
+        {
+          "type": "getline_input",
+          "named": true
+        },
+        {
           "type": "grouping",
           "named": true
         },
@@ -1198,6 +1266,14 @@
         },
         {
           "type": "func_call",
+          "named": true
+        },
+        {
+          "type": "getline_file",
+          "named": true
+        },
+        {
+          "type": "getline_input",
           "named": true
         },
         {
@@ -1337,7 +1413,11 @@
           "named": true
         },
         {
-          "type": "getline_statement",
+          "type": "getline_file",
+          "named": true
+        },
+        {
+          "type": "getline_input",
           "named": true
         },
         {
@@ -1460,6 +1540,14 @@
             "named": true
           },
           {
+            "type": "getline_file",
+            "named": true
+          },
+          {
+            "type": "getline_input",
+            "named": true
+          },
+          {
             "type": "grouping",
             "named": true
           },
@@ -1534,6 +1622,14 @@
             "named": true
           },
           {
+            "type": "getline_file",
+            "named": true
+          },
+          {
+            "type": "getline_input",
+            "named": true
+          },
+          {
             "type": "grouping",
             "named": true
           },
@@ -1605,6 +1701,14 @@
           },
           {
             "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "getline_file",
+            "named": true
+          },
+          {
+            "type": "getline_input",
             "named": true
           },
           {
@@ -1715,7 +1819,11 @@
           "named": true
         },
         {
-          "type": "getline_statement",
+          "type": "getline_file",
+          "named": true
+        },
+        {
+          "type": "getline_input",
           "named": true
         },
         {
@@ -1866,12 +1974,12 @@
     }
   },
   {
-    "type": "getline_statement",
+    "type": "getline_file",
     "named": true,
     "fields": {
       "filename": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "array_ref",
@@ -1891,6 +1999,14 @@
           },
           {
             "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "getline_file",
+            "named": true
+          },
+          {
+            "type": "getline_input",
             "named": true
           },
           {
@@ -1956,6 +2072,21 @@
     }
   },
   {
+    "type": "getline_input",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "grouping",
     "named": true,
     "fields": {},
@@ -1981,6 +2112,14 @@
         },
         {
           "type": "func_call",
+          "named": true
+        },
+        {
+          "type": "getline_file",
+          "named": true
+        },
+        {
+          "type": "getline_input",
           "named": true
         },
         {
@@ -2068,6 +2207,14 @@
           },
           {
             "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "getline_file",
+            "named": true
+          },
+          {
+            "type": "getline_input",
             "named": true
           },
           {
@@ -2182,7 +2329,11 @@
           "named": true
         },
         {
-          "type": "getline_statement",
+          "type": "getline_file",
+          "named": true
+        },
+        {
+          "type": "getline_input",
           "named": true
         },
         {
@@ -2335,6 +2486,14 @@
           "named": true
         },
         {
+          "type": "getline_file",
+          "named": true
+        },
+        {
+          "type": "getline_input",
+          "named": true
+        },
+        {
           "type": "grouping",
           "named": true
         },
@@ -2418,6 +2577,14 @@
             "named": true
           },
           {
+            "type": "getline_file",
+            "named": true
+          },
+          {
+            "type": "getline_input",
+            "named": true
+          },
+          {
             "type": "grouping",
             "named": true
           },
@@ -2469,15 +2636,11 @@
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "getline_statement",
-          "named": true
-        },
-        {
-          "type": "identifier",
+          "type": "getline_input",
           "named": true
         }
       ]
@@ -2509,6 +2672,14 @@
           },
           {
             "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "getline_file",
+            "named": true
+          },
+          {
+            "type": "getline_input",
             "named": true
           },
           {
@@ -2606,6 +2777,14 @@
           "named": true
         },
         {
+          "type": "getline_file",
+          "named": true
+        },
+        {
+          "type": "getline_input",
+          "named": true
+        },
+        {
           "type": "grouping",
           "named": true
         },
@@ -2682,6 +2861,14 @@
         },
         {
           "type": "func_call",
+          "named": true
+        },
+        {
+          "type": "getline_file",
+          "named": true
+        },
+        {
+          "type": "getline_input",
           "named": true
         },
         {
@@ -2787,6 +2974,14 @@
             "named": true
           },
           {
+            "type": "getline_file",
+            "named": true
+          },
+          {
+            "type": "getline_input",
+            "named": true
+          },
+          {
             "type": "grouping",
             "named": true
           },
@@ -2858,6 +3053,14 @@
           },
           {
             "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "getline_file",
+            "named": true
+          },
+          {
+            "type": "getline_input",
             "named": true
           },
           {
@@ -2938,6 +3141,14 @@
           },
           {
             "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "getline_file",
+            "named": true
+          },
+          {
+            "type": "getline_input",
             "named": true
           },
           {
@@ -3073,6 +3284,14 @@
         },
         {
           "type": "func_call",
+          "named": true
+        },
+        {
+          "type": "getline_file",
+          "named": true
+        },
+        {
+          "type": "getline_input",
           "named": true
         },
         {
@@ -3371,7 +3590,11 @@
           "named": true
         },
         {
-          "type": "getline_statement",
+          "type": "getline_file",
+          "named": true
+        },
+        {
+          "type": "getline_input",
           "named": true
         },
         {
@@ -3522,7 +3745,11 @@
           "named": true
         },
         {
-          "type": "getline_statement",
+          "type": "getline_file",
+          "named": true
+        },
+        {
+          "type": "getline_input",
           "named": true
         },
         {
@@ -3645,6 +3872,14 @@
           "named": true
         },
         {
+          "type": "getline_file",
+          "named": true
+        },
+        {
+          "type": "getline_input",
+          "named": true
+        },
+        {
           "type": "grouping",
           "named": true
         },
@@ -3728,6 +3963,14 @@
             "named": true
           },
           {
+            "type": "getline_file",
+            "named": true
+          },
+          {
+            "type": "getline_input",
+            "named": true
+          },
+          {
             "type": "grouping",
             "named": true
           },
@@ -3802,6 +4045,14 @@
             "named": true
           },
           {
+            "type": "getline_file",
+            "named": true
+          },
+          {
+            "type": "getline_input",
+            "named": true
+          },
+          {
             "type": "grouping",
             "named": true
           },
@@ -3873,6 +4124,14 @@
           },
           {
             "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "getline_file",
+            "named": true
+          },
+          {
+            "type": "getline_input",
             "named": true
           },
           {
@@ -3953,6 +4212,14 @@
           },
           {
             "type": "func_call",
+            "named": true
+          },
+          {
+            "type": "getline_file",
+            "named": true
+          },
+          {
+            "type": "getline_input",
             "named": true
           },
           {
@@ -4100,6 +4367,14 @@
             "named": true
           },
           {
+            "type": "getline_file",
+            "named": true
+          },
+          {
+            "type": "getline_input",
+            "named": true
+          },
+          {
             "type": "grouping",
             "named": true
           },
@@ -4207,7 +4482,11 @@
           "named": true
         },
         {
-          "type": "getline_statement",
+          "type": "getline_file",
+          "named": true
+        },
+        {
+          "type": "getline_input",
           "named": true
         },
         {

@@ -606,3 +606,111 @@ String concatenation with grouping
           (concatenating_space)
            (grouping
             (string)))))))
+
+====================================
+Getline statement no var
+====================================
+
+{
+  getline
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (getline_input))))
+
+====================================
+Getline statement with var
+====================================
+
+{
+  getline var;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (getline_input
+        (identifier)))))
+
+====================================
+Getline statement from file
+====================================
+
+{
+  was_read = getline < "file.csv";
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (assignment_exp
+         (identifier)
+         (getline_file
+           (string))))))
+
+====================================
+Getline statement from file into var
+====================================
+
+{
+  getline var < "file.csv";
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (getline_file
+        (identifier)
+         (string)))))
+
+====================================
+Getline piped
+====================================
+
+{
+  line_was_read = ("cal" | getline var);
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (assignment_exp
+         (identifier)
+         (grouping
+          (piped_io_exp
+             (string)
+            (getline_input
+              (identifier))))))))
+
+====================================
+Getline coprocess piped
+====================================
+
+{
+  line_was_read = ("cal" |& getline var);
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (assignment_exp
+         (identifier)
+         (grouping
+          (piped_io_exp
+             (string)
+            (getline_input
+              (identifier))))))))
