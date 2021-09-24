@@ -596,6 +596,26 @@ Print piped
          (string)))))
 
 ====================================
+Print with grouping and string concat
+====================================
+
+{
+  print (a) b
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (print_statement
+        (string_concat
+           (grouping
+            (identifier))
+          (concatenating_space)
+           (identifier))))))
+
+====================================
 Printf statement
 ====================================
 

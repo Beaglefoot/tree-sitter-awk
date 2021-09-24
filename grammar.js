@@ -182,7 +182,9 @@ module.exports = grammar({
     _print_args: $ => choice($._exp, $._exp_list),
 
     print_statement: $ =>
-      prec.right(seq('print', optional(choice($._print_args, seq('(', $._print_args, ')'))))),
+      prec.right(
+        seq('print', optional(choice($._print_args, seq(token.immediate('('), $._print_args, ')'))))
+      ),
 
     printf_statement: $ => seq('printf', choice($._print_args, seq('(', $._print_args, ')'))),
 
