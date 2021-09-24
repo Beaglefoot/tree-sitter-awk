@@ -3,7 +3,17 @@
   "version": "0.3.2",
   "author": "Beaglefoot <ch-e-st@yandex.ru>",
   "license": "MIT",
+  "keywords": [
+    "parser",
+    "awk",
+    "gawk"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Beaglefoot/tree-sitter-awk.git"
+  },
   "scripts": {
+    "build": "tree-sitter generate && node-gyp build",
     "types:watch": "node generate-types.js",
     "trim": "sed ' s/ \\[.*\\]//; s/\\w\\+:// '",
     "test": "tree-sitter test"
