@@ -1,7 +1,7 @@
 tree-sitter-awk
 ================
 
-[![tests](https://github.com/Beaglefoot/tree-sitter-awk/actions/workflows/test.yml/badge.svg)](https://github.com/Beaglefoot/tree-sitter-awk/actions/workflows/test.yml)
+[![build-test](https://github.com/Beaglefoot/tree-sitter-awk/actions/workflows/build-test.yml/badge.svg)](https://github.com/Beaglefoot/tree-sitter-awk/actions/workflows/build-test.yml)
 
 GNU AWK grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter).
 
