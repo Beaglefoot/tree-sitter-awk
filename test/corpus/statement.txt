@@ -164,6 +164,32 @@ If-else statement with statements
           (number))))))
 
 ====================================
+If-else with statement on newline
+====================================
+
+{
+    if (a)
+      print 1;
+    else if (b)
+      print 2;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (if_statement
+         (identifier)
+        (print_statement
+          (number))
+        (else_clause
+          (if_statement
+             (identifier)
+            (print_statement
+              (number))))))))
+
+====================================
 If-else separated by comment
 ====================================
 

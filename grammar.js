@@ -90,7 +90,7 @@ module.exports = grammar({
         seq(
           'if',
           field('condition', seq('(', $._exp, ')')),
-          optional(choice($.block, $._statement)),
+          choice($.block, $._statement, ';'),
           optional(seq($._if_else_separator, $.else_clause))
         )
       ),
