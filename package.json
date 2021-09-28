@@ -17,7 +17,8 @@
     "build:wasm": "tree-sitter build-wasm",
     "types:watch": "node generate-types.js",
     "trim": "sed ' s/ \\[.*\\]//; s/\\w\\+:// '",
-    "test": "tree-sitter test"
+    "test": "tree-sitter test",
+    "version": "./scripts/update_highlights_version.sh"
   },
   "dependencies": {
     "nan": "2.14.2"
