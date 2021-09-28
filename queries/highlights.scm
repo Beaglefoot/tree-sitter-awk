@@ -1,3 +1,5 @@
+; tree-sitter-awk v0.3.3
+
 ; Order matters
 
 (func_def name: (identifier) @function)
@@ -25,6 +27,7 @@
   "for"
   "in"
   "delete"
+  "return"
   (break_statement)
   (continue_statement)
   (next_statement)

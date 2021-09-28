@@ -1,7 +1,7 @@
 @include "somelib"
 
 function do_stuff(a, b) {
-  print a + b;
+  return a + b;
 }
 
 BEGIN {
