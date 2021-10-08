@@ -29,6 +29,10 @@
   "in"
   "delete"
   "return"
+  "exit"
+  "switch"
+  "case"
+  "default"
   (break_statement)
   (continue_statement)
   (next_statement)

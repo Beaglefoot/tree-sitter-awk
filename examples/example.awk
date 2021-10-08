@@ -33,4 +33,13 @@ END {
     else if (x == 5)
       continue;
   }
+
+  switch(x) {
+    case 1:
+    case 2:
+    default:
+      typeof(x);
+  }
+
+  exit 1;
 }
