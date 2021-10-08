@@ -18,6 +18,7 @@
 
 [
   "function"
+  "func"
   "print"
   "printf"
   "if"

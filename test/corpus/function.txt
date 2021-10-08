@@ -43,6 +43,19 @@ function greet(who, and_who) {}
     (block)))
 
 ====================================
+Definition with func keyword
+====================================
+
+func f() {}
+
+------------------------------------
+
+(program
+  (func_def
+     (identifier)
+    (block)))
+
+====================================
 Wrong definition with trailing comma
 ====================================
 

@@ -4809,6 +4809,10 @@
     "named": false
   },
   {
+    "type": "func",
+    "named": false
+  },
+  {
     "type": "function",
     "named": false
   },
