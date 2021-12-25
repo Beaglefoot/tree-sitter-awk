@@ -15,10 +15,14 @@ function writeTypes() {
     // Externals
     writer.write('declare interface IExternals {\n');
 
-    const m = g?.externals?.toString()?.match(/\(?\$\)? => \[(.*)\]/);
+    const m = g?.externals?.toString()?.match(/\(?\$\)? => \[([\s\S]*)\]/);
 
     if (m?.[1]) {
-      const extRules = m[1].replace(/\s/g, '').replace(/\$\./g, '').split(',');
+      const extRules = m[1]
+        .replace(/[\s\n]/g, '')
+        .replace(/\$\./g, '')
+        .split(',')
+        .filter(Boolean);
 
       for (const r of extRules) {
         writer.write(`  ${r}: ($: IExternals) => any;\n`);
@@ -92,6 +96,10 @@ declare const token: ITokenFunc & { immediate: ITokenFunc }
   console.log(`Done: ${endTime.toFixed(3)}s`);
 }
 
-if (!fs.existsSync('grammar.d.ts')) writeTypes();
+if (require.main === module) {
+  writeTypes();
+}
 
-fs.watchFile('grammar.js', writeTypes);
+module.exports = {
+  writeTypes,
+};

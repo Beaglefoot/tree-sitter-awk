@@ -15,7 +15,8 @@
   "scripts": {
     "build": "tree-sitter generate && node-gyp build",
     "build:wasm": "tree-sitter build-wasm",
-    "types:watch": "node generate-types.js",
+    "types": "node scripts/generate_types.js",
+    "types:watch": "node scripts/generate_types_watch.js",
     "trim": "sed ' s/ \\[.*\\]//; s/\\w\\+:// '",
     "test": "tree-sitter test",
     "version": "./scripts/update_highlights_version.sh"
