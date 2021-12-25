@@ -926,17 +926,21 @@
       "value": "nextfile"
     },
     "_print_args": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_exp"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_exp_list"
-        }
-      ]
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_exp"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_exp_list"
+          }
+        ]
+      }
     },
     "print_statement": {
       "type": "PREC_RIGHT",
@@ -1863,79 +1867,67 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "PREC_LEFT",
-          "value": 0,
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "FIELD",
-                "name": "operator",
-                "content": {
-                  "type": "STRING",
-                  "value": "!"
-                }
-              },
-              {
-                "type": "FIELD",
-                "name": "argument",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "_exp"
-                }
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "operator",
+              "content": {
+                "type": "STRING",
+                "value": "!"
               }
-            ]
-          }
+            },
+            {
+              "type": "FIELD",
+              "name": "argument",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_exp"
+              }
+            }
+          ]
         },
         {
-          "type": "PREC_LEFT",
-          "value": 0,
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "FIELD",
-                "name": "operator",
-                "content": {
-                  "type": "STRING",
-                  "value": "+"
-                }
-              },
-              {
-                "type": "FIELD",
-                "name": "argument",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "_exp"
-                }
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "operator",
+              "content": {
+                "type": "STRING",
+                "value": "+"
               }
-            ]
-          }
+            },
+            {
+              "type": "FIELD",
+              "name": "argument",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_exp"
+              }
+            }
+          ]
         },
         {
-          "type": "PREC_LEFT",
-          "value": 0,
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "FIELD",
-                "name": "operator",
-                "content": {
-                  "type": "STRING",
-                  "value": "-"
-                }
-              },
-              {
-                "type": "FIELD",
-                "name": "argument",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "_exp"
-                }
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "operator",
+              "content": {
+                "type": "STRING",
+                "value": "-"
               }
-            ]
-          }
+            },
+            {
+              "type": "FIELD",
+              "name": "argument",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_exp"
+              }
+            }
+          ]
         }
       ]
     },
@@ -2739,10 +2731,6 @@
     [
       {
         "type": "SYMBOL",
-        "name": "_print_args"
-      },
-      {
-        "type": "SYMBOL",
         "name": "getline_file"
       },
       {
@@ -2878,10 +2866,24 @@
       {
         "type": "SYMBOL",
         "name": "grouping"
+      }
+    ],
+    [
+      {
+        "type": "SYMBOL",
+        "name": "_print_args"
       },
       {
         "type": "SYMBOL",
-        "name": "binary_exp"
+        "name": "grouping"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "piped_io_exp"
+      },
+      {
+        "type": "STRING",
+        "value": "binary_relation"
       }
     ],
     [

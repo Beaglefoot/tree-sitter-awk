@@ -7,7 +7,6 @@ module.exports = grammar({
 
   precedences: $ => [
     [
-      $._print_args,
       $.getline_file,
       $.getline_input,
       $.grouping,
@@ -34,7 +33,8 @@ module.exports = grammar({
     [$.update_exp, $._exp],
     [$.if_statement, $._statement_separated],
     [$.else_clause, $._statement_separated],
-    [$.print_statement, $.printf_statement, $.grouping, $.binary_exp],
+    [$.print_statement, $.printf_statement, $.grouping],
+    [$._print_args, $.grouping, $.piped_io_exp, 'binary_relation'],
     [$.for_in_statement, $._exp],
     [$._exp, $.string_concat, $.assignment_exp],
   ],
@@ -179,7 +179,7 @@ module.exports = grammar({
     // TODO: Must not be available in BEGIN/END
     nextfile_statement: $ => 'nextfile',
 
-    _print_args: $ => choice($._exp, $._exp_list),
+    _print_args: $ => prec.right(choice($._exp, $._exp_list)),
 
     print_statement: $ =>
       prec.right(
@@ -272,11 +272,7 @@ module.exports = grammar({
       ),
 
     unary_exp: $ =>
-      choice(
-        ...['!', '+', '-'].map(op =>
-          prec.left(seq(field('operator', op), field('argument', $._exp)))
-        )
-      ),
+      choice(...['!', '+', '-'].map(op => seq(field('operator', op), field('argument', $._exp)))),
 
     update_exp: $ => {
       const refs = choice($.identifier, $.field_ref, $.array_ref);
