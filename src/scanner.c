@@ -12,7 +12,25 @@ enum TokenType
 
 void log(TSLexer *lexer)
 {
-  printf("column: %3" PRIu32 " | sym: '%c' | lookahead: '%c' | skipped: %s\n",
+  if (lexer->lookahead == '\r')
+  {
+    printf("column: %3" PRIu32 " | sym: '%c' | lookahead: '\\r' | skipped: %s\n",
+           lexer->get_column(lexer),
+           lexer->result_symbol,
+           lexer->is_at_included_range_start(lexer) ? "true" : "false");
+    return;
+  }
+
+  if (lexer->lookahead == '\n')
+  {
+    printf("column: %3" PRIu32 " | sym: '%c' | lookahead: '\\n' | skipped: %s\n",
+           lexer->get_column(lexer),
+           lexer->result_symbol,
+           lexer->is_at_included_range_start(lexer) ? "true" : "false");
+    return;
+  }
+
+  printf("column: %3" PRIu32 " | sym: '%c' | lookahead:  '%c' | skipped: %s\n",
          lexer->get_column(lexer),
          lexer->result_symbol,
          lexer->lookahead,
@@ -60,7 +78,7 @@ bool skip_whitespace(TSLexer *lexer, bool skip_newlines, bool capture)
 {
   bool skipped = false;
 
-  while (is_whitespace(lexer->lookahead) || is_line_continuation(lexer) || (skip_newlines && lexer->lookahead == '\n'))
+  while (is_whitespace(lexer->lookahead) || is_line_continuation(lexer) || lexer->lookahead == '\r' || (skip_newlines && lexer->lookahead == '\n'))
   {
     lexer->advance(lexer, !capture);
     skipped = true;

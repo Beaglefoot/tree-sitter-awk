@@ -1,0 +1,19 @@
+====================================
+If-else with CRLF line end
+====================================
+
+{
+    if (1) {}
+    else 2
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (if_statement
+         (number)
+        (block)
+        (else_clause
+          (number))))))

@@ -224,6 +224,10 @@
               {
                 "type": "STRING",
                 "value": "\n"
+              },
+              {
+                "type": "STRING",
+                "value": "\r\n"
               }
             ]
           }
@@ -2368,7 +2372,7 @@
           "members": [
             {
               "type": "PATTERN",
-              "value": "[^/\\\\\\[\\n]"
+              "value": "[^/\\\\\\[\\n\\r]"
             },
             {
               "type": "SEQ",
@@ -2724,6 +2728,10 @@
     {
       "type": "PATTERN",
       "value": "\\\\\\n"
+    },
+    {
+      "type": "PATTERN",
+      "value": "\\\\\\r\\\\\\n"
     }
   ],
   "conflicts": [],

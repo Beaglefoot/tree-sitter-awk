@@ -1,7 +1,7 @@
 module.exports = grammar({
   name: 'awk',
 
-  extras: $ => [$.comment, /[\s\t]/, /\\\n/],
+  extras: $ => [$.comment, /[\s\t]/, /\\\n/, /\\\r\\\n/],
 
   externals: $ => [$.concatenating_space, $._if_else_separator, $._ambiguous_comment],
 
@@ -68,7 +68,7 @@ module.exports = grammar({
         )
       ),
 
-    _statement_separated: $ => prec.right(seq($._statement, choice(';', '\n'))),
+    _statement_separated: $ => prec.right(seq($._statement, choice(';', '\n', '\r\n'))),
 
     _control_statement: $ =>
       choice(
@@ -331,7 +331,7 @@ module.exports = grammar({
       ),
 
     regex_pattern: $ => {
-      const char = /[^/\\\[\n]/;
+      const char = /[^/\\\[\n\r]/;
       const char_escaped = seq('\\', /./);
       const char_list = seq('[', repeat1(choice(char_escaped, /[^\]]/)), ']');
 
