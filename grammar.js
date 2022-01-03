@@ -135,10 +135,8 @@ module.exports = grammar({
         )
       ),
 
-    // TODO: Must be available in loops and switch statement only
     break_statement: $ => 'break',
 
-    // TODO: Must be available in loops only
     continue_statement: $ => 'continue',
 
     delete_statement: $ => seq('delete', choice($.identifier, $.array_ref)),
@@ -173,10 +171,8 @@ module.exports = grammar({
 
     getline_file: $ => seq('getline', optional($.identifier), '<', field('filename', $._exp)),
 
-    // TODO: Must not be available in BEGIN/END
     next_statement: $ => 'next',
 
-    // TODO: Must not be available in BEGIN/END
     nextfile_statement: $ => 'nextfile',
 
     _print_args: $ => prec.right(choice($._exp, $._exp_list)),
