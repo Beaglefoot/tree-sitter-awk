@@ -407,10 +407,11 @@ For-in statement statement body
          (identifier)
          (identifier)
         (print_statement
-          (identifier)
-          (array_ref
+          (exp_list
             (identifier)
-             (identifier)))))))
+            (array_ref
+              (identifier)
+               (identifier))))))))
 
 ====================================
 For-in statement block body
@@ -577,8 +578,9 @@ Print statement
       (print_statement
         (string))
       (print_statement
-        (string)
-        (string)))))
+        (exp_list
+          (string)
+          (string))))))
 
 ====================================
 Print statement output redirection
@@ -674,11 +676,13 @@ Printf statement
   (rule
     (block
       (printf_statement
-        (string)
-        (number))
+        (exp_list
+          (string)
+          (number)))
       (printf_statement
-        (string)
-        (number)))))
+        (exp_list
+          (string)
+          (number))))))
 
 ====================================
 Printf statement with getline
@@ -736,6 +740,7 @@ Printf piped
     (block
       (piped_io_statement
         (printf_statement
-          (string)
-          (string))
+          (exp_list
+            (string)
+            (string)))
          (string)))))

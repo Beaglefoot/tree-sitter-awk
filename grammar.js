@@ -25,7 +25,7 @@ module.exports = grammar({
       'binary_and',
       'binary_or',
       $.ternary_exp,
-      $._exp_list,
+      $.exp_list,
       $.range_pattern,
       $._statement,
     ],
@@ -175,7 +175,7 @@ module.exports = grammar({
 
     nextfile_statement: $ => 'nextfile',
 
-    _print_args: $ => prec.right(choice($._exp, $._exp_list)),
+    _print_args: $ => prec.right(choice($._exp, $.exp_list)),
 
     print_statement: $ =>
       prec.right(
@@ -314,9 +314,9 @@ module.exports = grammar({
     field_ref: $ => seq('$', $._exp),
 
     array_ref: $ =>
-      seq(choice($.identifier, $.array_ref), '[', field('index', choice($._exp, $._exp_list)), ']'),
+      seq(choice($.identifier, $.array_ref), '[', field('index', choice($._exp, $.exp_list)), ']'),
 
-    _exp_list: $ => seq(repeat1(seq($._exp, ',')), $._exp),
+    exp_list: $ => seq(repeat1(seq($._exp, ',')), $._exp),
 
     regex: $ =>
       seq(

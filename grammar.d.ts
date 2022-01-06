@@ -52,7 +52,7 @@ declare interface IRules {
   string_concat: ($: IRules & IExternals) => any;
   field_ref: ($: IRules & IExternals) => any;
   array_ref: ($: IRules & IExternals) => any;
-  _exp_list: ($: IRules & IExternals) => any;
+  exp_list: ($: IRules & IExternals) => any;
   regex: ($: IRules & IExternals) => any;
   regex_pattern: ($: IRules & IExternals) => any;
   regex_flags: ($: IRules & IExternals) => any;
@@ -70,7 +70,6 @@ declare interface IRules {
   args: ($: IRules & IExternals) => any;
   comment: ($: IRules & IExternals) => any;
 }
-
 
 declare interface IGrammar {
   name: string;
@@ -109,4 +108,4 @@ declare const prec: IPrecFunc & {
   right: IPrecFunc;
   dynamic: (val: number, rule: TRule) => TRule;
 };
-declare const token: ITokenFunc & { immediate: ITokenFunc }
+declare const token: ITokenFunc & { immediate: ITokenFunc };

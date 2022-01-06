@@ -941,7 +941,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_exp_list"
+            "name": "exp_list"
           }
         ]
       }
@@ -2287,7 +2287,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "_exp_list"
+                "name": "exp_list"
               }
             ]
           }
@@ -2298,7 +2298,7 @@
         }
       ]
     },
-    "_exp_list": {
+    "exp_list": {
       "type": "SEQ",
       "members": [
         {
@@ -2811,7 +2811,7 @@
       },
       {
         "type": "SYMBOL",
-        "name": "_exp_list"
+        "name": "exp_list"
       },
       {
         "type": "SYMBOL",
