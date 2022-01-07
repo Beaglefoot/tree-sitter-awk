@@ -1,4 +1,4 @@
-; tree-sitter-awk v0.3.5
+; tree-sitter-awk v0.4.0
 
 ; Order matters
 
