@@ -19,7 +19,8 @@
     "types:watch": "node scripts/generate_types_watch.js",
     "trim": "sed ' s/ \\[.*\\]//; s/\\w\\+:// '",
     "test": "tree-sitter test",
-    "version": "./scripts/update_highlights_version.sh"
+    "version": "./scripts/update_highlights_version.sh",
+    "prepublishOnly": "yarn build:wasm"
   },
   "dependencies": {
     "nan": "2.14.2"

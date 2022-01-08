@@ -1,5 +1,9 @@
 node_modules/
 build/
 
+*.log
+
 temp
+temp.awk
 log.html
+tree-sitter-awk.wasm

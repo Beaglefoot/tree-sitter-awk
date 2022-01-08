@@ -1,0 +1,13 @@
+.github/
+.vscode/
+examples/
+scripts/
+build/
+test/
+node_modules/
+
+*.log
+
+temp
+temp.awk
+log.html
