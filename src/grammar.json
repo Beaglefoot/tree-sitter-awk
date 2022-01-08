@@ -2726,12 +2726,12 @@
       "value": "[\\s\\t]"
     },
     {
-      "type": "PATTERN",
-      "value": "\\\\\\n"
+      "type": "STRING",
+      "value": "\\\n"
     },
     {
-      "type": "PATTERN",
-      "value": "\\\\\\r\\\\\\n"
+      "type": "STRING",
+      "value": "\\\r\n"
     }
   ],
   "conflicts": [],

@@ -62,6 +62,9 @@ bool is_line_continuation(TSLexer *lexer)
   {
     lexer->advance(lexer, true);
 
+    if (lexer->lookahead == '\r')
+      lexer->advance(lexer, true);
+
     if (lexer->lookahead == '\n')
       return true;
   }
@@ -111,7 +114,7 @@ void skip_comment(TSLexer *lexer)
 
 bool is_if_else_separator(TSLexer *lexer)
 {
-  while (is_whitespace(lexer->lookahead) || is_statement_terminator(lexer->lookahead))
+  while (is_whitespace(lexer->lookahead) || is_statement_terminator(lexer->lookahead) || lexer->lookahead == '\r')
   {
     lexer->advance(lexer, true);
   }

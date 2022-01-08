@@ -71,6 +71,7 @@ declare interface IRules {
   comment: ($: IRules & IExternals) => any;
 }
 
+
 declare interface IGrammar {
   name: string;
   extras?: ($: IRules & IExternals) => any;
@@ -108,4 +109,4 @@ declare const prec: IPrecFunc & {
   right: IPrecFunc;
   dynamic: (val: number, rule: TRule) => TRule;
 };
-declare const token: ITokenFunc & { immediate: ITokenFunc };
+declare const token: ITokenFunc & { immediate: ITokenFunc }

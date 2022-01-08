@@ -13,7 +13,8 @@
     "url": "https://github.com/Beaglefoot/tree-sitter-awk.git"
   },
   "scripts": {
-    "build": "tree-sitter generate && node-gyp build",
+    "generate": "tree-sitter generate",
+    "build": "yarn generate && node-gyp build",
     "build:wasm": "tree-sitter build-wasm",
     "types": "node scripts/generate_types.js",
     "types:watch": "node scripts/generate_types_watch.js",
