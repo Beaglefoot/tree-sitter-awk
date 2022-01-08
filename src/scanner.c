@@ -10,7 +10,7 @@ enum TokenType
   _AMBIGUOUS_COMMENT
 };
 
-void log(TSLexer *lexer)
+void debug(TSLexer *lexer)
 {
   if (lexer->lookahead == '\r')
   {
