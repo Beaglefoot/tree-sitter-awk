@@ -48,7 +48,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         },
         {
@@ -143,7 +143,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -198,7 +198,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         }
       ]
@@ -225,7 +225,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           }
         ]
@@ -275,7 +275,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -367,7 +367,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -531,7 +531,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -667,7 +667,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         },
         {
@@ -759,7 +759,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         }
       ]
@@ -837,7 +837,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -968,7 +968,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         },
         {
@@ -1131,7 +1131,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         },
         {
@@ -1250,7 +1250,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         },
         {
@@ -1341,7 +1341,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         },
         {
@@ -1432,7 +1432,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         },
         {
@@ -1487,7 +1487,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           }
         ]
@@ -1505,7 +1505,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           }
         ]
@@ -1600,7 +1600,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         },
         {
@@ -1719,7 +1719,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -1805,7 +1805,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -1891,7 +1891,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -2022,7 +2022,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         },
         {
@@ -2105,7 +2105,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           }
         ]
@@ -2135,7 +2135,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           }
         ]
@@ -2205,7 +2205,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -2256,7 +2256,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         }
       ]
@@ -2275,7 +2275,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         }
       ]
@@ -2330,7 +2330,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         },
         {
@@ -2429,7 +2429,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -2564,7 +2564,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         },
         {
@@ -2655,7 +2655,7 @@
     "fields": {}
   },
   {
-    "type": "ns_qualified_identifier",
+    "type": "ns_qualified_name",
     "named": true,
     "fields": {},
     "children": {
@@ -2737,7 +2737,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         },
         {
@@ -2832,7 +2832,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -2934,7 +2934,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -3044,7 +3044,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         },
         {
@@ -3139,7 +3139,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         },
         {
@@ -3253,7 +3253,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -3339,7 +3339,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -3431,7 +3431,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -3578,7 +3578,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         },
         {
@@ -3687,7 +3687,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -3741,7 +3741,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -3905,7 +3905,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         },
         {
@@ -4064,7 +4064,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         },
         {
@@ -4183,7 +4183,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         },
         {
@@ -4278,7 +4278,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -4364,7 +4364,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -4450,7 +4450,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -4542,7 +4542,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -4624,7 +4624,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           }
         ]
@@ -4702,7 +4702,7 @@
             "named": true
           },
           {
-            "type": "ns_qualified_identifier",
+            "type": "ns_qualified_name",
             "named": true
           },
           {
@@ -4833,7 +4833,7 @@
           "named": true
         },
         {
-          "type": "ns_qualified_identifier",
+          "type": "ns_qualified_name",
           "named": true
         },
         {

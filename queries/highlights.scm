@@ -2,8 +2,8 @@
 
 ; Order matters
 
-(ns_qualified_identifier (namespace) @namespace)
-(ns_qualified_identifier "::" @operator)
+(ns_qualified_name (namespace) @namespace)
+(ns_qualified_name "::" @operator)
 
 (func_def name: (identifier) @function)
 (func_call name: (identifier) @function)

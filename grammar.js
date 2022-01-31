@@ -127,9 +127,9 @@ module.exports = grammar({
         seq(
           'for',
           '(',
-          field('left', choice($.identifier, $.ns_qualified_identifier)),
+          field('left', choice($.identifier, $.ns_qualified_name)),
           'in',
-          field('right', choice($.identifier, $.array_ref, $.ns_qualified_identifier)),
+          field('right', choice($.identifier, $.array_ref, $.ns_qualified_name)),
           ')',
           choice($.block, $._statement)
         )
@@ -139,8 +139,7 @@ module.exports = grammar({
 
     continue_statement: $ => 'continue',
 
-    delete_statement: $ =>
-      seq('delete', choice($.identifier, $.array_ref, $.ns_qualified_identifier)),
+    delete_statement: $ => seq('delete', choice($.identifier, $.array_ref, $.ns_qualified_name)),
 
     exit_statement: $ => prec.right(seq('exit', optional($._exp))),
 
@@ -169,12 +168,12 @@ module.exports = grammar({
     _getline_exp: $ => choice($.getline_input, $.getline_file),
 
     getline_input: $ =>
-      prec.right(seq('getline', optional(choice($.identifier, $.ns_qualified_identifier)))),
+      prec.right(seq('getline', optional(choice($.identifier, $.ns_qualified_name)))),
 
     getline_file: $ =>
       seq(
         'getline',
-        optional(choice($.identifier, $.ns_qualified_identifier)),
+        optional(choice($.identifier, $.ns_qualified_name)),
         '<',
         field('filename', $._exp)
       ),
@@ -217,7 +216,7 @@ module.exports = grammar({
     _exp: $ =>
       choice(
         $.identifier,
-        $.ns_qualified_identifier,
+        $.ns_qualified_name,
         $.ternary_exp,
         $.binary_exp,
         $.unary_exp,
@@ -280,7 +279,7 @@ module.exports = grammar({
       choice(...['!', '+', '-'].map(op => seq(field('operator', op), field('argument', $._exp)))),
 
     update_exp: $ => {
-      const refs = choice($.identifier, $.field_ref, $.array_ref, $.ns_qualified_identifier);
+      const refs = choice($.identifier, $.field_ref, $.array_ref, $.ns_qualified_name);
 
       return prec.left(
         choice(
@@ -293,7 +292,7 @@ module.exports = grammar({
     assignment_exp: $ =>
       prec.right(
         seq(
-          field('left', choice($.identifier, $.array_ref, $.field_ref, $.ns_qualified_identifier)),
+          field('left', choice($.identifier, $.array_ref, $.field_ref, $.ns_qualified_name)),
           choice('=', '+=', '-=', '*=', '/=', '%=', '^='),
           field('right', $._exp)
         )
@@ -304,7 +303,7 @@ module.exports = grammar({
     string_concat: $ => {
       const applicable_exp = choice(
         $.identifier,
-        $.ns_qualified_identifier,
+        $.ns_qualified_name,
         $.ternary_exp,
         $.binary_exp,
         $.unary_exp,
@@ -325,7 +324,7 @@ module.exports = grammar({
 
     array_ref: $ =>
       seq(
-        choice($.identifier, $.array_ref, $.ns_qualified_identifier),
+        choice($.identifier, $.array_ref, $.ns_qualified_name),
         '[',
         field('index', choice($._exp, $.exp_list)),
         ']'
@@ -361,7 +360,7 @@ module.exports = grammar({
 
     namespace: $ => alias($.identifier, 'namespace'),
 
-    ns_qualified_identifier: $ => seq($.namespace, token.immediate('::'), $.identifier),
+    ns_qualified_name: $ => seq($.namespace, token.immediate('::'), $.identifier),
 
     number: $ => /[\d.]+/,
 
@@ -373,7 +372,7 @@ module.exports = grammar({
     func_def: $ =>
       seq(
         choice('function', 'func'),
-        field('name', choice($.identifier, $.ns_qualified_identifier)),
+        field('name', choice($.identifier, $.ns_qualified_name)),
         '(',
         optional($.param_list),
         ')',
@@ -384,7 +383,7 @@ module.exports = grammar({
 
     func_call: $ =>
       seq(
-        field('name', choice($.identifier, $.ns_qualified_identifier)),
+        field('name', choice($.identifier, $.ns_qualified_name)),
         token.immediate('('),
         optional($.args),
         ')'

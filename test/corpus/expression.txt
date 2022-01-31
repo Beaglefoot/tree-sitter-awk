@@ -46,7 +46,7 @@ Identifier can be prepended with NS
 (program
   (rule
     (block
-      (ns_qualified_identifier
+      (ns_qualified_name
          (namespace)
         (identifier)))))
 
@@ -64,7 +64,7 @@ Cannot have multiple NS for identifier
   (rule
     (block
       (string_concat
-         (ns_qualified_identifier
+         (ns_qualified_name
            (namespace)
           (identifier))
         (ERROR)
