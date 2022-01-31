@@ -583,8 +583,17 @@
             "type": "FIELD",
             "name": "left",
             "content": {
-              "type": "SYMBOL",
-              "name": "identifier"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "ns_qualified_identifier"
+                }
+              ]
             }
           },
           {
@@ -604,6 +613,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "array_ref"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "ns_qualified_identifier"
                 }
               ]
             }
@@ -653,6 +666,10 @@
             {
               "type": "SYMBOL",
               "name": "array_ref"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "ns_qualified_identifier"
             }
           ]
         }
@@ -877,8 +894,17 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "identifier"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "ns_qualified_identifier"
+                  }
+                ]
               },
               {
                 "type": "BLANK"
@@ -899,8 +925,17 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "identifier"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "ns_qualified_identifier"
+                }
+              ]
             },
             {
               "type": "BLANK"
@@ -1160,6 +1195,10 @@
         {
           "type": "SYMBOL",
           "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ns_qualified_identifier"
         },
         {
           "type": "SYMBOL",
@@ -1961,6 +2000,10 @@
                     {
                       "type": "SYMBOL",
                       "name": "array_ref"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "ns_qualified_identifier"
                     }
                   ]
                 }
@@ -2021,6 +2064,10 @@
                     {
                       "type": "SYMBOL",
                       "name": "array_ref"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "ns_qualified_identifier"
                     }
                   ]
                 }
@@ -2053,6 +2100,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "field_ref"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "ns_qualified_identifier"
                 }
               ]
             }
@@ -2149,6 +2200,10 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "ns_qualified_identifier"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "ternary_exp"
                 },
                 {
@@ -2199,6 +2254,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "identifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "ns_qualified_identifier"
                 },
                 {
                   "type": "SYMBOL",
@@ -2268,6 +2327,10 @@
             {
               "type": "SYMBOL",
               "name": "array_ref"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "ns_qualified_identifier"
             }
           ]
         },
@@ -2483,6 +2546,30 @@
       "type": "PATTERN",
       "value": "[a-zA-Z_][a-zA-Z0-9_]*"
     },
+    "ns_qualified_identifier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "namespace",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "::"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        }
+      ]
+    },
     "number": {
       "type": "PATTERN",
       "value": "[\\d.]+"
@@ -2573,8 +2660,17 @@
           "type": "FIELD",
           "name": "name",
           "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "ns_qualified_identifier"
+              }
+            ]
           }
         },
         {
@@ -2635,8 +2731,17 @@
           "type": "FIELD",
           "name": "name",
           "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "ns_qualified_identifier"
+              }
+            ]
           }
         },
         {

@@ -149,3 +149,20 @@ Indirect function call
       (indirect_func_call
         (func_call
            (identifier))))))
+
+====================================
+Cannot have NS amont parameters
+====================================
+
+function fn(main::x) {}
+
+------------------------------------
+
+(program
+  (func_def
+     (identifier)
+    (param_list
+      (identifier))
+    (ERROR
+      (identifier))
+    (block)))

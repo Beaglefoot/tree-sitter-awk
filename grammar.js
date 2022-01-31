@@ -127,9 +127,9 @@ module.exports = grammar({
         seq(
           'for',
           '(',
-          field('left', $.identifier),
+          field('left', choice($.identifier, $.ns_qualified_identifier)),
           'in',
-          field('right', choice($.identifier, $.array_ref)),
+          field('right', choice($.identifier, $.array_ref, $.ns_qualified_identifier)),
           ')',
           choice($.block, $._statement)
         )
@@ -139,7 +139,8 @@ module.exports = grammar({
 
     continue_statement: $ => 'continue',
 
-    delete_statement: $ => seq('delete', choice($.identifier, $.array_ref)),
+    delete_statement: $ =>
+      seq('delete', choice($.identifier, $.array_ref, $.ns_qualified_identifier)),
 
     exit_statement: $ => prec.right(seq('exit', optional($._exp))),
 
@@ -167,9 +168,16 @@ module.exports = grammar({
     // Although it's referenced as statement in manual it acts as an expression
     _getline_exp: $ => choice($.getline_input, $.getline_file),
 
-    getline_input: $ => prec.right(seq('getline', optional($.identifier))),
+    getline_input: $ =>
+      prec.right(seq('getline', optional(choice($.identifier, $.ns_qualified_identifier)))),
 
-    getline_file: $ => seq('getline', optional($.identifier), '<', field('filename', $._exp)),
+    getline_file: $ =>
+      seq(
+        'getline',
+        optional(choice($.identifier, $.ns_qualified_identifier)),
+        '<',
+        field('filename', $._exp)
+      ),
 
     next_statement: $ => 'next',
 
@@ -209,6 +217,7 @@ module.exports = grammar({
     _exp: $ =>
       choice(
         $.identifier,
+        $.ns_qualified_identifier,
         $.ternary_exp,
         $.binary_exp,
         $.unary_exp,
@@ -271,7 +280,7 @@ module.exports = grammar({
       choice(...['!', '+', '-'].map(op => seq(field('operator', op), field('argument', $._exp)))),
 
     update_exp: $ => {
-      const refs = choice($.identifier, $.field_ref, $.array_ref);
+      const refs = choice($.identifier, $.field_ref, $.array_ref, $.ns_qualified_identifier);
 
       return prec.left(
         choice(
@@ -284,7 +293,7 @@ module.exports = grammar({
     assignment_exp: $ =>
       prec.right(
         seq(
-          field('left', choice($.identifier, $.array_ref, $.field_ref)),
+          field('left', choice($.identifier, $.array_ref, $.field_ref, $.ns_qualified_identifier)),
           choice('=', '+=', '-=', '*=', '/=', '%=', '^='),
           field('right', $._exp)
         )
@@ -295,6 +304,7 @@ module.exports = grammar({
     string_concat: $ => {
       const applicable_exp = choice(
         $.identifier,
+        $.ns_qualified_identifier,
         $.ternary_exp,
         $.binary_exp,
         $.unary_exp,
@@ -314,7 +324,12 @@ module.exports = grammar({
     field_ref: $ => seq('$', $._exp),
 
     array_ref: $ =>
-      seq(choice($.identifier, $.array_ref), '[', field('index', choice($._exp, $.exp_list)), ']'),
+      seq(
+        choice($.identifier, $.array_ref, $.ns_qualified_identifier),
+        '[',
+        field('index', choice($._exp, $.exp_list)),
+        ']'
+      ),
 
     exp_list: $ => seq(repeat1(seq($._exp, ',')), $._exp),
 
@@ -344,6 +359,9 @@ module.exports = grammar({
 
     identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
+    ns_qualified_identifier: $ =>
+      seq(field('namespace', $.identifier), token.immediate('::'), $.identifier),
+
     number: $ => /[\d.]+/,
 
     string: $ => seq('"', repeat(choice(/[^"\\]+/, $.escape_sequence, $._ambiguous_comment)), '"'),
@@ -354,7 +372,7 @@ module.exports = grammar({
     func_def: $ =>
       seq(
         choice('function', 'func'),
-        field('name', $.identifier),
+        field('name', choice($.identifier, $.ns_qualified_identifier)),
         '(',
         optional($.param_list),
         ')',
@@ -363,7 +381,13 @@ module.exports = grammar({
 
     param_list: $ => seq($.identifier, repeat(seq(',', $.identifier))),
 
-    func_call: $ => seq(field('name', $.identifier), token.immediate('('), optional($.args), ')'),
+    func_call: $ =>
+      seq(
+        field('name', choice($.identifier, $.ns_qualified_identifier)),
+        token.immediate('('),
+        optional($.args),
+        ')'
+      ),
 
     indirect_func_call: $ => seq('@', $.func_call),
 

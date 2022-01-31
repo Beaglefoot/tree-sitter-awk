@@ -34,6 +34,44 @@ Identifier cannot start with num
         (number)))))
 
 ====================================
+Identifier can be prepended with NS
+====================================
+
+{
+  main::x
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (ns_qualified_identifier
+         (identifier)
+        (identifier)))))
+
+====================================
+Cannot have multiple NS for identifier
+====================================
+
+{
+  awk::main::x
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (string_concat
+         (ns_qualified_identifier
+           (identifier)
+          (identifier))
+        (ERROR)
+        (concatenating_space)
+         (identifier)))))
+
+====================================
 Conditional expression
 ====================================
 
