@@ -7,7 +7,8 @@ enum TokenType
 {
   CONCATENATING_SPACE,
   _IF_ELSE_SEPARATOR,
-  _AMBIGUOUS_COMMENT
+  _AMBIGUOUS_COMMENT,
+  _NO_SPACE
 };
 
 void debug(TSLexer *lexer)
@@ -208,6 +209,15 @@ bool tree_sitter_awk_external_scanner_scan(void *payload, TSLexer *lexer,
       lexer->advance(lexer, false);
       lexer->mark_end(lexer);
       lexer->result_symbol = _AMBIGUOUS_COMMENT;
+      return true;
+    }
+  }
+
+  if (valid_symbols[_NO_SPACE])
+  {
+    if (!is_whitespace(lexer->lookahead))
+    {
+      lexer->result_symbol = _NO_SPACE;
       return true;
     }
   }

@@ -2571,6 +2571,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "_no_space"
+        },
+        {
+          "type": "SYMBOL",
           "name": "identifier"
         }
       ]
@@ -3044,7 +3048,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "_"
+      "name": "_no_space"
     }
   ],
   "inline": [],

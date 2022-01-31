@@ -3,7 +3,7 @@ module.exports = grammar({
 
   extras: $ => [$.comment, /[\s\t]/, '\\\n', '\\\r\n'],
 
-  externals: $ => [$.concatenating_space, $._if_else_separator, $._ambiguous_comment],
+  externals: $ => [$.concatenating_space, $._if_else_separator, $._ambiguous_comment, $._no_space],
 
   precedences: $ => [
     [
@@ -360,7 +360,7 @@ module.exports = grammar({
 
     namespace: $ => alias($.identifier, 'namespace'),
 
-    ns_qualified_name: $ => seq($.namespace, token.immediate('::'), $.identifier),
+    ns_qualified_name: $ => seq($.namespace, token.immediate('::'), $._no_space, $.identifier),
 
     number: $ => /[\d.]+/,
 

@@ -72,6 +72,30 @@ Cannot have multiple NS for identifier
          (identifier)))))
 
 ====================================
+Cannot have spaces around ::
+====================================
+
+{
+  main ::x
+  main:: x
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (string_concat
+         (identifier)
+        (ERROR)
+        (concatenating_space)
+         (identifier))
+      (ERROR
+        (namespace)
+        (concatenating_space))
+      (identifier))))
+
+====================================
 Conditional expression
 ====================================
 
