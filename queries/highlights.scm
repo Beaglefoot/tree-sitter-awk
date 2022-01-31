@@ -2,7 +2,7 @@
 
 ; Order matters
 
-(ns_qualified_identifier namespace:(identifier) @namespace)
+(ns_qualified_identifier (namespace) @namespace)
 (ns_qualified_identifier "::" @operator)
 
 (func_def name: (identifier) @function)

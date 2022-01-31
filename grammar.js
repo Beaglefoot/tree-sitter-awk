@@ -359,8 +359,9 @@ module.exports = grammar({
 
     identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
-    ns_qualified_identifier: $ =>
-      seq(field('namespace', $.identifier), token.immediate('::'), $.identifier),
+    namespace: $ => alias($.identifier, 'namespace'),
+
+    ns_qualified_identifier: $ => seq($.namespace, token.immediate('::'), $.identifier),
 
     number: $ => /[\d.]+/,
 

@@ -2650,26 +2650,24 @@
     }
   },
   {
+    "type": "namespace",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "ns_qualified_identifier",
     "named": true,
-    "fields": {
-      "namespace": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespace",
           "named": true
         }
       ]
@@ -5163,6 +5161,10 @@
   },
   {
     "type": "in",
+    "named": false
+  },
+  {
+    "type": "namespace",
     "named": false
   },
   {

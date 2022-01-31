@@ -60,6 +60,7 @@ declare interface IRules {
   grouping: ($: IRules & IExternals) => any;
   _primitive: ($: IRules & IExternals) => any;
   identifier: ($: IRules & IExternals) => any;
+  namespace: ($: IRules & IExternals) => any;
   ns_qualified_identifier: ($: IRules & IExternals) => any;
   number: ($: IRules & IExternals) => any;
   string: ($: IRules & IExternals) => any;

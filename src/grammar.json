@@ -2546,16 +2546,21 @@
       "type": "PATTERN",
       "value": "[a-zA-Z_][a-zA-Z0-9_]*"
     },
+    "namespace": {
+      "type": "ALIAS",
+      "content": {
+        "type": "SYMBOL",
+        "name": "identifier"
+      },
+      "named": false,
+      "value": "namespace"
+    },
     "ns_qualified_identifier": {
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "namespace",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
-          }
+          "type": "SYMBOL",
+          "name": "namespace"
         },
         {
           "type": "IMMEDIATE_TOKEN",
