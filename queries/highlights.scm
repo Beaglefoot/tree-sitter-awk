@@ -1,12 +1,14 @@
 ; tree-sitter-awk v0.4.1
 
+; https://tree-sitter.github.io/tree-sitter/using-parsers#pattern-matching-with-queries
+
 ; Order matters
 
 (ns_qualified_name (namespace) @namespace)
 (ns_qualified_name "::" @operator)
 
-(func_def name: (identifier) @function)
-(func_call name: (identifier) @function)
+(func_def name: (* (identifier) @function) @function)
+(func_call name: (* (identifier) @function) @function)
 
 [
   (identifier)
