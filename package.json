@@ -16,6 +16,7 @@
     "generate": "tree-sitter generate",
     "build": "yarn generate && node-gyp build",
     "build:wasm": "tree-sitter build-wasm",
+    "parse": "tree-sitter parse",
     "types": "node scripts/generate_types.js",
     "types:watch": "node scripts/generate_types_watch.js",
     "trim": "sed ' s/ \\[.*\\]//; s/\\w\\+:// '",
