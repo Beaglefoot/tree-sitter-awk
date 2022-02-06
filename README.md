@@ -2,6 +2,7 @@ tree-sitter-awk
 ================
 
 [![tests](https://github.com/Beaglefoot/tree-sitter-awk/actions/workflows/tests.yml/badge.svg)](https://github.com/Beaglefoot/tree-sitter-awk/actions/workflows/tests.yml)
+[![npm](https://img.shields.io/npm/v/tree-sitter-awk)](https://www.npmjs.com/package/tree-sitter-awk)
 
 GNU AWK grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter).
 
