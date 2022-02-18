@@ -11,7 +11,7 @@ enum TokenType
   _NO_SPACE
 };
 
-void debug(TSLexer *lexer)
+void tsawk_debug(TSLexer *lexer)
 {
   if (lexer->lookahead == '\r')
   {
@@ -38,7 +38,7 @@ void debug(TSLexer *lexer)
          lexer->is_at_included_range_start(lexer) ? "true" : "false");
 }
 
-bool next_chars_eq(TSLexer *lexer, char *word)
+bool tsawk_next_chars_eq(TSLexer *lexer, char *word)
 {
   for (int i = 0; i < strlen(word); i++)
   {
@@ -52,12 +52,12 @@ bool next_chars_eq(TSLexer *lexer, char *word)
   return true;
 }
 
-bool is_whitespace(int32_t c)
+bool tsawk_is_whitespace(int32_t c)
 {
   return c == ' ' || c == '\t';
 }
 
-bool is_line_continuation(TSLexer *lexer)
+bool tsawk_is_line_continuation(TSLexer *lexer)
 {
   if (lexer->lookahead == '\\')
   {
@@ -73,16 +73,16 @@ bool is_line_continuation(TSLexer *lexer)
   return false;
 }
 
-bool is_statement_terminator(int32_t c)
+bool tsawk_is_statement_terminator(int32_t c)
 {
   return c == '\n' || c == ';';
 }
 
-bool skip_whitespace(TSLexer *lexer, bool skip_newlines, bool capture)
+bool tsawk_skip_whitespace(TSLexer *lexer, bool skip_newlines, bool capture)
 {
   bool skipped = false;
 
-  while (is_whitespace(lexer->lookahead) || is_line_continuation(lexer) || lexer->lookahead == '\r' || (skip_newlines && lexer->lookahead == '\n'))
+  while (tsawk_is_whitespace(lexer->lookahead) || tsawk_is_line_continuation(lexer) || lexer->lookahead == '\r' || (skip_newlines && lexer->lookahead == '\n'))
   {
     lexer->advance(lexer, !capture);
     skipped = true;
@@ -91,7 +91,7 @@ bool skip_whitespace(TSLexer *lexer, bool skip_newlines, bool capture)
   return skipped;
 }
 
-void skip_comment(TSLexer *lexer)
+void tsawk_skip_comment(TSLexer *lexer)
 {
   if (lexer->lookahead != '#')
   {
@@ -105,17 +105,17 @@ void skip_comment(TSLexer *lexer)
 
   lexer->advance(lexer, false);
 
-  skip_whitespace(lexer, true, false);
+  tsawk_skip_whitespace(lexer, true, false);
 
   if (lexer->lookahead == '#')
   {
-    skip_comment(lexer);
+    tsawk_skip_comment(lexer);
   }
 }
 
-bool is_if_else_separator(TSLexer *lexer)
+bool tsawk_is_if_else_separator(TSLexer *lexer)
 {
-  while (is_whitespace(lexer->lookahead) || is_statement_terminator(lexer->lookahead) || lexer->lookahead == '\r')
+  while (tsawk_is_whitespace(lexer->lookahead) || tsawk_is_statement_terminator(lexer->lookahead) || lexer->lookahead == '\r')
   {
     lexer->advance(lexer, true);
   }
@@ -124,16 +124,16 @@ bool is_if_else_separator(TSLexer *lexer)
 
   if (lexer->lookahead == '#')
   {
-    skip_comment(lexer);
-    skip_whitespace(lexer, false, false);
+    tsawk_skip_comment(lexer);
+    tsawk_skip_whitespace(lexer, false, false);
   }
 
-  return next_chars_eq(lexer, "else");
+  return tsawk_next_chars_eq(lexer, "else");
 }
 
-bool is_concatenating_space(TSLexer *lexer)
+bool tsawk_is_concatenating_space(TSLexer *lexer)
 {
-  bool had_whitespace = skip_whitespace(lexer, false, true);
+  bool had_whitespace = tsawk_skip_whitespace(lexer, false, true);
 
   lexer->mark_end(lexer);
 
@@ -215,7 +215,7 @@ bool tree_sitter_awk_external_scanner_scan(void *payload, TSLexer *lexer,
 
   if (valid_symbols[_NO_SPACE])
   {
-    if (!is_whitespace(lexer->lookahead))
+    if (!tsawk_is_whitespace(lexer->lookahead))
     {
       lexer->result_symbol = _NO_SPACE;
       return true;
@@ -224,15 +224,15 @@ bool tree_sitter_awk_external_scanner_scan(void *payload, TSLexer *lexer,
 
   if (valid_symbols[_IF_ELSE_SEPARATOR])
   {
-    skip_whitespace(lexer, false, false);
+    tsawk_skip_whitespace(lexer, false, false);
 
     // Comment ends with '\n' which also terminates statement
-    if (is_statement_terminator(lexer->lookahead) || lexer->lookahead == '#')
+    if (tsawk_is_statement_terminator(lexer->lookahead) || lexer->lookahead == '#')
     {
       statement_terminator_was_found = true;
     }
 
-    if (is_if_else_separator(lexer))
+    if (tsawk_is_if_else_separator(lexer))
     {
       lexer->result_symbol = _IF_ELSE_SEPARATOR;
       return true;
@@ -241,7 +241,7 @@ bool tree_sitter_awk_external_scanner_scan(void *payload, TSLexer *lexer,
 
   if (valid_symbols[CONCATENATING_SPACE] && !statement_terminator_was_found)
   {
-    if (is_concatenating_space(lexer))
+    if (tsawk_is_concatenating_space(lexer))
     {
       lexer->result_symbol = CONCATENATING_SPACE;
       return true;
