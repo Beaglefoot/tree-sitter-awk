@@ -7,8 +7,8 @@
 (ns_qualified_name (namespace) @namespace)
 (ns_qualified_name "::" @operator)
 
-(func_def name: (* (identifier) @function) @function)
-(func_call name: (* (identifier) @function) @function)
+(func_def name: (_ (identifier) @function) @function)
+(func_call name: (_ (identifier) @function) @function)
 
 [
   (identifier)

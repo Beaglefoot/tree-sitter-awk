@@ -4,6 +4,10 @@ function do_stuff(a, b) {
   return a + b;
 }
 
+function x::sum(a, b) {
+  return a + b;
+}
+
 BEGIN {
   do_stuff("hi", 42);
   
