@@ -30,8 +30,7 @@ Identifier cannot start with num
          (number)
         (concatenating_space)
          (identifier))
-      (ERROR
-        (number)))))
+      (ERROR))))
 
 ====================================
 Identifier can be prepended with NS
@@ -456,16 +455,23 @@ Number
   42;
   4.2;
   .2;
+  1e6;
+  1e+6;
+  1e-6; 
 }
 
 ------------------------------------
 
-(program
+ (program
   (rule
     (block
       (number)
       (number)
+      (number)
+      (number)
+      (number)
       (number))))
+
 
 ====================================
 String

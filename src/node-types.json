@@ -2674,6 +2674,11 @@
     }
   },
   {
+    "type": "number",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "param_list",
     "named": true,
     "fields": {},
@@ -5173,10 +5178,6 @@
   },
   {
     "type": "nextfile_statement",
-    "named": true
-  },
-  {
-    "type": "number",
     "named": true
   },
   {
