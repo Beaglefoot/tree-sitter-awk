@@ -2580,8 +2580,17 @@
       ]
     },
     "number": {
-      "type": "PATTERN",
-      "value": "[\\d.]+"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "[\\d.]+"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[\\d.]+e[\\d.+-]+"
+        }
+      ]
     },
     "string": {
       "type": "SEQ",

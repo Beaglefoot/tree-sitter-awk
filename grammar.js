@@ -362,7 +362,7 @@ module.exports = grammar({
 
     ns_qualified_name: $ => seq($.namespace, token.immediate('::'), $._no_space, $.identifier),
 
-    number: $ => /[\d.]+/,
+    number: $ => choice(/[\d.]+/, /[\d.]+e[\d.+-]+/),
 
     string: $ => seq('"', repeat(choice(/[^"\\]+/, $.escape_sequence, $._ambiguous_comment)), '"'),
 
