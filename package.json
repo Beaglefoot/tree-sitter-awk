@@ -1,5 +1,5 @@
 {
-  "name": "tree-sitter-awk",
+  "name": "tree-sitter-awk.abi13",
   "version": "0.5.3",
   "author": "Beaglefoot <ch-e-st@yandex.ru>",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "url": "https://github.com/Beaglefoot/tree-sitter-awk.git"
   },
   "scripts": {
-    "generate": "tree-sitter generate",
+    "generate": "tree-sitter generate --abi=13",
     "build": "yarn generate && node-gyp build",
     "build:wasm": "tree-sitter build-wasm",
     "parse": "tree-sitter parse",
