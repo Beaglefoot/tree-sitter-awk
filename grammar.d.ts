@@ -46,6 +46,7 @@ declare interface IRules {
   _exp: ($: IRules & IExternals) => any;
   ternary_exp: ($: IRules & IExternals) => any;
   binary_exp: ($: IRules & IExternals) => any;
+  _binary_in: ($: IRules & IExternals) => any;
   unary_exp: ($: IRules & IExternals) => any;
   update_exp: ($: IRules & IExternals) => any;
   assignment_exp: ($: IRules & IExternals) => any;
