@@ -21,7 +21,7 @@ module.exports = grammar({
       $.piped_io_exp,
       'binary_relation',
       'binary_match',
-      'binary_in',
+      $._binary_in,
       'binary_and',
       'binary_or',
       $.ternary_exp,
@@ -37,6 +37,7 @@ module.exports = grammar({
     [$._print_args, $.grouping, $.piped_io_exp, 'binary_relation'],
     [$.for_in_statement, $._exp],
     [$._exp, $.string_concat, $.assignment_exp],
+    [$._print_args, $._binary_in],
   ],
 
   conflicts: $ => [],
@@ -264,7 +265,6 @@ module.exports = grammar({
           ['!=', 'binary_relation'],
           ['~', 'binary_match'],
           ['!~', 'binary_match'],
-          ['in', 'binary_in'],
           ['&&', 'binary_and'],
           ['||', 'binary_or'],
         ].map(([op, precedence]) =>
@@ -272,6 +272,16 @@ module.exports = grammar({
             precedence,
             seq(field('left', $._exp), field('operator', op), field('right', $._exp))
           )
+        ),
+        $._binary_in
+      ),
+
+    _binary_in: $ =>
+      prec.left(
+        seq(
+          field('left', choice(seq('(', $.exp_list, ')'), $._exp)),
+          field('operator', 'in'),
+          field('right', $._exp)
         )
       ),
 

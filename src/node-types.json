@@ -323,9 +323,17 @@
     "named": true,
     "fields": {
       "left": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "array_ref",
             "named": true
@@ -336,6 +344,10 @@
           },
           {
             "type": "binary_exp",
+            "named": true
+          },
+          {
+            "type": "exp_list",
             "named": true
           },
           {

@@ -1807,39 +1807,6 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": "binary_in",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "FIELD",
-                "name": "left",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "_exp"
-                }
-              },
-              {
-                "type": "FIELD",
-                "name": "operator",
-                "content": {
-                  "type": "STRING",
-                  "value": "in"
-                }
-              },
-              {
-                "type": "FIELD",
-                "name": "right",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "_exp"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "PREC_LEFT",
           "value": "binary_and",
           "content": {
             "type": "SEQ",
@@ -1903,8 +1870,67 @@
               }
             ]
           }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_binary_in"
         }
       ]
+    },
+    "_binary_in": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "left",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "("
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "exp_list"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": ")"
+                    }
+                  ]
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_exp"
+                }
+              ]
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "operator",
+            "content": {
+              "type": "STRING",
+              "value": "in"
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "right",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_exp"
+            }
+          }
+        ]
+      }
     },
     "unary_exp": {
       "type": "CHOICE",
@@ -2917,8 +2943,8 @@
         "value": "binary_match"
       },
       {
-        "type": "STRING",
-        "value": "binary_in"
+        "type": "SYMBOL",
+        "name": "_binary_in"
       },
       {
         "type": "STRING",
@@ -3039,6 +3065,16 @@
       {
         "type": "SYMBOL",
         "name": "assignment_exp"
+      }
+    ],
+    [
+      {
+        "type": "SYMBOL",
+        "name": "_print_args"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "_binary_in"
       }
     ]
   ],

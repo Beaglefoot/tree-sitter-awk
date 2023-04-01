@@ -230,6 +230,25 @@ Array membership
          (identifier)))))
 
 ====================================
+Multidimensional array membership
+====================================
+
+{
+  (1, 2) in arr;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (binary_exp
+         (exp_list
+          (number)
+          (number))
+         (identifier)))))
+
+====================================
 Logical operators
 ====================================
 
