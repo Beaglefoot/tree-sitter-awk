@@ -903,6 +903,10 @@
                   {
                     "type": "SYMBOL",
                     "name": "ns_qualified_name"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "array_ref"
                   }
                 ]
               },

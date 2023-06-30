@@ -169,7 +169,7 @@ module.exports = grammar({
     _getline_exp: $ => choice($.getline_input, $.getline_file),
 
     getline_input: $ =>
-      prec.right(seq('getline', optional(choice($.identifier, $.ns_qualified_name)))),
+      prec.right(seq('getline', optional(choice($.identifier, $.ns_qualified_name, $.array_ref)))),
 
     getline_file: $ =>
       seq(

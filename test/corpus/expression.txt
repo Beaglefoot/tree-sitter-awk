@@ -823,3 +823,23 @@ Getline coprocess piped
              (string)
             (getline_input
               (identifier))))))))
+
+====================================
+Getline with array reference
+====================================
+
+{
+  "echo hi" | getline arr[1]
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (piped_io_exp
+         (string)
+        (getline_input
+          (array_ref
+            (identifier)
+             (number)))))))

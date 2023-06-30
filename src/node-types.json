@@ -2283,6 +2283,10 @@
       "required": false,
       "types": [
         {
+          "type": "array_ref",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
