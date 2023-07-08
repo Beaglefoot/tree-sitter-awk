@@ -1,14 +1,14 @@
-#include <tree_sitter/parser.h>
-#include <stdio.h>
+#include "tree_sitter/parser.h"
 #include <inttypes.h>
+#include <stdio.h>
 #include <string.h>
 
 enum TokenType
 {
   CONCATENATING_SPACE,
-  _IF_ELSE_SEPARATOR,
-  _AMBIGUOUS_COMMENT,
-  _NO_SPACE
+  IF_ELSE_SEPARATOR,
+  AMBIGUOUS_COMMENT,
+  NO_SPACE
 };
 
 void tsawk_debug(TSLexer *lexer)
@@ -52,9 +52,9 @@ bool tsawk_next_chars_eq(TSLexer *lexer, char *word)
   return true;
 }
 
-bool tsawk_is_whitespace(int32_t c)
+bool tsawk_is_whitespace(int32_t chr)
 {
-  return c == ' ' || c == '\t';
+  return chr == ' ' || chr == '\t';
 }
 
 bool tsawk_is_line_continuation(TSLexer *lexer)
@@ -73,9 +73,9 @@ bool tsawk_is_line_continuation(TSLexer *lexer)
   return false;
 }
 
-bool tsawk_is_statement_terminator(int32_t c)
+bool tsawk_is_statement_terminator(int32_t chr)
 {
-  return c == '\n' || c == ';';
+  return chr == '\n' || chr == ';';
 }
 
 bool tsawk_skip_whitespace(TSLexer *lexer, bool skip_newlines, bool capture)
@@ -98,7 +98,7 @@ void tsawk_skip_comment(TSLexer *lexer)
     return;
   }
 
-  while (lexer->lookahead != '\n')
+  while (lexer->lookahead != '\n' && !lexer->eof(lexer))
   {
     lexer->advance(lexer, true);
   }
@@ -175,7 +175,7 @@ bool tsawk_is_concatenating_space(TSLexer *lexer)
       return lexer->lookahead != ' ';
     }
   default:
-    return true;
+    return !lexer->eof(lexer);
   }
 }
 
@@ -188,7 +188,7 @@ void tree_sitter_awk_external_scanner_destroy(void *payload)
 {
 }
 
-unsigned tree_sitter_awk_external_scanner_serialize(void *payload, char *state)
+unsigned tree_sitter_awk_external_scanner_serialize(void *payload, char *buffer)
 {
   return 0;
 }
@@ -202,27 +202,27 @@ bool tree_sitter_awk_external_scanner_scan(void *payload, TSLexer *lexer,
 {
   bool statement_terminator_was_found = false;
 
-  if (valid_symbols[_AMBIGUOUS_COMMENT])
+  if (valid_symbols[AMBIGUOUS_COMMENT])
   {
     if (lexer->lookahead == '#')
     {
       lexer->advance(lexer, false);
       lexer->mark_end(lexer);
-      lexer->result_symbol = _AMBIGUOUS_COMMENT;
+      lexer->result_symbol = AMBIGUOUS_COMMENT;
       return true;
     }
   }
 
-  if (valid_symbols[_NO_SPACE])
+  if (valid_symbols[NO_SPACE])
   {
     if (!tsawk_is_whitespace(lexer->lookahead))
     {
-      lexer->result_symbol = _NO_SPACE;
+      lexer->result_symbol = NO_SPACE;
       return true;
     }
   }
 
-  if (valid_symbols[_IF_ELSE_SEPARATOR])
+  if (valid_symbols[IF_ELSE_SEPARATOR])
   {
     tsawk_skip_whitespace(lexer, false, false);
 
@@ -234,7 +234,7 @@ bool tree_sitter_awk_external_scanner_scan(void *payload, TSLexer *lexer,
 
     if (tsawk_is_if_else_separator(lexer))
     {
-      lexer->result_symbol = _IF_ELSE_SEPARATOR;
+      lexer->result_symbol = IF_ELSE_SEPARATOR;
       return true;
     }
   }
