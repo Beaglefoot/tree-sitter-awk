@@ -11,7 +11,7 @@ enum TokenType
   NO_SPACE
 };
 
-void tsawk_debug(TSLexer *lexer)
+static void tsawk_debug(TSLexer *lexer)
 {
   if (lexer->lookahead == '\r')
   {
@@ -38,7 +38,7 @@ void tsawk_debug(TSLexer *lexer)
          lexer->is_at_included_range_start(lexer) ? "true" : "false");
 }
 
-bool tsawk_next_chars_eq(TSLexer *lexer, char *word)
+static bool tsawk_next_chars_eq(TSLexer *lexer, char *word)
 {
   for (int i = 0; i < strlen(word); i++)
   {
@@ -52,12 +52,12 @@ bool tsawk_next_chars_eq(TSLexer *lexer, char *word)
   return true;
 }
 
-bool tsawk_is_whitespace(int32_t chr)
+static bool tsawk_is_whitespace(int32_t chr)
 {
   return chr == ' ' || chr == '\t';
 }
 
-bool tsawk_is_line_continuation(TSLexer *lexer)
+static bool tsawk_is_line_continuation(TSLexer *lexer)
 {
   if (lexer->lookahead == '\\')
   {
@@ -73,12 +73,12 @@ bool tsawk_is_line_continuation(TSLexer *lexer)
   return false;
 }
 
-bool tsawk_is_statement_terminator(int32_t chr)
+static bool tsawk_is_statement_terminator(int32_t chr)
 {
   return chr == '\n' || chr == ';';
 }
 
-bool tsawk_skip_whitespace(TSLexer *lexer, bool skip_newlines, bool capture)
+static bool tsawk_skip_whitespace(TSLexer *lexer, bool skip_newlines, bool capture)
 {
   bool skipped = false;
 
@@ -91,7 +91,7 @@ bool tsawk_skip_whitespace(TSLexer *lexer, bool skip_newlines, bool capture)
   return skipped;
 }
 
-void tsawk_skip_comment(TSLexer *lexer)
+static void tsawk_skip_comment(TSLexer *lexer)
 {
   if (lexer->lookahead != '#')
   {
@@ -113,7 +113,7 @@ void tsawk_skip_comment(TSLexer *lexer)
   }
 }
 
-bool tsawk_is_if_else_separator(TSLexer *lexer)
+static bool tsawk_is_if_else_separator(TSLexer *lexer)
 {
   while (tsawk_is_whitespace(lexer->lookahead) || tsawk_is_statement_terminator(lexer->lookahead) || lexer->lookahead == '\r')
   {
@@ -131,7 +131,7 @@ bool tsawk_is_if_else_separator(TSLexer *lexer)
   return tsawk_next_chars_eq(lexer, "else");
 }
 
-bool tsawk_is_concatenating_space(TSLexer *lexer)
+static bool tsawk_is_concatenating_space(TSLexer *lexer)
 {
   bool had_whitespace = tsawk_skip_whitespace(lexer, false, true);
 
