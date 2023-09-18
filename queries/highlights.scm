@@ -1,4 +1,4 @@
-; tree-sitter-awk v0.5.5
+; tree-sitter-awk v0.6.0
 
 ; https://tree-sitter.github.io/tree-sitter/using-parsers#pattern-matching-with-queries
 
