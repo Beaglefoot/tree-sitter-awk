@@ -18,6 +18,10 @@
           {
             "type": "SYMBOL",
             "name": "directive"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "comment"
           }
         ]
       }
@@ -342,6 +346,13 @@
                     "name": "_if_else_separator"
                   },
                   {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "comment"
+                    }
+                  },
+                  {
                     "type": "SYMBOL",
                     "name": "else_clause"
                   }
@@ -409,6 +420,13 @@
             }
           },
           {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "comment"
+            }
+          },
+          {
             "type": "CHOICE",
             "members": [
               {
@@ -433,6 +451,13 @@
           {
             "type": "STRING",
             "value": "do"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "comment"
+            }
           },
           {
             "type": "CHOICE",
@@ -550,6 +575,13 @@
             "value": ")"
           },
           {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "comment"
+            }
+          },
+          {
             "type": "CHOICE",
             "members": [
               {
@@ -624,6 +656,13 @@
           {
             "type": "STRING",
             "value": ")"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "comment"
+            }
           },
           {
             "type": "CHOICE",
@@ -745,6 +784,13 @@
           "value": ")"
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "comment"
+          }
+        },
+        {
           "type": "SYMBOL",
           "name": "switch_body"
         }
@@ -808,6 +854,13 @@
           "value": ":"
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "comment"
+          }
+        },
+        {
           "type": "CHOICE",
           "members": [
             {
@@ -831,6 +884,13 @@
         {
           "type": "STRING",
           "value": ":"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "comment"
+          }
         },
         {
           "type": "SYMBOL",
@@ -1189,6 +1249,10 @@
           {
             "type": "SYMBOL",
             "name": "_statement"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "comment"
           }
         ]
       }
@@ -2641,10 +2705,6 @@
               {
                 "type": "SYMBOL",
                 "name": "escape_sequence"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_ambiguous_comment"
               }
             ]
           }
@@ -2871,10 +2931,6 @@
   },
   "extras": [
     {
-      "type": "SYMBOL",
-      "name": "comment"
-    },
-    {
       "type": "PATTERN",
       "value": "[\\s\\t]"
     },
@@ -3090,10 +3146,6 @@
     {
       "type": "SYMBOL",
       "name": "_if_else_separator"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "_ambiguous_comment"
     },
     {
       "type": "SYMBOL",

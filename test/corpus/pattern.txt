@@ -73,3 +73,17 @@ Logical operator pattern
          (binary_exp
            (identifier)
            (number))))))
+
+====================================
+Regex pattern with comment sign
+====================================
+
+/#/
+
+------------------------------------
+
+(program
+  (rule
+    (pattern
+      (regex
+         (regex_pattern)))))

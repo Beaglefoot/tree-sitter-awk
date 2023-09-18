@@ -615,6 +615,10 @@
           "named": true
         },
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "continue_statement",
           "named": true
         },
@@ -913,6 +917,10 @@
         },
         {
           "type": "break_statement",
+          "named": true
+        },
+        {
+          "type": "comment",
           "named": true
         },
         {
@@ -1548,6 +1556,10 @@
           "named": true
         },
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "continue_statement",
           "named": true
         },
@@ -1967,6 +1979,10 @@
         },
         {
           "type": "break_statement",
+          "named": true
+        },
+        {
+          "type": "comment",
           "named": true
         },
         {
@@ -2509,6 +2525,10 @@
         },
         {
           "type": "break_statement",
+          "named": true
+        },
+        {
+          "type": "comment",
           "named": true
         },
         {
@@ -3211,6 +3231,10 @@
       "required": false,
       "types": [
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "directive",
           "named": true
         },
@@ -3862,6 +3886,10 @@
           "named": true
         },
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "continue_statement",
           "named": true
         },
@@ -4021,6 +4049,10 @@
           "named": true
         },
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "continue_statement",
           "named": true
         },
@@ -4173,6 +4205,10 @@
         },
         {
           "type": "binary_exp",
+          "named": true
+        },
+        {
+          "type": "comment",
           "named": true
         },
         {
@@ -4787,6 +4823,10 @@
         },
         {
           "type": "break_statement",
+          "named": true
+        },
+        {
+          "type": "comment",
           "named": true
         },
         {

@@ -1,9 +1,9 @@
 module.exports = grammar({
   name: 'awk',
 
-  extras: $ => [$.comment, /[\s\t]/, '\\\n', '\\\r\n'],
+  extras: $ => [/[\s\t]/, '\\\n', '\\\r\n'],
 
-  externals: $ => [$.concatenating_space, $._if_else_separator, $._ambiguous_comment, $._no_space],
+  externals: $ => [$.concatenating_space, $._if_else_separator, $._no_space],
 
   precedences: $ => [
     [
@@ -45,7 +45,7 @@ module.exports = grammar({
   word: $ => $.identifier,
 
   rules: {
-    program: $ => repeat(choice($.rule, $.func_def, $.directive)),
+    program: $ => repeat(choice($.rule, $.func_def, $.directive, $.comment)),
 
     rule: $ =>
       prec.right(choice(seq($.pattern, optional($.block)), seq(optional($.pattern), $.block))),
@@ -92,7 +92,7 @@ module.exports = grammar({
           'if',
           field('condition', seq('(', $._exp, ')')),
           choice($.block, $._statement, ';'),
-          optional(seq($._if_else_separator, $.else_clause))
+          optional(seq($._if_else_separator, repeat($.comment), $.else_clause))
         )
       ),
 
@@ -100,12 +100,23 @@ module.exports = grammar({
 
     while_statement: $ =>
       prec.right(
-        seq('while', field('condition', seq('(', $._exp, ')')), choice($.block, $._statement))
+        seq(
+          'while',
+          field('condition', seq('(', $._exp, ')')),
+          repeat($.comment),
+          choice($.block, $._statement)
+        )
       ),
 
     do_while_statement: $ =>
       prec.right(
-        seq('do', choice($.block, $._statement), 'while', field('condition', seq('(', $._exp, ')')))
+        seq(
+          'do',
+          repeat($.comment),
+          choice($.block, $._statement),
+          'while',
+          field('condition', seq('(', $._exp, ')'))
+        )
       ),
 
     for_statement: $ =>
@@ -119,6 +130,7 @@ module.exports = grammar({
           ';',
           field('advancement', optional($._exp)),
           ')',
+          repeat($.comment),
           choice($.block, $._statement)
         )
       ),
@@ -132,6 +144,7 @@ module.exports = grammar({
           'in',
           field('right', choice($.identifier, $.array_ref, $.ns_qualified_name)),
           ')',
+          repeat($.comment),
           choice($.block, $._statement)
         )
       ),
@@ -146,14 +159,20 @@ module.exports = grammar({
 
     return_statement: $ => prec.right(seq('return', optional($._exp))),
 
-    switch_statement: $ => seq('switch', '(', $._exp, ')', $.switch_body),
+    switch_statement: $ => seq('switch', '(', $._exp, ')', repeat($.comment), $.switch_body),
 
     switch_body: $ => seq('{', repeat(choice($.switch_case, $.switch_default)), '}'),
 
     switch_case: $ =>
-      seq('case', field('value', choice($._primitive, $.regex)), ':', optional($._statement)),
+      seq(
+        'case',
+        field('value', choice($._primitive, $.regex)),
+        ':',
+        repeat($.comment),
+        optional($._statement)
+      ),
 
-    switch_default: $ => seq('default', ':', $._statement),
+    switch_default: $ => seq('default', ':', repeat($.comment), $._statement),
 
     _io_statement: $ =>
       choice(
@@ -212,7 +231,7 @@ module.exports = grammar({
 
     block: $ => seq('{', repeat($._block_content), '}'),
 
-    _block_content: $ => prec.left(choice($.block, $._statement)),
+    _block_content: $ => prec.left(choice($.block, $._statement, $.comment)),
 
     _exp: $ =>
       choice(
@@ -374,7 +393,7 @@ module.exports = grammar({
 
     number: $ => choice(/[\d.]+/, /[\d.]+e[\d.+-]+/),
 
-    string: $ => seq('"', repeat(choice(/[^"\\]+/, $.escape_sequence, $._ambiguous_comment)), '"'),
+    string: $ => seq('"', repeat(choice(/[^"\\]+/, $.escape_sequence)), '"'),
 
     escape_sequence: $ =>
       token.immediate(seq('\\', choice('"', /[\\abfnrtv]/, /x[0-9a-fA-F]{1,2}/, /[0-7]{1,3}/))),

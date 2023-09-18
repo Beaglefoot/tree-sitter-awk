@@ -30,7 +30,8 @@ Identifier cannot start with num
          (number)
         (concatenating_space)
          (identifier))
-      (ERROR))))
+      (ERROR
+        (number)))))
 
 ====================================
 Identifier can be prepended with NS

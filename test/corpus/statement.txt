@@ -342,6 +342,47 @@ Do-while statement statement body
          (number)))))
 
 ====================================
+While statement with comment
+====================================
+
+{
+  while (1) # a
+  # b
+  {}
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (while_statement
+         (number)
+        (comment)
+        (comment)
+        (block)))))
+
+====================================
+Do-while statement with comment
+====================================
+
+{
+  do # a
+  {}
+  while (1)
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (do_while_statement
+        (comment)
+        (block)
+         (number)))))
+
+====================================
 For statement block body
 ====================================
 
@@ -389,6 +430,27 @@ For statement statement body
            (identifier))
         (print_statement
           (identifier))))))
+
+====================================
+For statement with comment
+====================================
+
+{
+  for (1; 1; 1) # a
+  {}
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (for_statement
+         (number)
+         (number)
+         (number)
+        (comment)
+        (block)))))
 
 ====================================
 For-in statement statement body
@@ -451,6 +513,26 @@ For-in statement array reference
            (identifier))
         (print_statement
           (identifier))))))
+
+====================================
+For-in statement with comment
+====================================
+
+{
+  for (i in arr) # a
+  {}
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (for_in_statement
+         (identifier)
+         (identifier)
+        (comment)
+        (block)))))
 
 ====================================
 Delete statement
@@ -559,6 +641,37 @@ Switch statement
           (switch_default
             (func_call
                (identifier))
+            (break_statement)))))))
+
+====================================
+Switch statement with comment
+====================================
+
+{
+  switch(x) # a
+  {
+    case 1:
+      # b
+    default:
+      # c
+      break;
+  }
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (switch_statement
+        (identifier)
+        (comment)
+        (switch_body
+          (switch_case
+             (number)
+            (comment))
+          (switch_default
+            (comment)
             (break_statement)))))))
 
 ====================================
