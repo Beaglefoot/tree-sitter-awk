@@ -369,13 +369,25 @@ module.exports = grammar({
         optional(field('flags', $.regex_flags))
       ),
 
-    regex_pattern: $ => {
-      const char = /[^/\\\[\n\r]/;
-      const char_escaped = seq('\\', /./);
-      const char_list = seq('[', repeat1(choice(char_escaped, /[^\]]/)), ']');
+    regex_negation: $ => token.immediate("^"),
 
-      return token.immediate(repeat(choice(char, char_escaped, char_list)));
-    },
+    regex_escape_sequence: $ => seq('\\', /./),
+
+    _regex_list: $ => seq(
+      '[',
+      optional($.regex_negation),
+      repeat1(choice(
+        $.regex_escape_sequence,
+        /[^\]]/
+      )),
+      ']'
+    ),
+
+    regex_pattern: $ => repeat1(choice(
+      /[^/\\\[\n\r]/,                             // char, not escaped
+      $.regex_escape_sequence,
+      $._regex_list,
+    )),
 
     regex_flags: $ => token.immediate(/[a-z]+/),
 

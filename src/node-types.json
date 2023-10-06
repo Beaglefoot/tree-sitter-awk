@@ -3575,6 +3575,30 @@
     }
   },
   {
+    "type": "regex_escape_sequence",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "regex_pattern",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "regex_escape_sequence",
+          "named": true
+        },
+        {
+          "type": "regex_negation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "return_statement",
     "named": true,
     "fields": {},
@@ -5145,6 +5169,10 @@
     "named": false
   },
   {
+    "type": "\\",
+    "named": false
+  },
+  {
     "type": "]",
     "named": false
   },
@@ -5249,7 +5277,7 @@
     "named": true
   },
   {
-    "type": "regex_pattern",
+    "type": "regex_negation",
     "named": true
   },
   {

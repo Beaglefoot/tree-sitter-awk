@@ -2520,70 +2520,85 @@
         }
       ]
     },
-    "regex_pattern": {
+    "regex_negation": {
       "type": "IMMEDIATE_TOKEN",
       "content": {
-        "type": "REPEAT",
-        "content": {
+        "type": "STRING",
+        "value": "^"
+      }
+    },
+    "regex_escape_sequence": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\\"
+        },
+        {
+          "type": "PATTERN",
+          "value": "."
+        }
+      ]
+    },
+    "_regex_list": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
           "type": "CHOICE",
           "members": [
             {
-              "type": "PATTERN",
-              "value": "[^/\\\\\\[\\n\\r]"
+              "type": "SYMBOL",
+              "name": "regex_negation"
             },
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "\\"
-                },
-                {
-                  "type": "PATTERN",
-                  "value": "."
-                }
-              ]
-            },
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "["
-                },
-                {
-                  "type": "REPEAT1",
-                  "content": {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "SEQ",
-                        "members": [
-                          {
-                            "type": "STRING",
-                            "value": "\\"
-                          },
-                          {
-                            "type": "PATTERN",
-                            "value": "."
-                          }
-                        ]
-                      },
-                      {
-                        "type": "PATTERN",
-                        "value": "[^\\]]"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "STRING",
-                  "value": "]"
-                }
-              ]
+              "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "regex_escape_sequence"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[^\\]]"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "]"
         }
+      ]
+    },
+    "regex_pattern": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[^/\\\\\\[\\n\\r]"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "regex_escape_sequence"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_regex_list"
+          }
+        ]
       }
     },
     "regex_flags": {
