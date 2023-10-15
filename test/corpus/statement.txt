@@ -737,6 +737,26 @@ Print piped
          (string)))))
 
 ====================================
+Print list piped
+====================================
+
+{
+  print "", "" | "some_command"
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (piped_io_statement
+        (print_statement
+          (exp_list
+            (string)
+            (string)))
+         (string)))))
+
+====================================
 Print with grouping and string concat
 ====================================
 
@@ -844,6 +864,26 @@ Printf piped
 
 {
   printf("%s", "abc") | "cat";
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (piped_io_statement
+        (printf_statement
+          (exp_list
+            (string)
+            (string)))
+         (string)))))
+
+====================================
+Printf list piped
+====================================
+
+{
+  printf "%s", "" | "some_command"
 }
 
 ------------------------------------
