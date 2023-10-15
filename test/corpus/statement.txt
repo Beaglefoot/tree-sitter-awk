@@ -363,6 +363,22 @@ While statement with comment
         (block)))))
 
 ====================================
+While statement with no block body
+====================================
+
+{
+  while ("") ;
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (while_statement
+         (string)))))
+
+====================================
 Do-while statement with comment
 ====================================
 

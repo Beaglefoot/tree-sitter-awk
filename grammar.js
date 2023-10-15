@@ -104,7 +104,7 @@ module.exports = grammar({
           'while',
           field('condition', seq('(', $._exp, ')')),
           repeat($.comment),
-          choice($.block, $._statement)
+          choice($.block, $._statement, ';')
         )
       ),
 
