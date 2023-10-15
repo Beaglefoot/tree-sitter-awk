@@ -469,6 +469,24 @@ For statement with comment
         (block)))))
 
 ====================================
+For statement with no body block
+====================================
+
+{
+  for (1; 1; 1) ; 
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (for_statement
+         (number)
+         (number)
+         (number)))))
+
+====================================
 For-in statement statement body
 ====================================
 
@@ -549,6 +567,23 @@ For-in statement with comment
          (identifier)
         (comment)
         (block)))))
+
+====================================
+For-in statement with no body block
+====================================
+
+{
+  for (x in PROCINFO) ; 
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (for_in_statement
+         (identifier)
+         (identifier)))))
 
 ====================================
 Delete statement

@@ -131,7 +131,7 @@ module.exports = grammar({
           field('advancement', optional($._exp)),
           ')',
           repeat($.comment),
-          choice($.block, $._statement)
+          choice($.block, $._statement, ';')
         )
       ),
 
@@ -145,7 +145,7 @@ module.exports = grammar({
           field('right', choice($.identifier, $.array_ref, $.ns_qualified_name)),
           ')',
           repeat($.comment),
-          choice($.block, $._statement)
+          choice($.block, $._statement, ';')
         )
       ),
 
