@@ -174,7 +174,7 @@ module.exports = grammar({
         )
       ),
 
-    switch_default: $ => seq('default', ':', repeat($.comment), $._statement),
+    switch_default: $ => prec.right(seq('default', ':', repeat($.comment), optional($._statement))),
 
     _io_statement: $ =>
       choice(

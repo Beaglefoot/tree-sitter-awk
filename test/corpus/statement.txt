@@ -756,6 +756,26 @@ Switch statement body comment
           (comment))))))
 
 ====================================
+Switch statement empty default
+====================================
+
+{
+  switch(1) {
+    default:
+  }
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (switch_statement
+        (number)
+        (switch_body
+          (switch_default))))))
+
+====================================
 Print statement
 ====================================
 
