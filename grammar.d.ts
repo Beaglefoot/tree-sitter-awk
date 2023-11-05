@@ -55,6 +55,9 @@ declare interface IRules {
   array_ref: ($: IRules & IExternals) => any;
   exp_list: ($: IRules & IExternals) => any;
   regex: ($: IRules & IExternals) => any;
+  _regex_char: ($: IRules & IExternals) => any;
+  _regex_char_escaped: ($: IRules & IExternals) => any;
+  _regex_char_list: ($: IRules & IExternals) => any;
   regex_pattern: ($: IRules & IExternals) => any;
   regex_flags: ($: IRules & IExternals) => any;
   regex_constant: ($: IRules & IExternals) => any;

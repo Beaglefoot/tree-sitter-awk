@@ -366,17 +366,24 @@ module.exports = grammar({
     regex: $ =>
       seq(
         '/',
-        field('pattern', $.regex_pattern),
+        optional(field('pattern', $.regex_pattern)),
         token.immediate('/'),
         optional(field('flags', $.regex_flags))
       ),
 
-    regex_pattern: $ => {
-      const char = /[^/\\\[\n\r]/;
-      const char_escaped = seq('\\', /./);
-      const char_list = seq('[', repeat1(choice(char_escaped, /[^\]]/)), ']');
+    _regex_char: $ => token.immediate(/[^/\\\[\n\r]/),
 
-      return token.immediate(repeat(choice(char, char_escaped, char_list)));
+    _regex_char_escaped: $ => token.immediate(seq('\\', /./)),
+
+    _regex_char_list: $ =>
+      seq(
+        token.immediate('['),
+        repeat1(choice($._regex_char_escaped, $._regex_char)),
+        token.immediate(']')
+      ),
+
+    regex_pattern: $ => {
+      return repeat1(choice($._regex_char, $._regex_char_escaped, $._regex_char_list));
     },
 
     regex_flags: $ => token.immediate(/[a-z]+/),

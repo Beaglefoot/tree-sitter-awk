@@ -2520,12 +2520,20 @@
           "value": "/"
         },
         {
-          "type": "FIELD",
-          "name": "pattern",
-          "content": {
-            "type": "SYMBOL",
-            "name": "regex_pattern"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "pattern",
+              "content": {
+                "type": "SYMBOL",
+                "name": "regex_pattern"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -2552,70 +2560,82 @@
         }
       ]
     },
-    "regex_pattern": {
+    "_regex_char": {
       "type": "IMMEDIATE_TOKEN",
       "content": {
-        "type": "REPEAT",
-        "content": {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "PATTERN",
-              "value": "[^/\\\\\\[\\n\\r]"
-            },
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "\\"
-                },
-                {
-                  "type": "PATTERN",
-                  "value": "."
-                }
-              ]
-            },
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "["
-                },
-                {
-                  "type": "REPEAT1",
-                  "content": {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "SEQ",
-                        "members": [
-                          {
-                            "type": "STRING",
-                            "value": "\\"
-                          },
-                          {
-                            "type": "PATTERN",
-                            "value": "."
-                          }
-                        ]
-                      },
-                      {
-                        "type": "PATTERN",
-                        "value": "[^\\]]"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "STRING",
-                  "value": "]"
-                }
-              ]
-            }
-          ]
+        "type": "PATTERN",
+        "value": "[^/\\\\\\[\\n\\r]"
+      }
+    },
+    "_regex_char_escaped": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "\\"
+          },
+          {
+            "type": "PATTERN",
+            "value": "."
+          }
+        ]
+      }
+    },
+    "_regex_char_list": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "["
+          }
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_regex_char_escaped"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_regex_char"
+              }
+            ]
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "]"
+          }
         }
+      ]
+    },
+    "regex_pattern": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_regex_char"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_regex_char_escaped"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_regex_char_list"
+          }
+        ]
       }
     },
     "regex_flags": {

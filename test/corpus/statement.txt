@@ -110,6 +110,27 @@ If statement followed by comment
          (number)))))
 
 ====================================
+If statement with multiple escape sym
+====================================
+
+/[\\]/ {
+  if (/[\\]/) {}
+}
+
+------------------------------------
+
+(program
+  (rule
+    (pattern
+      (regex
+         (regex_pattern)))
+    (block
+      (if_statement
+         (regex
+           (regex_pattern))
+        (block)))))
+
+====================================
 If-else statement with blocks
 ====================================
 

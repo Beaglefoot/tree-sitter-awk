@@ -3549,7 +3549,7 @@
       },
       "pattern": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "regex_pattern",
@@ -3573,6 +3573,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "regex_pattern",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "return_statement",
@@ -5250,10 +5255,6 @@
   },
   {
     "type": "regex_flags",
-    "named": true
-  },
-  {
-    "type": "regex_pattern",
     "named": true
   },
   {
