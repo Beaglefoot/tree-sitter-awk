@@ -726,6 +726,36 @@ Switch statement with comment
             (break_statement)))))))
 
 ====================================
+Switch statement body comment
+====================================
+
+{
+  switch(1) {
+    # comment
+    case "hello":
+    case "world": # comment
+      break # comment
+  }
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (switch_statement
+        (number)
+        (switch_body
+          (comment)
+          (switch_case
+             (string))
+          (switch_case
+             (string)
+            (comment)
+            (break_statement))
+          (comment))))))
+
+====================================
 Print statement
 ====================================
 

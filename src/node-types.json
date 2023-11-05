@@ -3832,6 +3832,10 @@
       "required": false,
       "types": [
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "switch_case",
           "named": true
         },

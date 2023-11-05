@@ -161,15 +161,17 @@ module.exports = grammar({
 
     switch_statement: $ => seq('switch', '(', $._exp, ')', repeat($.comment), $.switch_body),
 
-    switch_body: $ => seq('{', repeat(choice($.switch_case, $.switch_default)), '}'),
+    switch_body: $ => seq('{', repeat(choice($.switch_case, $.switch_default, $.comment)), '}'),
 
     switch_case: $ =>
-      seq(
-        'case',
-        field('value', choice($._primitive, $.regex)),
-        ':',
-        repeat($.comment),
-        optional($._statement)
+      prec.right(
+        seq(
+          'case',
+          field('value', choice($._primitive, $.regex)),
+          ':',
+          repeat($.comment),
+          optional($._statement)
+        )
       ),
 
     switch_default: $ => seq('default', ':', repeat($.comment), $._statement),
