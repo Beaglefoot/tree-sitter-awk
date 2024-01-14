@@ -5166,11 +5166,27 @@
     "named": false
   },
   {
+    "type": "alnum",
+    "named": false
+  },
+  {
+    "type": "alpha",
+    "named": false
+  },
+  {
+    "type": "blank",
+    "named": false
+  },
+  {
     "type": "break_statement",
     "named": true
   },
   {
     "type": "case",
+    "named": false
+  },
+  {
+    "type": "cntrl",
     "named": false
   },
   {
@@ -5187,6 +5203,10 @@
   },
   {
     "type": "delete",
+    "named": false
+  },
+  {
+    "type": "digit",
     "named": false
   },
   {
@@ -5222,6 +5242,10 @@
     "named": false
   },
   {
+    "type": "graph",
+    "named": false
+  },
+  {
     "type": "identifier",
     "named": true
   },
@@ -5231,6 +5255,10 @@
   },
   {
     "type": "in",
+    "named": false
+  },
+  {
+    "type": "lower",
     "named": false
   },
   {
@@ -5254,6 +5282,10 @@
     "named": false
   },
   {
+    "type": "punct",
+    "named": false
+  },
+  {
     "type": "regex_flags",
     "named": true
   },
@@ -5262,11 +5294,23 @@
     "named": false
   },
   {
+    "type": "space",
+    "named": false
+  },
+  {
     "type": "switch",
     "named": false
   },
   {
+    "type": "upper",
+    "named": false
+  },
+  {
     "type": "while",
+    "named": false
+  },
+  {
+    "type": "xdigit",
     "named": false
   },
   {

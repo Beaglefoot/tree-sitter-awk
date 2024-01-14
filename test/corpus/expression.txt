@@ -468,6 +468,55 @@ Regex constant
              (regex_pattern)))))))
 
 ====================================
+Regex charachter class
+====================================
+
+{
+  /[[:alnum:]]/
+  /[[:alpha:]]/
+  /[[:blank:]]/
+  /[[:cntrl:]]/
+  /[[:digit:]]/
+  /[[:graph:]]/
+  /[[:lower:]]/
+  /[[:punct:]]/
+  /[[:print:]]/
+  /[[:space:]]/
+  /[[:upper:]]/
+  /[[:xdigit:]]/
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (regex
+         (regex_pattern))
+      (regex
+         (regex_pattern))
+      (regex
+         (regex_pattern))
+      (regex
+         (regex_pattern))
+      (regex
+         (regex_pattern))
+      (regex
+         (regex_pattern))
+      (regex
+         (regex_pattern))
+      (regex
+         (regex_pattern))
+      (regex
+         (regex_pattern))
+      (regex
+         (regex_pattern))
+      (regex
+         (regex_pattern))
+      (regex
+         (regex_pattern)))))
+
+====================================
 Number
 ====================================
 

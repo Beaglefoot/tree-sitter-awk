@@ -375,15 +375,37 @@ module.exports = grammar({
 
     _regex_char_escaped: $ => token.immediate(seq('\\', /./)),
 
-    _regex_char_list: $ =>
+    _regex_char_class: $ =>
       seq(
         token.immediate('['),
-        repeat1(choice($._regex_char_escaped, $._regex_char)),
+        token.immediate(':'),
+        choice(
+          'alnum',
+          'alpha',
+          'blank',
+          'cntrl',
+          'digit',
+          'graph',
+          'lower',
+          'print',
+          'punct',
+          'space',
+          'upper',
+          'xdigit'
+        ),
+        token.immediate(':'),
+        token.immediate(']')
+      ),
+
+    _regex_bracket_exp: $ =>
+      seq(
+        token.immediate('['),
+        repeat1(choice($._regex_char_escaped, $._regex_char, $._regex_char_class)),
         token.immediate(']')
       ),
 
     regex_pattern: $ => {
-      return repeat1(choice($._regex_char, $._regex_char_escaped, $._regex_char_list));
+      return repeat1(choice($._regex_char, $._regex_char_escaped, $._regex_bracket_exp));
     },
 
     regex_flags: $ => token.immediate(/[a-z]+/),

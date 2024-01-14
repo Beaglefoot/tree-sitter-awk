@@ -2583,7 +2583,93 @@
         ]
       }
     },
-    "_regex_char_list": {
+    "_regex_char_class": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "["
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": ":"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "alnum"
+            },
+            {
+              "type": "STRING",
+              "value": "alpha"
+            },
+            {
+              "type": "STRING",
+              "value": "blank"
+            },
+            {
+              "type": "STRING",
+              "value": "cntrl"
+            },
+            {
+              "type": "STRING",
+              "value": "digit"
+            },
+            {
+              "type": "STRING",
+              "value": "graph"
+            },
+            {
+              "type": "STRING",
+              "value": "lower"
+            },
+            {
+              "type": "STRING",
+              "value": "print"
+            },
+            {
+              "type": "STRING",
+              "value": "punct"
+            },
+            {
+              "type": "STRING",
+              "value": "space"
+            },
+            {
+              "type": "STRING",
+              "value": "upper"
+            },
+            {
+              "type": "STRING",
+              "value": "xdigit"
+            }
+          ]
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": ":"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "]"
+          }
+        }
+      ]
+    },
+    "_regex_bracket_exp": {
       "type": "SEQ",
       "members": [
         {
@@ -2605,6 +2691,10 @@
               {
                 "type": "SYMBOL",
                 "name": "_regex_char"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_regex_char_class"
               }
             ]
           }
@@ -2633,7 +2723,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_regex_char_list"
+            "name": "_regex_bracket_exp"
           }
         ]
       }
