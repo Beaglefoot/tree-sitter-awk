@@ -319,6 +319,13 @@
             }
           },
           {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "comment"
+            }
+          },
+          {
             "type": "CHOICE",
             "members": [
               {

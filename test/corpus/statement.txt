@@ -110,6 +110,25 @@ If statement followed by comment
          (number)))))
 
 ====================================
+If condition followed by comment
+====================================
+
+{
+    if (1) # comment
+    1
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (if_statement
+         (number)
+        (comment)
+        (number)))))
+
+====================================
 If statement with multiple escape sym
 ====================================
 

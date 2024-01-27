@@ -91,6 +91,7 @@ module.exports = grammar({
         seq(
           'if',
           field('condition', seq('(', $._exp, ')')),
+          repeat($.comment),
           choice($.block, $._statement, ';'),
           optional(seq($._if_else_separator, repeat($.comment), $.else_clause))
         )
