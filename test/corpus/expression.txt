@@ -113,6 +113,31 @@ Conditional expression
          (string)))))
 
 ====================================
+Ternary expression with comments
+====================================
+
+{
+  x == y ? # comment
+  1 : # comment
+  2 # comment
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (ternary_exp
+         (binary_exp
+           (identifier)
+           (identifier))
+        (comment)
+         (number)
+        (comment)
+         (number))
+      (comment))))
+
+====================================
 Arithmetic operators
 ====================================
 

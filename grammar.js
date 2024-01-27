@@ -263,8 +263,10 @@ module.exports = grammar({
         seq(
           field('condition', $._exp),
           '?',
+          optional($.comment),
           field('consequence', $._exp),
           ':',
+          optional($.comment),
           field('alternative', $._exp)
         )
       ),
