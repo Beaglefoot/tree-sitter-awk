@@ -440,7 +440,7 @@ module.exports = grammar({
         $.block
       ),
 
-    param_list: $ => seq($.identifier, repeat(seq(',', $.identifier))),
+    param_list: $ => seq($.identifier, repeat(seq(',', optional($.comment), $.identifier))),
 
     func_call: $ =>
       seq(

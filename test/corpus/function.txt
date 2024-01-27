@@ -151,7 +151,7 @@ Indirect function call
            (identifier))))))
 
 ====================================
-Cannot have NS amont parameters
+Cannot have NS among parameters
 ====================================
 
 function fn(main::x) {}
@@ -164,5 +164,24 @@ function fn(main::x) {}
     (param_list
       (identifier))
     (ERROR
+      (identifier))
+    (block)))
+
+====================================
+Param list has comment
+====================================
+
+function d(a,
+  # hi
+  c) {}
+
+------------------------------------
+
+(program
+  (func_def
+     (identifier)
+    (param_list
+      (identifier)
+      (comment)
       (identifier))
     (block)))
