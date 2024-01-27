@@ -2312,117 +2312,259 @@
       "type": "PREC_LEFT",
       "value": 0,
       "content": {
-        "type": "SEQ",
+        "type": "CHOICE",
         "members": [
           {
-            "type": "FIELD",
-            "name": "left",
-            "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "identifier"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "ns_qualified_name"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "ternary_exp"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "binary_exp"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "unary_exp"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "field_ref"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "func_call"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_primitive"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "array_ref"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "grouping"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "string_concat"
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "left",
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "ns_qualified_name"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "ternary_exp"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "binary_exp"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "unary_exp"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "field_ref"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "func_call"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_primitive"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "array_ref"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "grouping"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "string_concat"
+                    }
+                  ]
                 }
-              ]
-            }
+              },
+              {
+                "type": "FIELD",
+                "name": "right",
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "ns_qualified_name"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "ternary_exp"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "binary_exp"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "unary_exp"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "field_ref"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "func_call"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_primitive"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "array_ref"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "grouping"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "string_concat"
+                    }
+                  ]
+                }
+              }
+            ]
           },
           {
-            "type": "SYMBOL",
-            "name": "concatenating_space"
-          },
-          {
-            "type": "FIELD",
-            "name": "right",
-            "content": {
-              "type": "CHOICE",
-              "members": [
-                {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "left",
+                "content": {
                   "type": "SYMBOL",
                   "name": "identifier"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "ns_qualified_name"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "ternary_exp"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "binary_exp"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "unary_exp"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "field_ref"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "func_call"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_primitive"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "array_ref"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "grouping"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "string_concat"
                 }
-              ]
-            }
+              },
+              {
+                "type": "FIELD",
+                "name": "right",
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "ns_qualified_name"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "ternary_exp"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "binary_exp"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "unary_exp"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "field_ref"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "func_call"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_primitive"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "array_ref"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "grouping"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "string_concat"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "left",
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "ns_qualified_name"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "ternary_exp"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "binary_exp"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "unary_exp"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "field_ref"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "func_call"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_primitive"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "array_ref"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "grouping"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "string_concat"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "right",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                }
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "left",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                }
+              },
+              {
+                "type": "SYMBOL",
+                "name": "concatenating_space"
+              },
+              {
+                "type": "FIELD",
+                "name": "right",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                }
+              }
+            ]
           }
         ]
       }

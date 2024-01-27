@@ -332,8 +332,7 @@ module.exports = grammar({
     piped_io_exp: $ => seq(field('command', $._exp), choice('|', '|&'), $.getline_input),
 
     string_concat: $ => {
-      const applicable_exp = choice(
-        $.identifier,
+      const not_identifier = choice(
         $.ns_qualified_name,
         $.ternary_exp,
         $.binary_exp,
@@ -346,8 +345,15 @@ module.exports = grammar({
         $.string_concat
       );
 
+      // TODO: Absence of concatenating_space is possible if one side is not an identifier
+
       return prec.left(
-        seq(field('left', applicable_exp), $.concatenating_space, field('right', applicable_exp))
+        choice(
+          seq(field('left', not_identifier), field('right', not_identifier)),
+          seq(field('left', $.identifier), field('right', not_identifier)),
+          seq(field('left', not_identifier), field('right', $.identifier)),
+          seq(field('left', $.identifier), $.concatenating_space, field('right', $.identifier))
+        )
       );
     },
 
