@@ -14,7 +14,8 @@
     "prebuilds/**",
     "bindings/node/*",
     "queries/*",
-    "src/**"
+    "src/**",
+    "tree-sitter-awk.wasm"
   ],
   "repository": {
     "type": "git",
