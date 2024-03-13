@@ -8,13 +8,21 @@
     "awk",
     "gawk"
   ],
+  "files": [
+    "grammar.js",
+    "binding.gyp",
+    "prebuilds/**",
+    "bindings/node/*",
+    "queries/*",
+    "src/**"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Beaglefoot/tree-sitter-awk.git"
   },
   "scripts": {
     "generate": "tree-sitter generate",
-    "build": "yarn generate && node-gyp build",
+    "build": "yarn generate && yarn install",
     "build:wasm": "tree-sitter build-wasm",
     "parse": "tree-sitter parse",
     "types": "node scripts/generate_types.js",
@@ -22,16 +30,29 @@
     "trim": "sed ' s/ \\[.*\\]//; s/\\w\\+:// '",
     "test": "tree-sitter test",
     "version": "./scripts/update_highlights_version.sh",
-    "prepublishOnly": "yarn build:wasm"
+    "prepublishOnly": "yarn build:wasm",
+    "install": "node-gyp-build",
+    "prebuildify": "prebuildify --napi --strip"
   },
   "dependencies": {
-    "nan": "2.17.0"
+    "node-addon-api": "^7.1.0",
+    "node-gyp-build": "^4.8.0"
+  },
+  "peerDependencies": {
+    "tree-sitter": "^0.21.0"
+  },
+  "peerDependenciesMeta": {
+    "tree_sitter": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "prettier": "2.3.2",
-    "tree-sitter-cli": "0.20.8"
+    "tree-sitter-cli": "0.22.1",
+    "prebuildify": "^6.0.0"
   },
   "main": "bindings/node",
+  "types": "bindings/node",
   "tree-sitter": [
     {
       "scope": "source.awk",
