@@ -4,9 +4,25 @@ on:
   push:
     branches:
       - master
+    paths:
+      - grammar.js
+      - src/**
+      - test/**
+      - bindings/**
+      - binding.gyp
+      - package.json
+      - yarn.lock
   pull_request:
     branches:
       - master
+    paths:
+      - grammar.js
+      - src/**
+      - test/**
+      - bindings/**
+      - binding.gyp
+      - package.json
+      - yarn.lock
 
 jobs:
   test:
