@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-awk",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "author": "Beaglefoot <ch-e-st@yandex.ru>",
   "license": "MIT",
   "keywords": [
