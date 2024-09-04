@@ -792,6 +792,26 @@ String concatenation line continuation
          (identifier)))))
 
 ====================================
+String concatenation nested groups
+====================================
+
+{
+  ("a"("b"))
+}
+
+------------------------------------
+
+(program
+  (rule
+    (block
+      (grouping
+        (string_concat
+           (string)
+          (concatenating_space)
+           (grouping
+            (string)))))))
+
+====================================
 Getline statement no var
 ====================================
 

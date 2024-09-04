@@ -3,7 +3,7 @@ module.exports = grammar({
 
   extras: $ => [/[\s\t]/, '\\\n', '\\\r\n'],
 
-  externals: $ => [$.concatenating_space, $._if_else_separator, $._no_space],
+  externals: $ => [$.concatenating_space, $._if_else_separator, $._no_space, $._func_call],
 
   precedences: $ => [
     [
@@ -447,6 +447,8 @@ module.exports = grammar({
     func_call: $ =>
       seq(
         field('name', choice($.identifier, $.ns_qualified_name)),
+        // Otherwise $.concatenating_space takes precedence
+        $._func_call,
         token.immediate('('),
         optional($.args),
         ')'

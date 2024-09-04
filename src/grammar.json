@@ -3038,6 +3038,10 @@
           }
         },
         {
+          "type": "SYMBOL",
+          "name": "_func_call"
+        },
+        {
           "type": "IMMEDIATE_TOKEN",
           "content": {
             "type": "STRING",
@@ -3335,6 +3339,10 @@
     {
       "type": "SYMBOL",
       "name": "_no_space"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_func_call"
     }
   ],
   "inline": [],
