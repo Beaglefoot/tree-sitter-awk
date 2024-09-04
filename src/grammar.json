@@ -3145,19 +3145,7 @@
       },
       {
         "type": "SYMBOL",
-        "name": "grouping"
-      },
-      {
-        "type": "SYMBOL",
         "name": "field_ref"
-      },
-      {
-        "type": "SYMBOL",
-        "name": "func_call"
-      },
-      {
-        "type": "SYMBOL",
-        "name": "update_exp"
       },
       {
         "type": "STRING",
@@ -3170,10 +3158,6 @@
       {
         "type": "STRING",
         "value": "binary_plus"
-      },
-      {
-        "type": "SYMBOL",
-        "name": "string_concat"
       },
       {
         "type": "SYMBOL",
