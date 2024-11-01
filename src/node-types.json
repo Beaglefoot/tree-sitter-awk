@@ -2126,7 +2126,7 @@
     "fields": {
       "name": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "identifier",
@@ -5188,6 +5188,22 @@
     "named": false
   },
   {
+    "type": "and",
+    "named": false
+  },
+  {
+    "type": "asort",
+    "named": false
+  },
+  {
+    "type": "asorti",
+    "named": false
+  },
+  {
+    "type": "bindtextdomain",
+    "named": false
+  },
+  {
     "type": "blank",
     "named": false
   },
@@ -5204,12 +5220,28 @@
     "named": false
   },
   {
+    "type": "compl",
+    "named": false
+  },
+  {
     "type": "concatenating_space",
     "named": true
   },
   {
     "type": "continue_statement",
     "named": true
+  },
+  {
+    "type": "cos",
+    "named": false
+  },
+  {
+    "type": "dcgettext",
+    "named": false
+  },
+  {
+    "type": "dcngettext",
+    "named": false
   },
   {
     "type": "default",
@@ -5240,6 +5272,10 @@
     "named": false
   },
   {
+    "type": "exp",
+    "named": false
+  },
+  {
     "type": "for",
     "named": false
   },
@@ -5252,11 +5288,19 @@
     "named": false
   },
   {
+    "type": "gensub",
+    "named": false
+  },
+  {
     "type": "getline",
     "named": false
   },
   {
     "type": "graph",
+    "named": false
+  },
+  {
+    "type": "gsub",
     "named": false
   },
   {
@@ -5272,7 +5316,39 @@
     "named": false
   },
   {
+    "type": "index",
+    "named": false
+  },
+  {
+    "type": "int",
+    "named": false
+  },
+  {
+    "type": "isarray",
+    "named": false
+  },
+  {
+    "type": "length",
+    "named": false
+  },
+  {
+    "type": "log",
+    "named": false
+  },
+  {
     "type": "lower",
+    "named": false
+  },
+  {
+    "type": "lshift",
+    "named": false
+  },
+  {
+    "type": "match",
+    "named": false
+  },
+  {
+    "type": "mktime",
     "named": false
   },
   {
@@ -5288,6 +5364,14 @@
     "named": true
   },
   {
+    "type": "or",
+    "named": false
+  },
+  {
+    "type": "patsplit",
+    "named": false
+  },
+  {
     "type": "print",
     "named": false
   },
@@ -5300,6 +5384,10 @@
     "named": false
   },
   {
+    "type": "rand",
+    "named": false
+  },
+  {
     "type": "regex_flags",
     "named": true
   },
@@ -5308,11 +5396,67 @@
     "named": false
   },
   {
+    "type": "rshift",
+    "named": false
+  },
+  {
+    "type": "sin",
+    "named": false
+  },
+  {
     "type": "space",
     "named": false
   },
   {
+    "type": "split",
+    "named": false
+  },
+  {
+    "type": "sprintf",
+    "named": false
+  },
+  {
+    "type": "sqrt",
+    "named": false
+  },
+  {
+    "type": "srand",
+    "named": false
+  },
+  {
+    "type": "strftime",
+    "named": false
+  },
+  {
+    "type": "strtonum",
+    "named": false
+  },
+  {
+    "type": "sub",
+    "named": false
+  },
+  {
+    "type": "substr",
+    "named": false
+  },
+  {
     "type": "switch",
+    "named": false
+  },
+  {
+    "type": "systime",
+    "named": false
+  },
+  {
+    "type": "tolower",
+    "named": false
+  },
+  {
+    "type": "toupper",
+    "named": false
+  },
+  {
+    "type": "typeof",
     "named": false
   },
   {
@@ -5325,6 +5469,10 @@
   },
   {
     "type": "xdigit",
+    "named": false
+  },
+  {
+    "type": "xor",
     "named": false
   },
   {

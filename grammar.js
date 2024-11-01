@@ -441,11 +441,60 @@ module.exports = grammar({
     param_list: $ => seq($.identifier, repeat(seq(',', optional($.comment), $.identifier))),
 
     func_call: $ =>
+      choice(
+        seq(
+          field('name', choice($.identifier, $.ns_qualified_name)),
+          // Otherwise $.concatenating_space takes precedence
+          $._func_call,
+          token.immediate('('),
+          optional($.args),
+          ')'
+        ),
+        $._builtin_func_call
+      ),
+
+    _builtin_func_call: $ =>
       seq(
-        field('name', choice($.identifier, $.ns_qualified_name)),
-        // Otherwise $.concatenating_space takes precedence
-        $._func_call,
-        token.immediate('('),
+        choice(
+          'and',
+          'asort',
+          'asorti',
+          'bindtextdomain',
+          'compl',
+          'cos',
+          'dcgettext',
+          'dcngettext',
+          'exp',
+          'gensub',
+          'gsub',
+          'index',
+          'int',
+          'isarray',
+          'length',
+          'log',
+          'lshift',
+          'match',
+          'mktime',
+          'or',
+          'patsplit',
+          'rand',
+          'rshift',
+          'sin',
+          'split',
+          'sprintf',
+          'sqrt',
+          'srand',
+          'strftime',
+          'strtonum',
+          'sub',
+          'substr',
+          'systime',
+          'tolower',
+          'toupper',
+          'typeof',
+          'xor'
+        ),
+        '(',
         optional($.args),
         ')'
       ),

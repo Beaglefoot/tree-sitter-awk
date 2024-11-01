@@ -3018,35 +3018,222 @@
       ]
     },
     "func_call": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "identifier"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "ns_qualified_name"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "name",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "ns_qualified_name"
+                  }
+                ]
               }
-            ]
-          }
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_func_call"
+            },
+            {
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "("
+              }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "args"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "STRING",
+              "value": ")"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
-          "name": "_func_call"
+          "name": "_builtin_func_call"
+        }
+      ]
+    },
+    "_builtin_func_call": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "and"
+            },
+            {
+              "type": "STRING",
+              "value": "asort"
+            },
+            {
+              "type": "STRING",
+              "value": "asorti"
+            },
+            {
+              "type": "STRING",
+              "value": "bindtextdomain"
+            },
+            {
+              "type": "STRING",
+              "value": "compl"
+            },
+            {
+              "type": "STRING",
+              "value": "cos"
+            },
+            {
+              "type": "STRING",
+              "value": "dcgettext"
+            },
+            {
+              "type": "STRING",
+              "value": "dcngettext"
+            },
+            {
+              "type": "STRING",
+              "value": "exp"
+            },
+            {
+              "type": "STRING",
+              "value": "gensub"
+            },
+            {
+              "type": "STRING",
+              "value": "gsub"
+            },
+            {
+              "type": "STRING",
+              "value": "index"
+            },
+            {
+              "type": "STRING",
+              "value": "int"
+            },
+            {
+              "type": "STRING",
+              "value": "isarray"
+            },
+            {
+              "type": "STRING",
+              "value": "length"
+            },
+            {
+              "type": "STRING",
+              "value": "log"
+            },
+            {
+              "type": "STRING",
+              "value": "lshift"
+            },
+            {
+              "type": "STRING",
+              "value": "match"
+            },
+            {
+              "type": "STRING",
+              "value": "mktime"
+            },
+            {
+              "type": "STRING",
+              "value": "or"
+            },
+            {
+              "type": "STRING",
+              "value": "patsplit"
+            },
+            {
+              "type": "STRING",
+              "value": "rand"
+            },
+            {
+              "type": "STRING",
+              "value": "rshift"
+            },
+            {
+              "type": "STRING",
+              "value": "sin"
+            },
+            {
+              "type": "STRING",
+              "value": "split"
+            },
+            {
+              "type": "STRING",
+              "value": "sprintf"
+            },
+            {
+              "type": "STRING",
+              "value": "sqrt"
+            },
+            {
+              "type": "STRING",
+              "value": "srand"
+            },
+            {
+              "type": "STRING",
+              "value": "strftime"
+            },
+            {
+              "type": "STRING",
+              "value": "strtonum"
+            },
+            {
+              "type": "STRING",
+              "value": "sub"
+            },
+            {
+              "type": "STRING",
+              "value": "substr"
+            },
+            {
+              "type": "STRING",
+              "value": "systime"
+            },
+            {
+              "type": "STRING",
+              "value": "tolower"
+            },
+            {
+              "type": "STRING",
+              "value": "toupper"
+            },
+            {
+              "type": "STRING",
+              "value": "typeof"
+            },
+            {
+              "type": "STRING",
+              "value": "xor"
+            }
+          ]
         },
         {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "("
-          }
+          "type": "STRING",
+          "value": "("
         },
         {
           "type": "CHOICE",
