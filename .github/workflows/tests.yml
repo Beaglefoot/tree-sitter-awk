@@ -12,6 +12,7 @@ on:
       - binding.gyp
       - package.json
       - yarn.lock
+      - .github/workflows/**
   pull_request:
     branches:
       - master
@@ -23,6 +24,7 @@ on:
       - binding.gyp
       - package.json
       - yarn.lock
+      - .github/workflows/**
 
 jobs:
   test:
@@ -31,9 +33,10 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest, macOS-latest, windows-latest]
+        # windows-latest is broken due to some security patches
+        # https://github.com/prebuild/node-gyp-build/issues/68
+        os: [ubuntu-latest, macOS-latest]
         node: [20, 21]
-
     steps:
       - uses: actions/checkout@v4
 
